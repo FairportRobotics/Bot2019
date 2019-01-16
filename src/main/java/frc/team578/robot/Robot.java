@@ -1,4 +1,4 @@
-package team578.robot;
+package frc.team578.robot;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
@@ -14,52 +14,42 @@ public class Robot extends TimedRobot {
 	
 	private AHRS navx;
 
-	@Override
 	public void robotInit() {
-		super.robotInit();
+		System.out.println("turned on robot beep boop beep boop");
 	}
 
-	@Override
 	public void disabledInit() {
-		super.disabledInit();
+		System.out.println("turned off robot :sad face:");
 	}
 
-	@Override
 	public void autonomousInit() {
-		super.autonomousInit();
+		System.out.println("im sorry dave, i cant do that");
 	}
 
-	@Override
 	public void teleopInit() {
-		super.teleopInit();
+		System.out.println("take the wheel");
 	}
 
-	@Override
 	public void testInit() {
-		super.testInit();
+		System.out.println("test init");
 	}
 
-	@Override
 	public void robotPeriodic() {
 		super.robotPeriodic();
 	}
 
-	@Override
 	public void disabledPeriodic() {
 		super.disabledPeriodic();
 	}
 
-	@Override
 	public void autonomousPeriodic() {
 		super.autonomousPeriodic();
 	}
 
-	@Override
 	public void teleopPeriodic() {
 		super.teleopPeriodic();
 	}
 
-	@Override
 	public void testPeriodic() {
 		super.testPeriodic();
 	}
