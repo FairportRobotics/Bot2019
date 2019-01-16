@@ -11,46 +11,67 @@ public class Robot extends TimedRobot {
 	private TalonSRX rightSlave;
 	private TalonSRX leftMaster;
 	private TalonSRX leftSlave;
+
+	private boolean firstEnabledPeriodic = true;
+	private boolean firstDisabledPeriodic = true;
+	private boolean firstAutonomousPeriodic = true;
+	private boolean firstTeleopPeriodic = true;
+	private boolean firstTestPeriodic = true;
 	
 	private AHRS navx;
 
 	public void robotInit() {
-		System.out.println("turned on robot beep boop beep boop");
+		System.out.println("Enabled robot");
 	}
 
 	public void disabledInit() {
-		System.out.println("turned off robot :sad face:");
+		System.out.println("Disabled robot :sad face:");
 	}
 
 	public void autonomousInit() {
-		System.out.println("im sorry dave, i cant do that");
+		System.out.println("Enabled robot in autonomous");
 	}
 
 	public void teleopInit() {
-		System.out.println("take the wheel");
+		System.out.println("Enabled in teleop mode");
 	}
 
 	public void testInit() {
-		System.out.println("test init");
+		System.out.println("Enabled in test mode");
 	}
 
 	public void robotPeriodic() {
-		super.robotPeriodic();
+		if (firstEnabledPeriodic) {
+			System.out.println("This is the periodic message when the robot is enabled. For now, it will only run once.");
+			firstEnabledPeriodic = false;
+		}
 	}
 
 	public void disabledPeriodic() {
-		super.disabledPeriodic();
+		if (firstDisabledPeriodic) {
+			System.out.println("This is the periodic message when the robot is disabled. For now, it will only run once.");
+			firstDisabledPeriodic = false;
+		}
 	}
 
 	public void autonomousPeriodic() {
-		super.autonomousPeriodic();
+		if (firstAutonomousPeriodic) {
+			System.out.println("This is the periodic message when the robot is enabled in autonomous mode. For now, it will only run once.");
+			firstAutonomousPeriodic = false;
+		}
 	}
 
 	public void teleopPeriodic() {
-		super.teleopPeriodic();
+		if (firstTeleopPeriodic) {
+			System.out.println("This is the periodic message when the robot is enabled in teleop mode. For now, it will only run once.");
+			firstTeleopPeriodic = false;
+		}
 	}
 
 	public void testPeriodic() {
-		super.testPeriodic();
+		if (firstTestPeriodic) {
+			System.out.println("This is the periodic message when the robot is enabled in test mode. For now, it will only run once.");
+			firstTestPeriodic = false;
+		}
 	}
 }
