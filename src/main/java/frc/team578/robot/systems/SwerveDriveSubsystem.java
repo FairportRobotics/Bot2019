@@ -9,6 +9,9 @@ public class SwerveDriveSubsystem extends Subsystem implements Initializable {
 
     @Override
     protected void initDefaultCommand() {
+        /*
+        TODO : Should SwerveDriveCommand go here?
+         */
     }
 
     @Override
@@ -16,8 +19,11 @@ public class SwerveDriveSubsystem extends Subsystem implements Initializable {
         swerveDrive = SwerveDrive.create();
     }
 
-
     public void move(double fwd, double str, double rot, double angleDeg) {
         swerveDrive.move(fwd,str,rot,angleDeg);
+    }
+
+    public void zeroAllSteerEncoders() {
+        swerveDrive.zeroAllSteerEncoders();
     }
 }

@@ -11,8 +11,7 @@ public interface SwerveEnclosure {
      */
     void move(double speed, double angle);
 
-    /**
-     * Stop all movement of the wheel
-     */
     void stop();
+
+    void zeroSteerEncoder();
 }

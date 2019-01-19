@@ -46,6 +46,11 @@ public class TalonSwerveEnclosure extends BaseEnclosure {
         this.driveTalon.stopMotor();
     }
 
+    @Override
+    public void zeroSteerEncoder() {
+        this.steerTalon.setSelectedSensorPosition(0);
+    }
+
     public WPI_TalonSRX getDriveTalon() {
         return driveTalon;
     }

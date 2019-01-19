@@ -2,7 +2,6 @@ package frc.team578.robot.systems;
 
 import com.ctre.phoenix.sensors.PigeonIMU;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team578.robot.RobotMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,15 +39,6 @@ public class GyroSubsystem extends Subsystem implements Initializable {
             final int kTimeoutMs = 30;
             _pigeon.setFusedHeading(0.0, kTimeoutMs);
         }
-    }
-
-    public void updateDashboard() {
-
-        SmartDashboard.putNumber("pigeon getAngle", getAngle());
-        SmartDashboard.putNumber("pigeon fusedHeading", _pigeon.getFusedHeading());
-        SmartDashboard.putNumber("pigeon absCompHeading", _pigeon.getAbsoluteCompassHeading());
-        SmartDashboard.putNumber("pigeon compHeading", _pigeon.getCompassHeading());
-        SmartDashboard.putNumber("pigeon state", _pigeon.getState().value);
     }
 
     public double getAngle() {

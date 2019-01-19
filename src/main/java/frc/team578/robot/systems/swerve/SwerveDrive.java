@@ -23,7 +23,6 @@ public class SwerveDrive {
 	private SwerveEnclosure swerveEnclosureFL;
 	private SwerveEnclosure swerveEnclosureBL;
 	private SwerveEnclosure swerveEnclosureBR;
-
 	private final SwerveMath swerveMath;
 
 
@@ -62,11 +61,6 @@ public class SwerveDrive {
 		swerveEnclosureBR.move(swerveDirectives.get(3).getSpeed(), swerveDirectives.get(3).getAngle());
 	}
 
-	/**
-	 * Stop the robot (set speed to 0)
-	 * 
-	 * @throws Exception
-	 */
 	public void stop() {
 		swerveEnclosureFR.stop();
 		swerveEnclosureFL.stop();
@@ -90,11 +84,20 @@ public class SwerveDrive {
 		return this.swerveMath.getCentricMode();
 	}
 
+	public void zeroAllSteerEncoders() {
+		swerveEnclosureFR.zeroSteerEncoder();
+		swerveEnclosureFL.zeroSteerEncoder();
+		swerveEnclosureBL.zeroSteerEncoder();
+		swerveEnclosureBR.zeroSteerEncoder();
+	}
+
+
 	/*
 	Putting all of the creation code below.
 	 */
 
 	public static SwerveDrive create() {
+
 		WPI_TalonSRX frontLeftDriveTalon;
 		WPI_TalonSRX frontLeftSwerveTalon;
 		WPI_TalonSRX frontRightDriveTalon;
@@ -140,9 +143,7 @@ public class SwerveDrive {
 		backRight = new TalonSwerveEnclosure("back right", backRightDriveTalon, backRightSwerveTalon,
 				SwerveConstants.MAX_ENC_VAL);
 
-		SwerveDrive swerveDrive = new SwerveDrive(frontLeft, frontRight, backLeft, backRight, SwerveConstants.ROBOT_WIDTH, SwerveConstants.ROBOT_LENGTH);
-
-		return swerveDrive;
+		return new SwerveDrive(frontLeft, frontRight, backLeft, backRight, SwerveConstants.ROBOT_WIDTH, SwerveConstants.ROBOT_LENGTH);
 	}
 
 	private static WPI_TalonSRX createDriveTalon(int talonID, boolean revMotor) {

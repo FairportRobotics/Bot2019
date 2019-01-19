@@ -1,6 +1,7 @@
 package frc.team578.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.team578.robot.commands.SwerveDriveCommand;
 import frc.team578.robot.systems.GyroSubsystem;
 import frc.team578.robot.systems.SwerveDriveSubsystem;
@@ -9,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Robot extends TimedRobot {
 
-	Logger log = LogManager.getRootLogger();
+	private Logger log = LogManager.getRootLogger();
 
 	// Operator Interface
 	public static OI oi;
@@ -39,9 +40,9 @@ public class Robot extends TimedRobot {
 			oi.initialize();
 			log.info("OI Subsystem Initialized");
 
-		} catch (Throwable e) {
-			log.error("Error In Robot Initialization : "+ e.getMessage(), e);
-			throw e;
+		} catch (Throwable t) {
+			log.error("Error In Robot Initialization : " + t.getMessage(), t);
+			throw t;
 		}
 
 
@@ -61,42 +62,43 @@ public class Robot extends TimedRobot {
 	public void teleopInit() {
 		try {
 
+			// Start the swerve drive command
 			SwerveDriveCommand drive = new SwerveDriveCommand();
 			drive.start();
 
 
 		} catch (Throwable t) {
-
+			log.error("Error In Robot teleopInit : " + t.getMessage(), t);
+			throw t;
 		}
 	}
 
 	@Override
 	public void testInit() {
-		super.testInit();
+		swerveDriveSubsystem.zeroAllSteerEncoders();
 	}
 
 	@Override
 	public void robotPeriodic() {
-		super.robotPeriodic();
 	}
 
 	@Override
 	public void disabledPeriodic() {
-		super.disabledPeriodic();
 	}
 
 	@Override
 	public void autonomousPeriodic() {
-		super.autonomousPeriodic();
+
+		Scheduler.getInstance().run();
 	}
 
 	@Override
 	public void teleopPeriodic() {
-		super.teleopPeriodic();
+
+		Scheduler.getInstance().run();
 	}
 
 	@Override
 	public void testPeriodic() {
-		super.testPeriodic();
 	}
 }
