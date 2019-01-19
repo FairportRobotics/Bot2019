@@ -8,4 +8,7 @@ public class RobotMap {
     // swerve controller joystick IDs
     public static final int CONTROL_GAMEPAD_ID = 0;
 
+    // joystick y axis ID
+    public static final int JOYSTICK_Y_AXIS_ID = 1;
+
 }
