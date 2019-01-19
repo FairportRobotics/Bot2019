@@ -1,27 +1,32 @@
 package frc.team578.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.team578.robot.RobotMap;
 
 public class Robot extends TimedRobot {
 	// variables for talons
-	private TalonSRX rightMaster;
-	private TalonSRX rightSlave;
-	private TalonSRX leftMaster;
-	private TalonSRX leftSlave;
+	private TalonSRX main;
 
 	private boolean firstEnabledPeriodic = true;
 	private boolean firstDisabledPeriodic = true;
 	private boolean firstAutonomousPeriodic = true;
 	private boolean firstTeleopPeriodic = true;
 	private boolean firstTestPeriodic = true;
+
+	private static Joystick joystick;
 	
 	private AHRS navx;
 
 	public void robotInit() {
-		System.out.println("Enabled robot");
+		System.out.println("Turned robot on");
+
+		joystick = new Joystick(RobotMap.CONTROL_GAMEPAD_ID);
+
+		main = new TalonSRX(RobotMap.MAIN_TALON_ID);
 	}
 
 	public void disabledInit() {
@@ -34,6 +39,11 @@ public class Robot extends TimedRobot {
 
 	public void teleopInit() {
 		System.out.println("Enabled in teleop mode");
+
+		double stick = joystick.getRawAxis(1);
+
+		main.set(ControlMode.PercentOutput, 0);
+		main.setInverted(true);
 	}
 
 	public void testInit() {
@@ -62,10 +72,12 @@ public class Robot extends TimedRobot {
 	}
 
 	public void teleopPeriodic() {
-		if (firstTeleopPeriodic) {
-			System.out.println("This is the periodic message when the robot is enabled in teleop mode. For now, it will only run once.");
-			firstTeleopPeriodic = false;
-		}
+		double stick = joystick.getRawAxis(1);
+
+		main.set(ControlMode.PercentOutput, stick);
+		main.setInverted(true);
+
+		System.out.println("stick:" + (stick * -1));
 	}
 
 	public void testPeriodic() {
