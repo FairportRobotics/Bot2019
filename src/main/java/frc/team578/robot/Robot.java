@@ -9,7 +9,7 @@ import frc.team578.robot.RobotMap;
 
 public class Robot extends TimedRobot {
 	// variables for talons
-	private TalonSRX Mr_Stussman;
+	private TalonSRX testTalon;
 
 	private boolean firstEnabledPeriodic = true;
 	private boolean firstDisabledPeriodic = true;
@@ -26,7 +26,7 @@ public class Robot extends TimedRobot {
 
 		joystick = new Joystick(RobotMap.CONTROL_GAMEPAD_ID);
 
-		Mr_Stussman = new TalonSRX(RobotMap.MAIN_TALON_ID);
+		testTalon = new TalonSRX(RobotMap.MAIN_TALON_ID);
 	}
 
 	public void disabledInit() {
@@ -40,8 +40,8 @@ public class Robot extends TimedRobot {
 	public void teleopInit() {
 		System.out.println("Enabled in teleop mode");
 
-		Mr_Stussman.set(ControlMode.PercentOutput, 0);
-		Mr_Stussman.setInverted(true);
+		testTalon.set(ControlMode.PercentOutput, 0);
+		testTalon.setInverted(true);
 	}
 
 	public void testInit() {
@@ -72,7 +72,7 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		double stick = joystick.getRawAxis(RobotMap.JOYSTICK_Y_AXIS_ID);
 
-		Mr_Stussman.set(ControlMode.PercentOutput, stick); // do the funky dance
+		testTalon.set(ControlMode.PercentOutput, stick); // do the funky dance
 
 		System.out.println("Joystick Y Axis Position:" + (stick * -1));
 	}
