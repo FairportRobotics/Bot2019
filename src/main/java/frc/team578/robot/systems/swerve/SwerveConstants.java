@@ -3,8 +3,8 @@ package frc.team578.robot.systems.swerve;
 public class SwerveConstants {
 
 
-    public static final double ROBOT_LENGTH = .625;
-    public static final double ROBOT_WIDTH = .47;
+    public static final double ROBOT_WHEEL_BASE_LENGTH = .625;
+    public static final double ROBOT_WHEEL_BASE_WIDTH = .47;
 
     public static final boolean FRONT_LEFT_REVERSE_DRIVE = true;
     public static final boolean FRONT_RIGHT_REVERSE_DRIVE = false;

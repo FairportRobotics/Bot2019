@@ -14,4 +14,8 @@ public interface SwerveEnclosure {
     void stop();
 
     void zeroSteerEncoder();
+
+    int getSteerEncoderPosition();
+
+    int getDriveEncoderPosition();
 }

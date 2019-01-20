@@ -148,7 +148,7 @@ public class SwerveDrive {
 		backRight = new TalonSwerveEnclosure("back right", backRightDriveTalon, backRightSwerveTalon,
 				SwerveConstants.MAX_ENC_VAL);
 
-		return new SwerveDrive(frontLeft, frontRight, backLeft, backRight, SwerveConstants.ROBOT_WIDTH, SwerveConstants.ROBOT_LENGTH);
+		return new SwerveDrive(frontLeft, frontRight, backLeft, backRight, SwerveConstants.ROBOT_WHEEL_BASE_WIDTH, SwerveConstants.ROBOT_WHEEL_BASE_LENGTH);
 	}
 
 	private static WPI_TalonSRX createDriveTalon(int talonID, boolean revMotor) {

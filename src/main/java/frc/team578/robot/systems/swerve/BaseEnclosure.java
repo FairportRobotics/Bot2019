@@ -4,7 +4,7 @@ package frc.team578.robot.systems.swerve;
  * Base class for enclosure. Implements common behavior that helps with the robot driving:
  * - Move method that takes into account current position and optimizes the movement to reduce angle rotation
  * - Allows the wheel to make full rotation (when reaching full rotation don't go back to 0, rather keep rotation in same direction)
- * This class uses abstract lower-level implementations of setSpeed and setAngle to be implemented by hardware-specific sub-classes
+ * This class uses abstract lower-level implementations of setDriveSpeed and setSteerAngle to be implemented by hardware-specific sub-classes
  */
 public abstract class BaseEnclosure implements SwerveEnclosure {
 
@@ -23,7 +23,7 @@ public abstract class BaseEnclosure implements SwerveEnclosure {
      */
     public void move(double speed, double angle)
 	{
-		int encPosition = getEncPosition();
+		int encPosition = getSteerEncoderPosition();
 		angle = convertAngle(angle, encPosition);
 		
 		if(shouldReverse(angle, encPosition))
@@ -36,36 +36,38 @@ public abstract class BaseEnclosure implements SwerveEnclosure {
 			speed *= -1.0;
 		}
 		
-		setSpeed(speed);
+		setDriveSpeed(speed);
 		
 		if(speed != 0.0) {
-			setAngle(angle); 
+			setSteerAngle(angle);
 		}
 	}
     public String getName() {
         return name;
     }
 
-    protected abstract int getEncPosition();
+    public abstract int getSteerEncoderPosition();
+
+    public abstract int getDriveEncoderPosition();
 
     /**
      * Sets the value of the angle encoder (used for aligning wheel in case of drift)
      * @param encPosition the current encoder value
      * TODO: This should be converted to -1 - +1 range...
      */
-    protected abstract void setAngleEncPosition(int encPosition);
+    protected abstract void setSteerAngleEncPosition(int encPosition);
 
     /**
      * Set the value of the drive motor
      * @param speed the speed value to set: -1 - full backwards, 0 - stop, +1 - full forward
      */
-    protected abstract void setSpeed(double speed);
+    protected abstract void setDriveSpeed(double speed);
 
     /**
      * Set the angle for the steer motor
      * @param angle the angle value: -0.5 - counterclockwise 180 degrees, 0 - forward 180 degrees, +0.5 - 180 degrees clockwise
      */
-    protected abstract void setAngle(double angle);
+    protected abstract void setSteerAngle(double angle);
 
 
     private boolean shouldReverse(double wa, double encoderValue){

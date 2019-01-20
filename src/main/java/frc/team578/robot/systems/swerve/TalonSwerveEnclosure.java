@@ -8,8 +8,10 @@ public class TalonSwerveEnclosure extends BaseEnclosure {
     private WPI_TalonSRX driveTalon;
     private WPI_TalonSRX steerTalon;
 
-    private boolean reverseEncoder = false;
+    private boolean reverseSteerEncoder = false;
     private boolean reverseSteer = false;
+    private boolean reverseDriveEncoder = false;
+    private boolean reverseDrive = false;
 
     public TalonSwerveEnclosure(String name, WPI_TalonSRX driveMotor, WPI_TalonSRX steerMotor, double gearRatio) {
 
@@ -20,23 +22,28 @@ public class TalonSwerveEnclosure extends BaseEnclosure {
     }
 
     @Override
-    protected int getEncPosition() {
-        int reverse = reverseEncoder ? -1 : 1;
+    public int getSteerEncoderPosition() {
+        int reverse = reverseSteerEncoder ? -1 : 1;
         return reverse * steerTalon.getSelectedSensorPosition(0);
     }
 
+    public int getDriveEncoderPosition() {
+        int reverse = reverseDriveEncoder ? -1 : 1;
+        return reverse * driveTalon.getSelectedSensorPosition(0);
+    }
+
     @Override
-    protected void setAngleEncPosition(int encPosition) {
+    protected void setSteerAngleEncPosition(int encPosition) {
         steerTalon.setSelectedSensorPosition(encPosition, 0, 10);
     }
 
     @Override
-    protected void setSpeed(double speed) {
+    protected void setDriveSpeed(double speed) {
             driveTalon.set(ControlMode.PercentOutput, speed);
     }
 
     @Override
-    protected void setAngle(double angle) {
+    protected void setSteerAngle(double angle) {
         steerTalon.set(ControlMode.Position, (reverseSteer ? -1 : 1) * angle * gearRatio);
     }
 
