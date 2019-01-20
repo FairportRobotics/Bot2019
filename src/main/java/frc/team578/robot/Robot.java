@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Robot extends TimedRobot {
 
-	private Logger log = LogManager.getRootLogger();
+    private static final Logger log = LogManager.getLogger(Robot.class);
 
 	// Operator Interface
 	public static OI oi;

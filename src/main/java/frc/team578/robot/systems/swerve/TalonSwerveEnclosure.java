@@ -52,11 +52,11 @@ public class TalonSwerveEnclosure extends BaseEnclosure {
     }
 
     public WPI_TalonSRX getDriveTalon() {
-        return driveTalon;
+        return this.driveTalon;
     }
 
     public WPI_TalonSRX getSteerTalon() {
-        return steerTalon;
+        return this.steerTalon;
     }
 
     public double getSteerCLT(int id) {

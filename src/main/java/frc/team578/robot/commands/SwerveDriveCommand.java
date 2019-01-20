@@ -3,8 +3,13 @@ package frc.team578.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team578.robot.OI;
 import frc.team578.robot.Robot;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class SwerveDriveCommand extends Command {
+
+    private static final Logger log = LogManager.getLogger(SwerveDriveCommand.class);
+
     public SwerveDriveCommand() {
         requires(Robot.swerveDriveSubsystem);
     }
@@ -44,6 +49,8 @@ public class SwerveDriveCommand extends Command {
 
     @Override
     protected void interrupted() {
+        log.info("SwerveDriveCommand Interrupted");
+
     }
 
 }

@@ -10,6 +10,8 @@ import frc.team578.robot.RobotMap;
 import frc.team578.robot.systems.swerve.math.CentricMode;
 import frc.team578.robot.systems.swerve.math.SwerveDirective;
 import frc.team578.robot.systems.swerve.math.SwerveMath;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
@@ -18,11 +20,14 @@ import java.util.List;
  * of controlling the swerve drive.
  */
 public class SwerveDrive {
+
+    private static final Logger log = LogManager.getLogger(SwerveDrive.class);
+
 	// Enclosures 1-4 are the drive/steer combos
-	private SwerveEnclosure swerveEnclosureFR;
-	private SwerveEnclosure swerveEnclosureFL;
-	private SwerveEnclosure swerveEnclosureBL;
-	private SwerveEnclosure swerveEnclosureBR;
+    private final SwerveEnclosure swerveEnclosureFR;
+    private final SwerveEnclosure swerveEnclosureFL;
+    private final SwerveEnclosure swerveEnclosureBL;
+    private final SwerveEnclosure swerveEnclosureBR;
 	private final SwerveMath swerveMath;
 
 
@@ -35,7 +40,7 @@ public class SwerveDrive {
 		this.swerveEnclosureBR = swerveEnclosureBR;
 
 		// instantiate the swerve library with a gyro provider using pigeon1
-		swerveMath = new SwerveMath(width, length);
+        this.swerveMath = new SwerveMath(width, length);
 
 	}
 
