@@ -1,6 +1,7 @@
 package frc.team578.robot.systems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.team578.robot.systems.mp.PathDriveTrain;
 import frc.team578.robot.systems.swerve.SwerveConstants;
 import frc.team578.robot.systems.swerve.SwerveDrive;
 import frc.team578.robot.systems.swerve.SwerveEnclosure;
@@ -10,7 +11,7 @@ import jaci.pathfinder.Waypoint;
 import jaci.pathfinder.followers.EncoderFollower;
 import jaci.pathfinder.modifiers.SwerveModifier;
 
-public class SwerveDriveSubsystem extends Subsystem implements Initializable {
+public class SwerveDriveSubsystem extends Subsystem implements Initializable, PathDriveTrain {
 
 
     private SwerveDrive swerveDrive;
@@ -124,6 +125,21 @@ public class SwerveDriveSubsystem extends Subsystem implements Initializable {
         // TODO : The values for these move params are probably very wrong
         flEnclosure.move(speed,desiredHeading);
 
+        return flFollower.isFinished();
     }
 
+    @Override
+    public int getLeftEncoderTicks() {
+        return 0;
+    }
+
+    @Override
+    public int getRightEncoderTicks() {
+        return 0;
+    }
+
+    @Override
+    public void setMotors(double left, double right) {
+
+    }
 }
