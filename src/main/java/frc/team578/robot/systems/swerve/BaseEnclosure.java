@@ -46,10 +46,6 @@ public abstract class BaseEnclosure implements SwerveEnclosure {
         return name;
     }
 
-    /**
-     * @return the value of the angle encoder (used to calculate current wheel position)
-     * TODO: This should be converted to -1 - +1 range...
-     */
     protected abstract int getEncPosition();
 
     /**

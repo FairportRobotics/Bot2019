@@ -21,8 +21,6 @@ public class SwerveDriveCommand extends Command {
     @Override
     protected void execute() {
 
-        double joyVal;
-
         double fwd = Robot.oi.getGamepadRawAxis(OI.LEFT_Y_AXIS);
 
         double str = Robot.oi.getGamepadRawAxis(OI.LEFT_X_AXIS);
@@ -45,6 +43,7 @@ public class SwerveDriveCommand extends Command {
 
     @Override
     protected void end() {
+        log.info("SwerveDriveCommand Ended");
     }
 
     @Override
