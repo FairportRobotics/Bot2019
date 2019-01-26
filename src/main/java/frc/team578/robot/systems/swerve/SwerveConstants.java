@@ -9,7 +9,7 @@ public class SwerveConstants {
     public static final int FRONT_LEFT_TRUE_NORTH_ENC_POS = 602;
     public static final int FRONT_RIGHT_TRUE_NORTH_ENC_POS = 634;
     public static final int BACK_LEFT_TRUE_NORTH_ENC_POS = 884;
-    public static final int BACK_RIGHT_TRUE_NORTH_ENC_POS = 52;
+    public static final int BACK_RIGHT_TRUE_NORTH_ENC_POS = 970;
 
     public static final boolean FRONT_LEFT_REVERSE_DRIVE = true;
     public static final boolean FRONT_RIGHT_REVERSE_DRIVE = false;

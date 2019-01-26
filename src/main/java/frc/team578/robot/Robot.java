@@ -53,13 +53,28 @@ public class Robot extends TimedRobot {
 	}
 
 	@Override
+	public void robotPeriodic() {
+	}
+
+	@Override
 	public void disabledInit() {
 		super.disabledInit();
 	}
 
 	@Override
+	public void disabledPeriodic() {
+		updateAllDashboards();
+	}
+
+	@Override
 	public void autonomousInit() {
 		super.autonomousInit();
+	}
+
+	@Override
+	public void autonomousPeriodic() {
+
+		Scheduler.getInstance().run();
 	}
 
 	@Override
@@ -76,36 +91,15 @@ public class Robot extends TimedRobot {
 	}
 
 	@Override
-	public void testInit() {
-
-		log.warn("testInit");
-
-		SmartDashboard.putNumber("init",init);
-
-//		swerveDriveSubsystem.zeroAllSteerEncoders();
-	}
-
-	@Override
-	public void robotPeriodic() {
-	}
-
-	@Override
-	public void disabledPeriodic() {
-		updateAllDashboards();
-	}
-
-	@Override
-	public void autonomousPeriodic() {
-
-		Scheduler.getInstance().run();
-	}
-
-	@Override
 	public void teleopPeriodic() {
 
 		updateAllDashboards();
 
 		Scheduler.getInstance().run();
+	}
+
+	@Override
+	public void testInit() {
 	}
 
 	@Override
@@ -116,6 +110,7 @@ public class Robot extends TimedRobot {
 
 		updateAllDashboards();
 	}
+
 
 	public void updateAllDashboards() {
 		Robot.swerveDriveSubsystem.dashboardUpdate();
