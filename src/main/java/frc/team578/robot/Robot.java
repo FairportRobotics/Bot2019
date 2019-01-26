@@ -100,26 +100,23 @@ public class Robot extends TimedRobot {
 	}
 
 	public void autonomousPeriodic() {
-        switch (t_autoSelected) {
-            case kTestAuto:
+        switch (m_autoSelected) {
+            case kDefaultAuto:
                 // Put custom auto code here
                 testTalon.set(ControlMode.PercentOutput, 360); //no idea what this means
-                try {
-                    Thread.sleep(1000);
-                } catch (Exception e) {
-                    System.out.println(e);
-                }
+				System.out.println("Sent from Default Auto");
 
-
-                testTalon.set(ControlMode.PercentOutput, -360); //no idea what this means
-                break;
-            case kTesticlesAuto:
+				break;
+            case kCustomAuto:
+				testTalon.set(ControlMode.PercentOutput, 20); //no idea what this means
+				System.out.println("Sent from Custom Auto");
+				break;
             default:
                 // Put default auto code here
-                testTalon.set(ControlMode.PercentOutput, 20); //no idea what this means
+
 
                 break;
-        }
+	}
 
 		if (firstAutonomousPeriodic) {
 			System.out.println("This is the periodic message when the robot is enabled in autonomous mode. For now, it will only run once.");
