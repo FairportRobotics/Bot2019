@@ -10,9 +10,6 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.lang.*;
 
-
-import frc.team578.robot.RobotMap;
-
 public class Robot extends TimedRobot {
 	// variables for talons
 	private TalonSRX testTalon;
@@ -20,18 +17,13 @@ public class Robot extends TimedRobot {
 	private boolean firstEnabledPeriodic = true;
 	private boolean firstDisabledPeriodic = true;
 	private boolean firstAutonomousPeriodic = true;
-	private boolean firstTeleopPeriodic = true;
 	private boolean firstTestPeriodic = true;
 
 	private static final String kDefaultAuto = "Default";
 	private static final String kCustomAuto = "My Auto";
-    private static final String kTestAuto = "test";
-    private static final String kTesticlesAuto = "testicles";
 
     private String m_autoSelected;
     private final SendableChooser<String> m_chooser = new SendableChooser<>();
-
-
 
 	private static Joystick joystick;
 	
@@ -40,11 +32,6 @@ public class Robot extends TimedRobot {
 	private PowerDistributionPanel PDP;
 
 	public void robotInit() {
-
-		CameraServer.getInstance().startAutomaticCapture(4);
-		// may or may not work (TODO)
-
-
 		System.out.println("Turned robot on");
 
 		m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
@@ -63,8 +50,8 @@ public class Robot extends TimedRobot {
 	}
 
 	public void autonomousInit() {
-
 		System.out.println("Enabled robot in autonomous");
+
 		m_autoSelected = m_chooser.getSelected();
 		System.out.println("Auto selected: " + m_autoSelected);
 
@@ -99,21 +86,16 @@ public class Robot extends TimedRobot {
 	public void autonomousPeriodic() {
         switch (m_autoSelected) {
             case kDefaultAuto:
-                // Put custom auto code here
+                // Put default auto code here
                 testTalon.set(ControlMode.PercentOutput, .1);
 				System.out.println("Sent from Default Auto");
-
 				break;
+
             case kCustomAuto:
+            	// put custom auto code here
 				testTalon.set(ControlMode.PercentOutput, .5);
 				System.out.println("Sent from Custom Auto");
 				break;
-            default:
-                // Put default auto code here
-
-				System.out.println("Sent from nothing selected");
-
-                break;
 	}
 
 		if (firstAutonomousPeriodic) {
@@ -123,20 +105,14 @@ public class Robot extends TimedRobot {
 	}
 
 	public void teleopPeriodic() {
-
-
 		double stick = joystick.getRawAxis(RobotMap.JOYSTICK_X_AXIS_ID);
-
-		testTalon.set(ControlMode.PercentOutput, stick); // do the funky dance
-
+		//testTalon.set(ControlMode.PercentOutput, stick); // do the funky dance
 
 		SmartDashboard.putNumber("Joystick X value", stick);
 
 		SmartDashboard.putData(PDP);
 
 		SmartDashboard.putNumber("Talon Current Output (Amperage)", testTalon.getOutputCurrent());
-
-
 
 	}
 
