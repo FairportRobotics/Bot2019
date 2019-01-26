@@ -17,14 +17,14 @@ public class SwerveUtils {
 	 *            the ratio of values in a single turn
 	 * @return the encoder value in the -0.5 to +0.5 range
 	 */
-	public static double convertEncoderValue(double encoderValue, double gearRatio) {
+	public static double convertEncoderValue(double encoderValue) {
 		double encPos = encoderValue;
 		// Reverse
 //		encPos *= -1;
 		// Make the scale of 1 rotation to be from 0 to 1 (1 being 1 rotation)
 		// if that makes sense (it can be any whole number, with the number
 		// corresponding to how many rotations it has gone through)
-		encPos /= gearRatio;
+		encPos /= SwerveConstants.MAX_ENC_VAL;
 		// Take the mod of that number, so it displays only a number from 0 to 1
 		// (inclusive, exclusive)
 		encPos = encPos % 1;

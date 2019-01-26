@@ -1,9 +1,12 @@
 package frc.team578.robot.systems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.team578.robot.systems.interfaces.DashUpdate;
+import frc.team578.robot.systems.interfaces.Initializable;
 import frc.team578.robot.systems.swerve.SwerveDrive;
 
-public class SwerveDriveSubsystem extends Subsystem implements Initializable {
+public class SwerveDriveSubsystem extends Subsystem implements Initializable, DashUpdate {
 
     private SwerveDrive swerveDrive;
 
@@ -25,6 +28,12 @@ public class SwerveDriveSubsystem extends Subsystem implements Initializable {
 
     public void zeroAllSteerEncoders() {
         swerveDrive.zeroAllSteerEncoders();
+    }
+
+    public void dashboardUpdate() {
+        SmartDashboard.putData(this);
+
+        swerveDrive.dashboardUpdate();
     }
 
 

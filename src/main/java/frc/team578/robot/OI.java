@@ -1,7 +1,7 @@
 package frc.team578.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import frc.team578.robot.systems.Initializable;
+import frc.team578.robot.systems.interfaces.Initializable;
 
 public class OI implements Initializable {
 

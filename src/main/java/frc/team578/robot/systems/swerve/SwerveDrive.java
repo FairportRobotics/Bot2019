@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.team578.robot.RobotMap;
+import frc.team578.robot.systems.interfaces.DashUpdate;
 import frc.team578.robot.systems.swerve.math.CentricMode;
 import frc.team578.robot.systems.swerve.math.SwerveDirective;
 import frc.team578.robot.systems.swerve.math.SwerveMath;
@@ -19,20 +20,20 @@ import java.util.List;
  * The main class for the SwerveDrive subsystem: This class handles all aspects
  * of controlling the swerve drive.
  */
-public class SwerveDrive {
+public class SwerveDrive implements DashUpdate {
 
     private static final Logger log = LogManager.getLogger(SwerveDrive.class);
 
 	// Enclosures 1-4 are the drive/steer combos
-    private final SwerveEnclosure swerveEnclosureFR;
-    private final SwerveEnclosure swerveEnclosureFL;
-    private final SwerveEnclosure swerveEnclosureBL;
-    private final SwerveEnclosure swerveEnclosureBR;
+    private final TalonSwerveEnclosure swerveEnclosureFR;
+    private final TalonSwerveEnclosure swerveEnclosureFL;
+    private final TalonSwerveEnclosure swerveEnclosureBL;
+    private final TalonSwerveEnclosure swerveEnclosureBR;
 	private final SwerveMath swerveMath;
 
 
-	public SwerveDrive(SwerveEnclosure swerveEnclosureFL, SwerveEnclosure swerveEnclosureFR,
-                       SwerveEnclosure swerveEnclosureBL, SwerveEnclosure swerveEnclosureBR, double width, double length) {
+	public SwerveDrive(TalonSwerveEnclosure swerveEnclosureFL, TalonSwerveEnclosure swerveEnclosureFR,
+					   TalonSwerveEnclosure swerveEnclosureBL, TalonSwerveEnclosure swerveEnclosureBR, double width, double length) {
 
 		this.swerveEnclosureFR = swerveEnclosureFR;
 		this.swerveEnclosureFL = swerveEnclosureFL;
@@ -139,14 +140,11 @@ public class SwerveDrive {
 		TalonSwerveEnclosure backLeft;
 		TalonSwerveEnclosure backRight;
 
-		frontLeft = new TalonSwerveEnclosure("front left", frontLeftDriveTalon, frontLeftSwerveTalon,
-				SwerveConstants.MAX_ENC_VAL);
-		frontRight = new TalonSwerveEnclosure("front right", frontRightDriveTalon,
-				frontRightSwerveTalon, SwerveConstants.MAX_ENC_VAL);
-		backLeft = new TalonSwerveEnclosure("back left", backLeftDriveTalon, backLeftSwerveTalon,
-				SwerveConstants.MAX_ENC_VAL);
-		backRight = new TalonSwerveEnclosure("back right", backRightDriveTalon, backRightSwerveTalon,
-				SwerveConstants.MAX_ENC_VAL);
+		frontLeft = new TalonSwerveEnclosure("fl", frontLeftDriveTalon, frontLeftSwerveTalon);
+		frontRight = new TalonSwerveEnclosure("fr", frontRightDriveTalon,
+				frontRightSwerveTalon);
+		backLeft = new TalonSwerveEnclosure("bl", backLeftDriveTalon, backLeftSwerveTalon);
+		backRight = new TalonSwerveEnclosure("br", backRightDriveTalon, backRightSwerveTalon);
 
 		return new SwerveDrive(frontLeft, frontRight, backLeft, backRight, SwerveConstants.ROBOT_WIDTH, SwerveConstants.ROBOT_LENGTH);
 	}
@@ -190,6 +188,12 @@ public class SwerveDrive {
 		return talon;
 	}
 
-	
 
+	@Override
+	public void dashboardUpdate() {
+		swerveEnclosureFL.dashboardUpdate();
+		swerveEnclosureFR.dashboardUpdate();
+		swerveEnclosureBL.dashboardUpdate();
+		swerveEnclosureBR.dashboardUpdate();
+	}
 }

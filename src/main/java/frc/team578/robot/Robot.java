@@ -2,6 +2,7 @@ package frc.team578.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team578.robot.commands.SwerveDriveCommand;
 import frc.team578.robot.systems.GyroSubsystem;
 import frc.team578.robot.systems.SwerveDriveSubsystem;
@@ -26,7 +27,7 @@ public class Robot extends TimedRobot {
 
 			log.info("Starting Robot Init");
 
-			gyroSubsystem = new GyroSubsystem();
+			gyroSubsystem = new GyroSubsystem("gyro");
 			gyroSubsystem.initialize();
 			log.info("Gyro Subsystem Initialized");
 
@@ -65,8 +66,6 @@ public class Robot extends TimedRobot {
 			// Start the swerve drive command
 			SwerveDriveCommand drive = new SwerveDriveCommand();
 			drive.start();
-
-
 		} catch (Throwable t) {
 			log.error("Error In Robot teleopInit : " + t.getMessage(), t);
 			throw t;
@@ -84,6 +83,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void disabledPeriodic() {
+		updateAllDashboards();
 	}
 
 	@Override
@@ -95,10 +95,17 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 
+		updateAllDashboards();
+
 		Scheduler.getInstance().run();
 	}
 
 	@Override
 	public void testPeriodic() {
+	}
+
+	public void updateAllDashboards() {
+		Robot.swerveDriveSubsystem.dashboardUpdate();
+		Robot.gyroSubsystem.dashboardUpdate();
 	}
 }
