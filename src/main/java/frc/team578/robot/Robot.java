@@ -2,6 +2,8 @@ package frc.team578.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -131,11 +133,9 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 
 
-		double stick = joystick.getRawAxis(RobotMap.JOYSTICK_Zgit_AXIS_ID);
+		double stick = joystick.getRawAxis(RobotMap.JOYSTICK_Z_AXIS_ID);
 
 		testTalon.set(ControlMode.PercentOutput, stick); // do the funky dance
-
-		System.out.println("Joystick X Axis Position:" + (stick * -1));
 
 
 		SmartDashboard.putNumber("Joystick X value", stick);
