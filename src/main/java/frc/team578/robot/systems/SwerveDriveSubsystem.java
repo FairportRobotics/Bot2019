@@ -20,6 +20,9 @@ public class SwerveDriveSubsystem extends Subsystem implements Initializable, Da
     @Override
     public void initialize() {
         swerveDrive = SwerveDrive.create();
+
+        // TODO : Test me to see if non-moving wheel encoder adjustment works
+        // setSteerEncoderOffset();
     }
 
     public void move(double fwd, double str, double rot, double angleDeg) {
@@ -30,11 +33,25 @@ public class SwerveDriveSubsystem extends Subsystem implements Initializable, Da
         swerveDrive.zeroAllSteerEncoders();
     }
 
+    @Override
     public void dashboardUpdate() {
         SmartDashboard.putData(this);
 
         swerveDrive.dashboardUpdate();
     }
 
+    /*
+    This should be called when the robot starts up to align the talon with the steering encoder
+     */
+    public void setSteerEncoderOffset() {
+        swerveDrive.setSteerEncoderOffset();
+    }
 
+
+    /*
+
+     */
+    public void moveSteerTrueNorth() {
+        swerveDrive.moveSteerTrueNorth();
+    }
 }

@@ -196,4 +196,27 @@ public class SwerveDrive implements DashUpdate {
 		swerveEnclosureBL.dashboardUpdate();
 		swerveEnclosureBR.dashboardUpdate();
 	}
+
+	/*
+	This tells the talon to reset its encoders so that true north is where you are now minus some offse to where there wheel north is actually.
+	(i.e. we know north(0) is 20, i'm at 90 right now, so we really want to reset the encoder to 70 before we can start moving)
+	This will not turn the motor at all.
+	Can be used if we don't want the wheels moving on startup.
+	 */
+	public void setSteerEncoderOffset() {
+		swerveEnclosureFL.setSteerEncPosition(swerveEnclosureFL.getSteerEncPosition() - SwerveConstants.FRONT_LEFT_TRUE_NORTH_ENC_POS);
+		swerveEnclosureFR.setSteerEncPosition(swerveEnclosureFR.getSteerEncPosition() - SwerveConstants.FRONT_RIGHT_TRUE_NORTH_ENC_POS);
+		swerveEnclosureBL.setSteerEncPosition(swerveEnclosureBL.getSteerEncPosition() - SwerveConstants.BACK_LEFT_TRUE_NORTH_ENC_POS);
+		swerveEnclosureBR.setSteerEncPosition(swerveEnclosureBR.getSteerEncPosition() - SwerveConstants.BACK_RIGHT_TRUE_NORTH_ENC_POS);
+	}
+
+	/*
+	Wherever the wheel is right now, move it to where we think true north should be for that wheel so we can see where north is.
+	 */
+	public void moveSteerTrueNorth() {
+		swerveEnclosureFL.moveSteerToEncoderPosition(SwerveConstants.FRONT_LEFT_TRUE_NORTH_ENC_POS);
+		swerveEnclosureFR.moveSteerToEncoderPosition(SwerveConstants.FRONT_RIGHT_TRUE_NORTH_ENC_POS);
+		swerveEnclosureBL.moveSteerToEncoderPosition(SwerveConstants.BACK_LEFT_TRUE_NORTH_ENC_POS);
+		swerveEnclosureBR.moveSteerToEncoderPosition(SwerveConstants.BACK_RIGHT_TRUE_NORTH_ENC_POS);
+	}
 }

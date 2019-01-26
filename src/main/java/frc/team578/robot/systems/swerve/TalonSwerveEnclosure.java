@@ -32,7 +32,7 @@ public class TalonSwerveEnclosure implements DashUpdate {
      * @param encPosition the current encoder value
      * TODO: This should be converted to -1 - +1 range...
      */
-    public void setSteerAngleEncPosition(int encPosition) {
+    public void setSteerEncPosition(int encPosition) {
         steerTalon.setSelectedSensorPosition(encPosition, 0, 10);
     }
 
@@ -48,8 +48,12 @@ public class TalonSwerveEnclosure implements DashUpdate {
      * Set the angle for the steer motor
      * @param angle the angle value: -0.5 - counterclockwise 180 degrees, 0 - forward 180 degrees, +0.5 - 180 degrees clockwise
      */
-    public void setSteerAngle(double angle) {
+    public void moveToSteerAngle(double angle) {
         steerTalon.set(ControlMode.Position, (reverseSteer ? -1 : 1) * angle * SwerveConstants.MAX_ENC_VAL);
+    }
+
+    public void moveSteerToEncoderPosition(int encPos) {
+        steerTalon.set(ControlMode.Position, encPos);
     }
 
     public void stop() {
@@ -58,7 +62,7 @@ public class TalonSwerveEnclosure implements DashUpdate {
     }
 
     public void zeroSteerEncoder() {
-        this.steerTalon.setSelectedSensorPosition(0);
+        this.setSteerEncPosition(0);
     }
 
     public WPI_TalonSRX getDriveTalon() {
@@ -108,7 +112,7 @@ public class TalonSwerveEnclosure implements DashUpdate {
         setDriveSpeed(speed);
 
         if(speed != 0.0) {
-            setSteerAngle(angle);
+            moveToSteerAngle(angle);
         }
     }
     public String getName() {

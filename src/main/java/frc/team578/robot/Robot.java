@@ -2,7 +2,6 @@ package frc.team578.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team578.robot.commands.SwerveDriveCommand;
 import frc.team578.robot.systems.GyroSubsystem;
 import frc.team578.robot.systems.SwerveDriveSubsystem;
@@ -74,6 +73,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void testInit() {
+		swerveDriveSubsystem.moveSteerTrueNorth();
 		swerveDriveSubsystem.zeroAllSteerEncoders();
 	}
 
