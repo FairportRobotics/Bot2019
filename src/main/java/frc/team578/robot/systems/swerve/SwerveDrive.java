@@ -140,11 +140,11 @@ public class SwerveDrive implements DashUpdate {
 		TalonSwerveEnclosure backLeft;
 		TalonSwerveEnclosure backRight;
 
-		frontLeft = new TalonSwerveEnclosure("fl", frontLeftDriveTalon, frontLeftSwerveTalon);
+		frontLeft = new TalonSwerveEnclosure("fl", frontLeftDriveTalon, frontLeftSwerveTalon, SwerveConstants.FRONT_LEFT_TRUE_NORTH_ENC_POS);
 		frontRight = new TalonSwerveEnclosure("fr", frontRightDriveTalon,
-				frontRightSwerveTalon);
-		backLeft = new TalonSwerveEnclosure("bl", backLeftDriveTalon, backLeftSwerveTalon);
-		backRight = new TalonSwerveEnclosure("br", backRightDriveTalon, backRightSwerveTalon);
+				frontRightSwerveTalon,SwerveConstants.FRONT_RIGHT_TRUE_NORTH_ENC_POS);
+		backLeft = new TalonSwerveEnclosure("bl", backLeftDriveTalon, backLeftSwerveTalon, SwerveConstants.BACK_LEFT_TRUE_NORTH_ENC_POS);
+		backRight = new TalonSwerveEnclosure("br", backRightDriveTalon, backRightSwerveTalon,SwerveConstants.BACK_RIGHT_TRUE_NORTH_ENC_POS);
 
 		return new SwerveDrive(frontLeft, frontRight, backLeft, backRight, SwerveConstants.ROBOT_WIDTH, SwerveConstants.ROBOT_LENGTH);
 	}
@@ -182,6 +182,7 @@ public class SwerveDrive implements DashUpdate {
 		talon.setInverted(revMotor);
 		talon.setSensorPhase(SwerveConstants.ALIGNED_TURN_SENSOR);
 
+
 //		_talon.configPeakCurrentLimit(50, TIMEOUT_MS);
 //		_talon.enableCurrentLimit(true);
 
@@ -214,9 +215,9 @@ public class SwerveDrive implements DashUpdate {
 	Wherever the wheel is right now, move it to where we think true north should be for that wheel so we can see where north is.
 	 */
 	public void moveSteerTrueNorth() {
-		swerveEnclosureFL.moveSteerToEncoderPosition(SwerveConstants.FRONT_LEFT_TRUE_NORTH_ENC_POS);
-		swerveEnclosureFR.moveSteerToEncoderPosition(SwerveConstants.FRONT_RIGHT_TRUE_NORTH_ENC_POS);
-		swerveEnclosureBL.moveSteerToEncoderPosition(SwerveConstants.BACK_LEFT_TRUE_NORTH_ENC_POS);
-		swerveEnclosureBR.moveSteerToEncoderPosition(SwerveConstants.BACK_RIGHT_TRUE_NORTH_ENC_POS);
+		swerveEnclosureFL.moveSteerToAnalogPosition();
+		swerveEnclosureFR.moveSteerToAnalogPosition();
+		swerveEnclosureBL.moveSteerToAnalogPosition();
+		swerveEnclosureBR.moveSteerToAnalogPosition();
 	}
 }

@@ -2,9 +2,11 @@ package frc.team578.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team578.robot.commands.SwerveDriveCommand;
 import frc.team578.robot.systems.GyroSubsystem;
 import frc.team578.robot.systems.SwerveDriveSubsystem;
+import frc.team578.robot.systems.swerve.SwerveConstants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,6 +20,8 @@ public class Robot extends TimedRobot {
 	// Subsystems
 	public static SwerveDriveSubsystem swerveDriveSubsystem;
 	public static GyroSubsystem gyroSubsystem;
+
+	int init;
 
 	@Override
 	public void robotInit() {
@@ -73,8 +77,12 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void testInit() {
-		swerveDriveSubsystem.moveSteerTrueNorth();
-		swerveDriveSubsystem.zeroAllSteerEncoders();
+
+		log.warn("testInit");
+
+		SmartDashboard.putNumber("init",init);
+
+//		swerveDriveSubsystem.zeroAllSteerEncoders();
 	}
 
 	@Override
@@ -102,6 +110,11 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void testPeriodic() {
+
+		swerveDriveSubsystem.moveSteerTrueNorth();
+//		Robot.swerveDriveSubsystem.abc(SwerveConstants.FRONT_LEFT_TRUE_NORTH_ENC_POS);
+
+		updateAllDashboards();
 	}
 
 	public void updateAllDashboards() {

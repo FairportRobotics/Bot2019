@@ -48,9 +48,6 @@ public class SwerveDriveSubsystem extends Subsystem implements Initializable, Da
     }
 
 
-    /*
-
-     */
     public void moveSteerTrueNorth() {
         swerveDrive.moveSteerTrueNorth();
     }

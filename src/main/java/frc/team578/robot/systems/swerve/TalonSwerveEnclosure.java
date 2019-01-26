@@ -14,12 +14,14 @@ public class TalonSwerveEnclosure implements DashUpdate {
 
     private boolean reverseEncoder = false;
     private boolean reverseSteer = false;
+    private int encoderOffset;
 
-    public TalonSwerveEnclosure(String name, WPI_TalonSRX driveMotor, WPI_TalonSRX steerMotor) {
+    public TalonSwerveEnclosure(String name, WPI_TalonSRX driveMotor, WPI_TalonSRX steerMotor, int trueNorth) {
 
         this.name = name;
         this.driveTalon = driveMotor;
         this.steerTalon = steerMotor;
+        encoderOffset = (steerTalon.getSelectedSensorPosition() - trueNorth) + steerTalon.getSensorCollection().getAnalogInRaw();
     }
 
     public int getSteerEncPosition() {
@@ -54,6 +56,10 @@ public class TalonSwerveEnclosure implements DashUpdate {
 
     public void moveSteerToEncoderPosition(int encPos) {
         steerTalon.set(ControlMode.Position, encPos);
+    }
+
+    public void moveSteerToAnalogPosition() {
+        steerTalon.set(ControlMode.Position,encoderOffset);
     }
 
     public void stop() {
@@ -163,15 +169,17 @@ public class TalonSwerveEnclosure implements DashUpdate {
         SmartDashboard.putData(steerTalon);
         SmartDashboard.putData(driveTalon);
 
+
+
         SmartDashboard.putNumber(name + ".drivet.araw",driveTalon.getSensorCollection().getAnalogInRaw());
         SmartDashboard.putNumber(name + ".steert.araw",steerTalon.getSensorCollection().getAnalogInRaw());
         SmartDashboard.putNumber(name + ".drivet.senspos",driveTalon.getSelectedSensorPosition());
         SmartDashboard.putNumber(name + ".steert.senspos",steerTalon.getSelectedSensorPosition());
-        SmartDashboard.putNumber(name + ".drivet.CLE",driveTalon.getClosedLoopError());
-        SmartDashboard.putNumber(name + ".steert.CLE",steerTalon.getClosedLoopError());
-        SmartDashboard.putNumber(name + ".drivet.CLT",driveTalon.getClosedLoopTarget());
-        SmartDashboard.putNumber(name + ".steert.CLT",steerTalon.getClosedLoopTarget());
+//        SmartDashboard.putNumber(name + ".drivet.CLE",driveTalon.getClosedLoopError());
+//        SmartDashboard.putNumber(name + ".steert.CLE",steerTalon.getClosedLoopError());
+//        SmartDashboard.putNumber(name + ".drivet.CLT",driveTalon.getClosedLoopTarget());
+//        SmartDashboard.putNumber(name + ".steert.CLT",steerTalon.getClosedLoopTarget());
 
-        SmartDashboard.putNumber(name + ".steer.",this.getSteerEncPosition());
+        SmartDashboard.putNumber(name + ".steer.encpos",this.getSteerEncPosition());
     }
 }

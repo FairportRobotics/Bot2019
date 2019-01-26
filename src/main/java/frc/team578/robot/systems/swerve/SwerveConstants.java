@@ -6,10 +6,10 @@ public class SwerveConstants {
     public static final double ROBOT_LENGTH = .625;
     public static final double ROBOT_WIDTH = .47;
 
-    public static final int FRONT_LEFT_TRUE_NORTH_ENC_POS = 0;
-    public static final int FRONT_RIGHT_TRUE_NORTH_ENC_POS = 00;
-    public static final int BACK_LEFT_TRUE_NORTH_ENC_POS = 0;
-    public static final int BACK_RIGHT_TRUE_NORTH_ENC_POS = 0;
+    public static final int FRONT_LEFT_TRUE_NORTH_ENC_POS = 602;
+    public static final int FRONT_RIGHT_TRUE_NORTH_ENC_POS = 634;
+    public static final int BACK_LEFT_TRUE_NORTH_ENC_POS = 884;
+    public static final int BACK_RIGHT_TRUE_NORTH_ENC_POS = 52;
 
     public static final boolean FRONT_LEFT_REVERSE_DRIVE = true;
     public static final boolean FRONT_RIGHT_REVERSE_DRIVE = false;
@@ -30,5 +30,5 @@ public class SwerveConstants {
     public static final double turn_kD = 0.001;
     public static final double turn_kF = 0.0;
     public static final int turn_kIZone = 0;
-    public static final double MAX_ENC_VAL = 1024;
+    public static final int MAX_ENC_VAL = 1024;
 }
