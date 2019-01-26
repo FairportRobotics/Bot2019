@@ -2,6 +2,7 @@ package frc.team578.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -28,9 +29,7 @@ public class Robot extends TimedRobot {
     private static final String kTesticlesAuto = "testicles";
 
     private String m_autoSelected;
-	private String t_autoSelected;
     private final SendableChooser<String> m_chooser = new SendableChooser<>();
-	private final SendableChooser<String> t_chooser = new SendableChooser<>();
 
 
 
@@ -41,16 +40,16 @@ public class Robot extends TimedRobot {
 	private PowerDistributionPanel PDP;
 
 	public void robotInit() {
+
+		CameraServer.getInstance().startAutomaticCapture(4);
+		// may or may not work (TODO)
+
+
 		System.out.println("Turned robot on");
 
 		m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
 		m_chooser.addOption("My Auto", kCustomAuto);
 		SmartDashboard.putData("Auto choices", m_chooser);
-
-        t_chooser.setDefaultOption("testicles", kTesticlesAuto);
-        t_chooser.addOption("test", kTestAuto);
-        SmartDashboard.putData("Test choices", t_chooser);
-
 
 		joystick = new Joystick(RobotMap.CONTROL_GAMEPAD_ID);
 
@@ -65,7 +64,6 @@ public class Robot extends TimedRobot {
 
 	public void autonomousInit() {
 
-
 		System.out.println("Enabled robot in autonomous");
 		m_autoSelected = m_chooser.getSelected();
 		System.out.println("Auto selected: " + m_autoSelected);
@@ -74,7 +72,6 @@ public class Robot extends TimedRobot {
 
 	public void teleopInit() {
 		System.out.println("Enabled in teleop mode");
-		t_autoSelected = t_chooser.getSelected();
 
 		testTalon.set(ControlMode.PercentOutput, 0);
 		testTalon.setInverted(true);
@@ -103,17 +100,18 @@ public class Robot extends TimedRobot {
         switch (m_autoSelected) {
             case kDefaultAuto:
                 // Put custom auto code here
-                testTalon.set(ControlMode.PercentOutput, 360); //no idea what this means
+                testTalon.set(ControlMode.PercentOutput, .1);
 				System.out.println("Sent from Default Auto");
 
 				break;
             case kCustomAuto:
-				testTalon.set(ControlMode.PercentOutput, 20); //no idea what this means
+				testTalon.set(ControlMode.PercentOutput, .5);
 				System.out.println("Sent from Custom Auto");
 				break;
             default:
                 // Put default auto code here
 
+				System.out.println("Sent from nothing selected");
 
                 break;
 	}
