@@ -2,11 +2,14 @@ package frc.team578.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import java.lang.*;
+
 
 import frc.team578.robot.RobotMap;
 
@@ -22,8 +25,14 @@ public class Robot extends TimedRobot {
 
 	private static final String kDefaultAuto = "Default";
 	private static final String kCustomAuto = "My Auto";
-	private String m_autoSelected;
-	private final SendableChooser<String> m_chooser = new SendableChooser<>();
+    private static final String kTestAuto = "test";
+    private static final String kTesticlesAuto = "testicles";
+
+    private String m_autoSelected;
+	private String t_autoSelected;
+    private final SendableChooser<String> m_chooser = new SendableChooser<>();
+	private final SendableChooser<String> t_chooser = new SendableChooser<>();
+
 
 
 	private static Joystick joystick;
@@ -39,6 +48,10 @@ public class Robot extends TimedRobot {
 		m_chooser.addOption("My Auto", kCustomAuto);
 		SmartDashboard.putData("Auto choices", m_chooser);
 
+        t_chooser.setDefaultOption("testicles", kTesticlesAuto);
+        t_chooser.addOption("test", kTestAuto);
+        SmartDashboard.putData("Test choices", t_chooser);
+
 
 		joystick = new Joystick(RobotMap.CONTROL_GAMEPAD_ID);
 
@@ -53,6 +66,7 @@ public class Robot extends TimedRobot {
 
 	public void autonomousInit() {
 
+
 		System.out.println("Enabled robot in autonomous");
 		m_autoSelected = m_chooser.getSelected();
 		System.out.println("Auto selected: " + m_autoSelected);
@@ -61,9 +75,11 @@ public class Robot extends TimedRobot {
 
 	public void teleopInit() {
 		System.out.println("Enabled in teleop mode");
+		t_autoSelected = t_chooser.getSelected();
 
 		testTalon.set(ControlMode.PercentOutput, 0);
 		testTalon.setInverted(true);
+
 	}
 
 	public void testInit() {
@@ -85,18 +101,27 @@ public class Robot extends TimedRobot {
 	}
 
 	public void autonomousPeriodic() {
-		switch (m_autoSelected) {
-			case kCustomAuto:
-				// Put custom auto code here
-					testTalon.set(ControlMode.PercentOutput, 360); //no idea what this means
-				break;
-			case kDefaultAuto:
-			default:
-				// Put default auto code here
-				testTalon.set(ControlMode.PercentOutput, -360); //no idea what this means
+        switch (t_autoSelected) {
+            case kTestAuto:
+                // Put custom auto code here
+                testTalon.set(ControlMode.PercentOutput, 360); //no idea what this means
+                try {
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
 
-				break;
-		}
+
+                testTalon.set(ControlMode.PercentOutput, -360); //no idea what this means
+                break;
+            case kTesticlesAuto:
+            default:
+                // Put default auto code here
+                testTalon.set(ControlMode.PercentOutput, 20); //no idea what this means
+
+                break;
+        }
+
 		if (firstAutonomousPeriodic) {
 			System.out.println("This is the periodic message when the robot is enabled in autonomous mode. For now, it will only run once.");
 			firstAutonomousPeriodic = false;
@@ -104,11 +129,13 @@ public class Robot extends TimedRobot {
 	}
 
 	public void teleopPeriodic() {
-		double stick = joystick.getRawAxis(RobotMap.JOYSTICK_Y_AXIS_ID);
+
+
+		double stick = joystick.getRawAxis(RobotMap.JOYSTICK_Zgit_AXIS_ID);
 
 		testTalon.set(ControlMode.PercentOutput, stick); // do the funky dance
 
-		System.out.println("Joystick Y Axis Position:" + (stick * -1));
+		System.out.println("Joystick X Axis Position:" + (stick * -1));
 
 
 		SmartDashboard.putNumber("Joystick X value", stick);
