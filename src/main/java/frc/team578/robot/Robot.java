@@ -130,7 +130,7 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 
 
-		double stick = joystick.getRawAxis(RobotMap.JOYSTICK_Z_AXIS_ID);
+		double stick = joystick.getRawAxis(RobotMap.JOYSTICK_X_AXIS_ID);
 
 		testTalon.set(ControlMode.PercentOutput, stick); // do the funky dance
 

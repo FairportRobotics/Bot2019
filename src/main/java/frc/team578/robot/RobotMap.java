@@ -9,6 +9,6 @@ public class RobotMap {
     public static final int CONTROL_GAMEPAD_ID = 0;
 
     // joystick y axis ID
-    public static final int JOYSTICK_Z_AXIS_ID = 2;
+    public static final int JOYSTICK_X_AXIS_ID = 0;
 
 }
