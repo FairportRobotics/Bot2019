@@ -3,6 +3,7 @@ package frc.team578.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.team578.robot.commands.CalibrateDrivesCommand;
+import frc.team578.robot.commands.SampleCommand;
 import frc.team578.robot.commands.SwerveDriveCommand;
 import frc.team578.robot.systems.GyroSubsystem;
 import frc.team578.robot.systems.SwerveDriveSubsystem;
@@ -20,8 +21,6 @@ public class Robot extends TimedRobot {
     public static SwerveDriveSubsystem swerveDriveSubsystem;
     public static GyroSubsystem gyroSubsystem;
 
-    int init;
-
     @Override
     public void robotInit() {
 
@@ -33,11 +32,15 @@ public class Robot extends TimedRobot {
             gyroSubsystem.initialize();
             log.info("Gyro Subsystem Initialized");
 
-
             swerveDriveSubsystem = new SwerveDriveSubsystem();
             swerveDriveSubsystem.initialize();
-            CalibrateDrivesCommand calibrateDrivesCommand = new CalibrateDrivesCommand();
-            calibrateDrivesCommand.start();
+
+            SampleCommand sampleCommand = new SampleCommand();
+            sampleCommand.start();
+
+//            CalibrateDrivesCommand calibrateDrivesCommand = new CalibrateDrivesCommand();
+//            calibrateDrivesCommand.start();
+
             log.info("Swerve Subsystem Initialized");
 
             oi = new OI();
@@ -54,6 +57,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void robotPeriodic() {
+        Scheduler.getInstance().run();
     }
 
     @Override
@@ -64,17 +68,19 @@ public class Robot extends TimedRobot {
     @Override
     public void disabledPeriodic() {
         updateAllDashboards();
+        Scheduler.getInstance().run();
+
     }
+
 
     @Override
     public void autonomousInit() {
-        super.autonomousInit();
     }
 
     @Override
     public void autonomousPeriodic() {
 
-        Robot.swerveDriveSubsystem.zeroAllSteerEncoders();
+        updateAllDashboards();
         Scheduler.getInstance().run();
     }
 
@@ -94,7 +100,6 @@ public class Robot extends TimedRobot {
     public void teleopPeriodic() {
 
         updateAllDashboards();
-
         Scheduler.getInstance().run();
     }
 
@@ -104,11 +109,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void testPeriodic() {
-
-        swerveDriveSubsystem.moveSteerTrueNorth();
-//		Robot.swerveDriveSubsystem.abc(SwerveConstants.FRONT_LEFT_TRUE_NORTH_ENC_POS);
-
-        updateAllDashboards();
+        Scheduler.getInstance().run();
     }
 
 

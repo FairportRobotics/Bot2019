@@ -11,16 +11,17 @@ public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashbo
 
     private static final Logger log = LogManager.getLogger(CalibrateDrivesCommand.class);
 
-    static int max_run_time_sec = 10;
-    boolean found = false;
+    static int max_run_time_sec = 10000;
+    boolean isFinished = false;
     int stableCounts = 3;
-    double stopZone = 20;
+    double stopZone = 0;
     int successCount = 0;
     long lastChecked = 0;
     long checkIntervalMillis = 50;
 
     public CalibrateDrivesCommand() {
         super(max_run_time_sec);
+        System.err.println("Constructor");
         requires(Robot.swerveDriveSubsystem);
     }
 
@@ -31,7 +32,8 @@ public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashbo
 
     @Override
     protected void execute() {
-        if (isTimedOut()) {
+        System.err.println("Exec");
+        if (!isTimedOut()) {
             Robot.swerveDriveSubsystem.moveSteerTrueNorth();
         }
     }
@@ -46,12 +48,14 @@ public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashbo
     @Override
     protected boolean isFinished() {
 
+        System.err.println("isFinished");
 //        double sumSteerCLE = Robot.swerveDriveSubsystem.getSteerCLTErrorSum();
 
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastChecked > checkIntervalMillis) {
             lastChecked = currentTime;
 
+            // Zeros mean everything has stopped.
             double currentDeriv = Robot.swerveDriveSubsystem.getSteerErrorDerivitiveSum();
             if (currentDeriv <= stopZone) {
                 successCount++;
@@ -60,16 +64,28 @@ public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashbo
             }
         }
 
-        found = (successCount >= stableCounts || isTimedOut());
+        boolean stableFound = successCount >= stableCounts;
+        boolean timeOutFound = isTimedOut();
+        isFinished = stableFound || timeOutFound;
 
-        if (found) {
-            if (isTimedOut()) {
+
+
+        if (isFinished) {
+
+            log.info("Calibration Finish Found");
+
+            if (timeOutFound) {
                 log.warn("CalibrateDrivesCommand timed out");
                 Robot.swerveDriveSubsystem.stop();
             }
+
+            if (stableFound){
+                log.info("CalibrateDrivesCommand found stable");
+            }
         }
 
-        return found;
+        System.err.println("isFinished : " + isFinished);
+        return isFinished;
 
     }
 

@@ -118,10 +118,6 @@ public class SwerveDrive implements UpdateDashboard {
     }
 
 
-	/*
-	Putting all of the creation code below.
-	 */
-
     public static SwerveDrive create() {
 
         WPI_TalonSRX frontLeftDriveTalon;
@@ -133,25 +129,25 @@ public class SwerveDrive implements UpdateDashboard {
         WPI_TalonSRX backLeftSwerveTalon;
         WPI_TalonSRX backRightSwerveTalon;
 
-        frontLeftDriveTalon = SwerveDrive.createDriveTalon(RobotMap.FRONT_LEFT_DRIVE_TALON_ID,
+        frontLeftDriveTalon = SwerveUtils.createDriveTalon(RobotMap.FRONT_LEFT_DRIVE_TALON_ID,
                 SwerveConstants.FRONT_LEFT_REVERSE_DRIVE);
-        frontRightDriveTalon = SwerveDrive.createDriveTalon(RobotMap.FRONT_RIGHT_DRIVE_TALON_ID,
+        frontRightDriveTalon = SwerveUtils.createDriveTalon(RobotMap.FRONT_RIGHT_DRIVE_TALON_ID,
                 SwerveConstants.FRONT_RIGHT_REVERSE_DRIVE);
-        backLeftDriveTalon = SwerveDrive.createDriveTalon(RobotMap.BACK_LEFT_DRIVE_TALON_ID,
+        backLeftDriveTalon = SwerveUtils.createDriveTalon(RobotMap.BACK_LEFT_DRIVE_TALON_ID,
                 SwerveConstants.BACK_LEFT_REVERSE_DRIVE);
-        backRightDriveTalon = SwerveDrive.createDriveTalon(RobotMap.BACK_RIGHT_DRIVE_TALON_ID,
+        backRightDriveTalon = SwerveUtils.createDriveTalon(RobotMap.BACK_RIGHT_DRIVE_TALON_ID,
                 SwerveConstants.BACK_RIGHT_REVERSE_DRIVE);
 
-        frontLeftSwerveTalon = SwerveDrive.createSteerTalon(RobotMap.FRONT_LEFT_ROTATE_TALON_ID,
+        frontLeftSwerveTalon = SwerveUtils.createSteerTalon(RobotMap.FRONT_LEFT_ROTATE_TALON_ID,
                 SwerveConstants.FRONT_LEFT_REVERSE_TURN, SwerveConstants.turn_kP, SwerveConstants.turn_kI, SwerveConstants.turn_kD, SwerveConstants.turn_kF,
                 SwerveConstants.turn_kIZone);
-        frontRightSwerveTalon = SwerveDrive.createSteerTalon(RobotMap.FRONT_RIGHT_ROTATE_TALON_ID,
+        frontRightSwerveTalon = SwerveUtils.createSteerTalon(RobotMap.FRONT_RIGHT_ROTATE_TALON_ID,
                 SwerveConstants.FRONT_RIGHT_REVERSE_TURN, SwerveConstants.turn_kP, SwerveConstants.turn_kI, SwerveConstants.turn_kD, SwerveConstants.turn_kF,
                 SwerveConstants.turn_kIZone);
-        backLeftSwerveTalon = SwerveDrive.createSteerTalon(RobotMap.BACK_LEFT_ROTATE_TALON_ID,
+        backLeftSwerveTalon = SwerveUtils.createSteerTalon(RobotMap.BACK_LEFT_ROTATE_TALON_ID,
                 SwerveConstants.BACK_LEFT_REVERSE_TURN, SwerveConstants.turn_kP, SwerveConstants.turn_kI, SwerveConstants.turn_kD, SwerveConstants.turn_kF,
                 SwerveConstants.turn_kIZone);
-        backRightSwerveTalon = SwerveDrive.createSteerTalon(RobotMap.BACK_RIGHT_ROTATE_TALON_ID,
+        backRightSwerveTalon = SwerveUtils.createSteerTalon(RobotMap.BACK_RIGHT_ROTATE_TALON_ID,
                 SwerveConstants.BACK_RIGHT_REVERSE_TURN, SwerveConstants.turn_kP, SwerveConstants.turn_kI, SwerveConstants.turn_kD, SwerveConstants.turn_kF,
                 SwerveConstants.turn_kIZone);
 
@@ -167,46 +163,6 @@ public class SwerveDrive implements UpdateDashboard {
         backRight = new TalonSwerveEnclosure("br", backRightDriveTalon, backRightSwerveTalon, SwerveConstants.BACK_RIGHT_TRUE_NORTH_ENC_POS);
 
         return new SwerveDrive(frontLeft, frontRight, backLeft, backRight, SwerveConstants.ROBOT_WIDTH, SwerveConstants.ROBOT_LENGTH);
-    }
-
-    private static WPI_TalonSRX createDriveTalon(int talonID, boolean revMotor) {
-        WPI_TalonSRX talon = new WPI_TalonSRX(talonID);
-        talon.setInverted(revMotor);
-//        talon.configSelectedFeedbackSensor(FeedbackDevice.None, 0, 0);
-        talon.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.NormallyOpen, SwerveConstants.TIMEOUT_MS);
-        talon.set(ControlMode.PercentOutput, 0);
-        return talon;
-    }
-
-    private static WPI_TalonSRX createSteerTalon(int talonID, boolean revMotor, double pCoeff, double iCoeff, double dCoeff,
-                                                 double fCoeff, int iZone) {
-
-        WPI_TalonSRX talon = new WPI_TalonSRX(talonID);
-
-        talon.configSelectedFeedbackSensor(FeedbackDevice.Analog, SwerveConstants.PIDLOOP_IDX, SwerveConstants.TIMEOUT_MS);
-        talon.configSetParameter(ParamEnum.eFeedbackNotContinuous, 0, 0, 0, SwerveConstants.TIMEOUT_MS); // wrap the position (1023 -> 0)
-
-        talon.selectProfileSlot(SwerveConstants.PROFILE_SLOT, SwerveConstants.PIDLOOP_IDX);
-        talon.config_kP(SwerveConstants.PROFILE_SLOT, pCoeff, SwerveConstants.TIMEOUT_MS);
-        talon.config_kI(SwerveConstants.PROFILE_SLOT, iCoeff, SwerveConstants.TIMEOUT_MS);
-        talon.config_kD(SwerveConstants.PROFILE_SLOT, dCoeff, SwerveConstants.TIMEOUT_MS);
-        talon.config_kF(SwerveConstants.PROFILE_SLOT, fCoeff, SwerveConstants.TIMEOUT_MS);
-        talon.config_IntegralZone(SwerveConstants.PROFILE_SLOT, iZone, SwerveConstants.TIMEOUT_MS);
-
-        talon.configNominalOutputForward(0, SwerveConstants.TIMEOUT_MS);
-        talon.configNominalOutputReverse(0, SwerveConstants.TIMEOUT_MS);
-
-        talon.configPeakOutputForward(1, SwerveConstants.TIMEOUT_MS);
-        talon.configPeakOutputReverse(-1, SwerveConstants.TIMEOUT_MS);
-
-        talon.setInverted(revMotor);
-        talon.setSensorPhase(SwerveConstants.ALIGNED_TURN_SENSOR);
-
-
-//		_talon.configPeakCurrentLimit(50, TIMEOUT_MS);
-//		_talon.enableCurrentLimit(true);
-
-        return talon;
     }
 
     @Override

@@ -184,7 +184,7 @@ public class TalonSwerveEnclosure implements UpdateDashboard {
         SmartDashboard.putNumber(name + ".steert.araw", steerTalon.getSensorCollection().getAnalogInRaw());
         SmartDashboard.putNumber(name + ".steert.senspos", steerTalon.getSelectedSensorPosition());
         SmartDashboard.putNumber(name + ".steert.CLE", steerTalon.getClosedLoopError());
-        SmartDashboard.putNumber(name + ".steert.CLT", steerTalon.getClosedLoopTarget());
+//        SmartDashboard.putNumber(name + ".steert.CLT", steerTalon.getClosedLoopTarget());
         SmartDashboard.putNumber(name + ".steer.encpos", this.getSteerEncPosition());
 
 //        SmartDashboard.putNumber(name + ".drivet.araw",driveTalon.getSensorCollection().getAnalogInRaw());
