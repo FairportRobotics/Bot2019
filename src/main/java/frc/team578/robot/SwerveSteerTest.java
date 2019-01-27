@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class SwerveSteerTest extends TimedRobot {
 
     public static final boolean REVERSE_TURN = true;
-    public static final int ROTATE_TALON_ID = 11;
+    public static final int ROTATE_TALON_ID = 13;
     public static final int TIMEOUT_MS = 0; // set to zero if skipping confirmation
     public static final int PIDLOOP_IDX = 0; // set to zero if primary loop
     public static final int PROFILE_SLOT = 0;
@@ -47,9 +47,10 @@ public class SwerveSteerTest extends TimedRobot {
     }
 
     void updateTarget() {
+        int offset = 137;
         int pos = _talon.getSelectedSensorPosition();
         int round = (1024 * (pos / 1024));
-        target = 420 + round;
+        target = offset + round;
     }
 
     @Override
