@@ -5,12 +5,13 @@ import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SwerveSteerTest extends TimedRobot {
 
     public static final boolean REVERSE_TURN = true;
-    public static final int ROTATE_TALON_ID = 0;
+    public static final int ROTATE_TALON_ID = 11;
     public static final int TIMEOUT_MS = 0; // set to zero if skipping confirmation
     public static final int PIDLOOP_IDX = 0; // set to zero if primary loop
     public static final int PROFILE_SLOT = 0;
@@ -21,6 +22,7 @@ public class SwerveSteerTest extends TimedRobot {
     public static final double turn_kF = 0.0;
     public static final int turn_kIZone = 0;
     public static final double MAX_ENC_VAL = 1024;
+    int target;
 
 
     WPI_TalonSRX _talon;
@@ -30,17 +32,38 @@ public class SwerveSteerTest extends TimedRobot {
     @Override
     public void robotInit() {
 
+
+
         _talon = createSteerTalon(ROTATE_TALON_ID,
                 REVERSE_TURN, turn_kP, turn_kI, turn_kD, turn_kF,
                 turn_kIZone);
+
+        updateTarget();
+    }
+
+    @Override
+    public void teleopInit() {
+        updateTarget();
+    }
+
+    void updateTarget() {
+        int pos = _talon.getSelectedSensorPosition();
+        int round = (1024 * (pos / 1024));
+        target = 420 + round;
     }
 
     @Override
     public void teleopPeriodic() {
+
         double xSpeed = _joystick.getRawAxis(1) * -1; // make forward stick positive
 
+//        int wraps = _talon.getSelectedSensorPosition() / 1024;
+
         /* update motor controller */
-        _talon.set(ControlMode.PercentOutput, xSpeed);
+        _talon.set(ControlMode.Position, target);
+
+//        _talon.set(ControlMode.PercentOutput, xSpeed);
+
         /* check our live faults */
         _talon.getFaults(_faults);
 
@@ -48,9 +71,12 @@ public class SwerveSteerTest extends TimedRobot {
 
     }
 
+
+
     @Override
     public void disabledPeriodic() {
         updateSD();
+        updateTarget();
     }
 
 
@@ -131,8 +157,8 @@ public class SwerveSteerTest extends TimedRobot {
         SmartDashboard.putNumber("Out %", _talon.getMotorOutputPercent());
         SmartDashboard.putBoolean("Any Faults:", _faults.hasAnyFault());
         SmartDashboard.putBoolean("Out Of Phase:", _faults.SensorOutOfPhase);
+        SmartDashboard.putNumber("target:", target);
 
 
     }
-
 }

@@ -6,6 +6,6 @@ public final class Main {
     public Main() {}
 
     public static void main(String... args) {
-        RobotBase.startRobot(TalonFaultTest::new);
+        RobotBase.startRobot(SwerveSteerTest::new);
     }
 }
