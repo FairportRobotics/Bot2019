@@ -1,9 +1,7 @@
 package frc.team578.robot;
 
 import com.ctre.phoenix.ParamEnum;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.Faults;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -108,6 +106,9 @@ public class SwerveSteerTest extends TimedRobot {
 
         talon.configPeakOutputForward(1, TIMEOUT_MS);
         talon.configPeakOutputReverse(-1, TIMEOUT_MS);
+
+        talon.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.NormallyOpen, 0);
+        talon.configForwardLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.NormallyOpen, 0);
 
         talon.setInverted(revMotor);
         talon.setSensorPhase(ALIGNED_TURN_SENSOR);

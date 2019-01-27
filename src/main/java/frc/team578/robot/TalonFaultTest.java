@@ -2,12 +2,14 @@ package frc.team578.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.Faults;
+import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.*;
 
 public class TalonFaultTest extends TimedRobot {
-	WPI_TalonSRX _talon = new WPI_TalonSRX(0); /* make a Talon */
+	WPI_TalonSRX _talon = new WPI_TalonSRX(13); /* make a Talon */
 	Joystick _joystick = new Joystick(0); /* make a joystick */
 	Faults _faults = new Faults(); /* temp to fill with latest faults */
 
@@ -15,6 +17,9 @@ public class TalonFaultTest extends TimedRobot {
 	public void teleopInit() {
 		/* factory default values */
 		_talon.configFactoryDefault();
+
+		_talon.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.NormallyOpen, 0);
+		_talon.configForwardLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.NormallyOpen, 0);
 
 		/*
 		 * choose whatever you want so "positive" values moves mechanism forward,
