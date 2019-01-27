@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team578.robot.RobotMap;
-import frc.team578.robot.systems.interfaces.DashUpdate;
 import frc.team578.robot.systems.interfaces.Initializable;
+import frc.team578.robot.systems.interfaces.UpdateDashboard;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class GyroSubsystem extends Subsystem implements Initializable, DashUpdate {
+public class GyroSubsystem extends Subsystem implements Initializable, UpdateDashboard {
 
     private static final Logger log = LogManager.getLogger(GyroSubsystem.class);
 
@@ -37,7 +37,7 @@ public class GyroSubsystem extends Subsystem implements Initializable, DashUpdat
         try {
             pigeon = new PigeonIMU(RobotMap.PIGEON_IMU_ID);
         } catch (RuntimeException e) {
-            log.error("Gyro Error : " + e.getMessage(),e);
+            log.error("Gyro Error : " + e.getMessage(), e);
             throw e;
         }
 
@@ -63,9 +63,9 @@ public class GyroSubsystem extends Subsystem implements Initializable, DashUpdat
     }
 
     @Override
-    public void dashboardUpdate() {
+    public void updateDashboard() {
         SmartDashboard.putNumber("pigeon.fusedh", pigeon.getFusedHeading());
-        SmartDashboard.putNumber("pigeon.angle",getAngle());
+        SmartDashboard.putNumber("pigeon.angle", getAngle());
     }
 
     class GyroSendable implements Sendable {
