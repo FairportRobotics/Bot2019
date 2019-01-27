@@ -21,7 +21,10 @@ public class TalonSwerveEnclosure implements DashUpdate {
         this.name = name;
         this.driveTalon = driveMotor;
         this.steerTalon = steerMotor;
-        encoderOffset = (steerTalon.getSelectedSensorPosition() - trueNorth) + steerTalon.getSensorCollection().getAnalogInRaw();
+
+        int pos = steerTalon.getSelectedSensorPosition();
+        int round = (1024 * (pos / 1024));
+        encoderOffset = trueNorth + round;
     }
 
     public int getSteerEncPosition() {
