@@ -13,9 +13,11 @@ import java.lang.*;
 public class Robot extends TimedRobot {
 	private static Joystick joystick;
 
+	DoubleSolenoid testDouble;
+
 	public void robotInit() {
 		System.out.println("Turned robot on");
-
+		testDouble = new DoubleSolenoid(0,1);
 
 		joystick = new Joystick(RobotMap.CONTROL_GAMEPAD_ID);
 	}
@@ -27,6 +29,10 @@ public class Robot extends TimedRobot {
 
 	public void teleopInit() {
 		System.out.println("Enabled in teleop mode");
+
+//		testDouble.set(DoubleSolenoid.Value.kOff);
+//		testDouble.set(DoubleSolenoid.Value.kForward);
+		testDouble.set(DoubleSolenoid.Value.kReverse);
 	}
 
 	public void robotPeriodic() {
