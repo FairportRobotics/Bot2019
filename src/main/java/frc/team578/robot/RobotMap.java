@@ -11,4 +11,7 @@ public class RobotMap {
     // joystick y axis ID
     public static final int JOYSTICK_X_AXIS_ID = 0;
 
+    // joystick y axis ID
+    public static final int JOYSTICK_Y_AXIS_ID = 1;
+
 }
