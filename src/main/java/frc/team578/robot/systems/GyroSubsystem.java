@@ -1,6 +1,8 @@
 package frc.team578.robot.systems;
 
 import com.ctre.phoenix.sensors.PigeonIMU;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -16,91 +18,55 @@ public class GyroSubsystem extends Subsystem implements Initializable, UpdateDas
 
     private static final Logger log = LogManager.getLogger(GyroSubsystem.class);
 
-    // https://www.ctr-electronics.com/downloads/pdf/Pigeon%20IMU%20User's%20Guide.pdf
-    // https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages/blob/master/Java/PigeonStraight/src/org/usfirst/frc/team217/robot/Robot.java
-    // http://www.ctr-electronics.com/downloads/api/java/html/index.html
-
-    private static PigeonIMU pigeon;
-    private String name;
-
-
-    public GyroSubsystem(String name) {
-        this.name = name;
-    }
+    private AHRS navx;
 
     @Override
     protected void initDefaultCommand() {
     }
 
+    public GyroSubsystem(String name) {
+        super(name);
+    }
+
     public void initialize() {
 
+        System.err.println("Init " + this.getClass().getName());
+
         try {
-            pigeon = new PigeonIMU(RobotMap.PIGEON_IMU_ID);
-        } catch (RuntimeException e) {
-            log.error("Gyro Error : " + e.getMessage(), e);
-            throw e;
+            navx = new AHRS(SPI.Port.kMXP);
+        } catch (RuntimeException ex) {
+            log.error("Error instantiating navX-MXP:  " + ex.getMessage(),ex);
         }
+    }
 
-        reset();
+    public double getHeading() {
+        double angle = navx.getFusedHeading();
 
-        // TODO : Try this custom Sendable
-        // TODO : Add gyro / compass widget graph properties
-//        this.addChild(new GyroSendable());
+        return angle;
+    }
 
+    public void setToZero() {
+        navx.zeroYaw();
+    }
+
+    public double getAnglePidGet() {
+        return navx.pidGet();
+    }
+
+    public double getRate() {
+        // Return the rate of rotation of the yaw (Z-axis) gyro, in degrees per second.
+        return navx.getRate();
+    }
+
+    public boolean isConnected() {
+        return navx.isConnected();
     }
 
     public void reset() {
-        log.info("Reset Gyro Heading");
-
-        if (pigeon != null) {
-            final int kTimeoutMs = 30;
-            pigeon.setFusedHeading(0.0, kTimeoutMs);
-        }
-    }
-
-    public double getAngle() {
-        return Math.abs(pigeon.getFusedHeading() % 360);
+        navx.reset();
     }
 
     @Override
     public void updateDashboard() {
-        SmartDashboard.putNumber("pigeon.fusedh", pigeon.getFusedHeading());
-        SmartDashboard.putNumber("pigeon.angle", getAngle());
-    }
-
-    class GyroSendable implements Sendable {
-
-        String name = "Gyro";
-        String subsystem = "Ungrouped";
-
-        public GyroSendable() {
-            LiveWindow.add(this);
-            setName(name);
-        }
-
-        @Override
-        public String getName() {
-            return name;
-        }
-
-        @Override
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String getSubsystem() {
-            return subsystem;
-        }
-
-        @Override
-        public void setSubsystem(String subsystem) {
-            this.subsystem = subsystem;
-        }
-
-        @Override
-        public void initSendable(SendableBuilder builder) {
-            builder.addDoubleProperty("FusedHeading", pigeon::getFusedHeading, pigeon::setFusedHeading);
-        }
     }
 }

@@ -31,7 +31,7 @@ public class SwerveDriveCommand extends Command {
         fwd *= -1;
 //		str *= -1;
 
-        double angleDeg = Robot.gyroSubsystem.getAngle();
+        double angleDeg = Robot.gyroSubsystem.getHeading();
 
         Robot.swerveDriveSubsystem.move(fwd, str, rot, angleDeg);
     }

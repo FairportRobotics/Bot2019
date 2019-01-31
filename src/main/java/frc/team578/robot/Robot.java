@@ -2,11 +2,9 @@ package frc.team578.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.team578.robot.commands.CalibrateDrivesCommand;
 import frc.team578.robot.commands.SampleCommand;
 import frc.team578.robot.commands.SwerveDriveCommand;
-import frc.team578.robot.systems.GyroSubsystem;
-import frc.team578.robot.systems.SwerveDriveSubsystem;
+import frc.team578.robot.systems.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,6 +18,9 @@ public class Robot extends TimedRobot {
     // Subsystems
     public static SwerveDriveSubsystem swerveDriveSubsystem;
     public static GyroSubsystem gyroSubsystem;
+    public static ArmSubsystem armSubsystem;
+    public static CargoIntakeSubsystem cargoIntakeSubsystem;
+    public static ElevatorSubsystem elevatorSubsystem;
 
     @Override
     public void robotInit() {
