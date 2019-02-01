@@ -1,9 +1,9 @@
-package frc.team578.robot.systems.swerve;
+package frc.team578.robot.subsystems.swerve;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.team578.robot.systems.interfaces.UpdateDashboard;
+import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
 
 public class TalonSwerveEnclosure implements UpdateDashboard {
 
@@ -48,7 +48,7 @@ public class TalonSwerveEnclosure implements UpdateDashboard {
      * @param angle the angle value: -0.5 - counterclockwise 180 degrees, 0 - forward 180 degrees, +0.5 - 180 degrees clockwise
      */
     public void moveToSteerAngle(double angle) {
-        steerTalon.set(ControlMode.Position, angle * SwerveConstants.MAX_ENC_VAL * (reverseSteer ? -1 : 1));
+        steerTalon.set(ControlMode.Position, angle * frc.team578.robot.subsystems.swerve.SwerveConstants.MAX_ENC_VAL * (reverseSteer ? -1 : 1));
     }
 
     public void moveSteerToEncoderPosition(int encPos) {

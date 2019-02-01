@@ -3,31 +3,36 @@ package frc.team578.robot.commands;
 import edu.wpi.first.wpilibj.command.TimedCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team578.robot.Robot;
-import frc.team578.robot.systems.interfaces.UpdateDashboard;
+import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
+import frc.team578.robot.utils.PIDFinished;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.function.Predicate;
 
 public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashboard {
 
     private static final Logger log = LogManager.getLogger(CalibrateDrivesCommand.class);
 
-    static int max_run_time_sec = 10000;
-    boolean isFinished = false;
-    int stableCounts = 3;
-    double stopZone = 0;
-    int successCount = 0;
-    long lastChecked = 0;
-    long checkIntervalMillis = 50;
+    static final int max_run_time_sec = 10;
+    static final int stableCounts = 3;
+    static final long checkIntervalMillis = 50;
+
+    PIDFinished pidFinished;
 
     public CalibrateDrivesCommand() {
         super(max_run_time_sec);
         System.err.println("Constructor");
+
+        Predicate<Double> successTest = (x) -> x == 0;
+        pidFinished = new PIDFinished(checkIntervalMillis,stableCounts, successTest);
         requires(Robot.swerveDriveSubsystem);
     }
 
     @Override
     protected void initialize() {
         log.info("Initializing CalibrateDrivesCommand");
+
     }
 
     @Override
@@ -45,40 +50,20 @@ public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashbo
         Robot.swerveDriveSubsystem.stop();
     }
 
+
     @Override
     protected boolean isFinished() {
 
-        System.err.println("isFinished");
-//        double sumSteerCLE = Robot.swerveDriveSubsystem.getSteerCLTErrorSum();
-
-        long currentTime = System.currentTimeMillis();
-        if (currentTime - lastChecked > checkIntervalMillis) {
-            lastChecked = currentTime;
-
-            // Zeros mean everything has stopped.
-            double currentDeriv = Robot.swerveDriveSubsystem.getSteerErrorDerivitiveSum();
-            if (currentDeriv <= stopZone) {
-                successCount++;
-            } else {
-                successCount = 0;
-            }
-        }
-
-        boolean stableFound = successCount >= stableCounts;
+        double currentDeriv = Robot.swerveDriveSubsystem.getSteerErrorDerivitiveSum();
+        boolean stableFound = pidFinished.checkIfStable(currentDeriv);
         boolean timeOutFound = isTimedOut();
-        isFinished = stableFound || timeOutFound;
-
-
+        boolean isFinished = stableFound || timeOutFound;
 
         if (isFinished) {
-
             log.info("Calibration Finish Found");
-
             if (timeOutFound) {
                 log.warn("CalibrateDrivesCommand timed out");
-                Robot.swerveDriveSubsystem.stop();
             }
-
             if (stableFound){
                 log.info("CalibrateDrivesCommand found stable");
             }
@@ -106,7 +91,7 @@ public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashbo
     public void updateDashboard() {
         SmartDashboard.putBoolean("calibc.timedout", isTimedOut());
         SmartDashboard.putNumber("calibc.serrderiv", Robot.swerveDriveSubsystem.getSteerErrorDerivitiveSum());
-        SmartDashboard.putBoolean("calibc.instopz", Robot.swerveDriveSubsystem.getSteerErrorDerivitiveSum() <= stopZone);
+//        SmartDashboard.putBoolean("calibc.instopz", );
 
     }
 }

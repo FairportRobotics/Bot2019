@@ -1,28 +1,51 @@
 package frc.team578.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import frc.team578.robot.systems.interfaces.Initializable;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.team578.robot.subsystems.interfaces.Initializable;
+import frc.team578.robot.utils.Gamepad;
 
 public class OI implements Initializable {
 
-    /*
-    TODO : Change over to use Gamepad class.
-     */
+    Gamepad gamepad = new Gamepad(RobotMap.CONTROL_GAMEPAD_ID);
 
-    public static final int LEFT_X_AXIS = 0;
-    public static final int LEFT_Y_AXIS = 1;
-    public static final int RIGHT_X_AXIS = 2;
-    final double JOYSTICK_DEADZONE = 0.1;
-
-    public static Joystick driveGamepad;
+    // Gamepad controls
+    JoystickButton rb = gamepad.getRightShoulder();
+    JoystickButton lb = gamepad.getLeftShoulder();
+    JoystickButton rt = gamepad.getRightTriggerClick();
+    JoystickButton lt = gamepad.getLeftTriggerClick();
+    JoystickButton buttonA = gamepad.getButtonA();
+    JoystickButton buttonB = gamepad.getButtonB();
+    JoystickButton buttonX = gamepad.getButtonX();
+    JoystickButton buttonY = gamepad.getButtonY();
+    JoystickButton back = gamepad.getBackButton();
+    JoystickButton start = gamepad.getStartButton();
+    boolean dpadLeft = gamepad.getDPadLeft();
 
     public void initialize() {
-        driveGamepad = new Joystick(RobotMap.CONTROL_GAMEPAD_ID);
+
     }
 
-    public double getGamepadRawAxis(int axisID) {
-        double joyVal = driveGamepad.getRawAxis(axisID);
-        return (Math.abs(joyVal) > JOYSTICK_DEADZONE) ? joyVal : 0.0;
+    public double getPadLeftX() {
+        return gamepad.getLeftX();
     }
+
+    public double getPadLeftY() {
+        return gamepad.getLeftY();
+    }
+
+    public double getPadRightX() {
+        return gamepad.getRightX();
+    }
+
+    public double getPadRightY() {
+        return gamepad.getRightY();
+    }
+
+//    final double JOYSTICK_DEADZONE = 0.1;
+//    public double getGamepadRawAxis(int axisID) {
+//        double joyVal = driveGamepad.getRawAxis(axisID);
+//        return (Math.abs(joyVal) > JOYSTICK_DEADZONE) ? joyVal : 0.0;
+//    }
 
 }

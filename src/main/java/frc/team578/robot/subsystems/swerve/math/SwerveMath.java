@@ -1,4 +1,4 @@
-package frc.team578.robot.systems.swerve.math;
+package frc.team578.robot.subsystems.swerve.math;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,10 +39,10 @@ public class SwerveMath {
     private final double SCALE_SPEED = 1.00;
 
     // The "Centric" mode for the robot
-    private CentricMode centricMode = CentricMode.FIELD;
+    private frc.team578.robot.subsystems.swerve.math.CentricMode centricMode = frc.team578.robot.subsystems.swerve.math.CentricMode.FIELD;
 
     public void setModeField() {
-        centricMode = CentricMode.FIELD;
+        centricMode = frc.team578.robot.subsystems.swerve.math.CentricMode.FIELD;
     }
 
     /**
@@ -62,12 +62,12 @@ public class SwerveMath {
     }
 
 
-    public CentricMode getCentricMode() {
+    public frc.team578.robot.subsystems.swerve.math.CentricMode getCentricMode() {
         return centricMode;
     }
 
 
-    public void setCentricMode(CentricMode centricMode) {
+    public void setCentricMode(frc.team578.robot.subsystems.swerve.math.CentricMode centricMode) {
         this.centricMode = centricMode;
     }
 
@@ -86,7 +86,7 @@ public class SwerveMath {
      */
     public List<SwerveDirective> move(double fwd, double str, double rcw, Double gyroValue) {
 
-        if ((gyroValue == null) && centricMode.equals(CentricMode.FIELD)) {
+        if ((gyroValue == null) && centricMode.equals(frc.team578.robot.subsystems.swerve.math.CentricMode.FIELD)) {
             throw new IllegalStateException("Cannot use field centric mode without a Gyro value");
         }
 

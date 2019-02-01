@@ -1,12 +1,13 @@
-package frc.team578.robot.systems;
+package frc.team578.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team578.robot.RobotMap;
-import frc.team578.robot.systems.interfaces.Initializable;
-import frc.team578.robot.systems.interfaces.UpdateDashboard;
+import frc.team578.robot.subsystems.interfaces.Initializable;
+import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
 
 public class ClimberSubsystem extends Subsystem implements Initializable, UpdateDashboard {
 
@@ -73,6 +74,8 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
 
     @Override
     public void updateDashboard() {
-
+        SmartDashboard.putData("climb.fs",frontSolenoids);
+        SmartDashboard.putData("climb.rs",rearSolenoids);
+        SmartDashboard.putData("climb.cwtal",climbWheelsTalon);
     }
 }

@@ -1,9 +1,8 @@
-package frc.team578.robot.systems;
+package frc.team578.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import frc.team578.robot.RobotMap;
-import frc.team578.robot.systems.interfaces.Initializable;
-import frc.team578.robot.systems.interfaces.UpdateDashboard;
+import frc.team578.robot.subsystems.interfaces.Initializable;
+import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
 
 public class ArmSubsystem implements Initializable, UpdateDashboard {
 

@@ -1,16 +1,11 @@
-package frc.team578.robot.systems.swerve;
+package frc.team578.robot.subsystems.swerve;
 
-import com.ctre.phoenix.ParamEnum;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
-import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.team578.robot.RobotMap;
-import frc.team578.robot.systems.interfaces.UpdateDashboard;
-import frc.team578.robot.systems.swerve.math.CentricMode;
-import frc.team578.robot.systems.swerve.math.SwerveDirective;
-import frc.team578.robot.systems.swerve.math.SwerveMath;
+import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
+import frc.team578.robot.subsystems.swerve.math.CentricMode;
+import frc.team578.robot.subsystems.swerve.math.SwerveDirective;
+import frc.team578.robot.subsystems.swerve.math.SwerveMath;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,7 +24,7 @@ public class SwerveDrive implements UpdateDashboard {
     private final TalonSwerveEnclosure swerveEnclosureFL;
     private final TalonSwerveEnclosure swerveEnclosureBL;
     private final TalonSwerveEnclosure swerveEnclosureBR;
-    private final SwerveMath swerveMath;
+    private final frc.team578.robot.subsystems.swerve.math.SwerveMath swerveMath;
 
 
     public SwerveDrive(TalonSwerveEnclosure swerveEnclosureFL, TalonSwerveEnclosure swerveEnclosureFR,
@@ -49,7 +44,7 @@ public class SwerveDrive implements UpdateDashboard {
      * Change the centric-mode of the robot (this can be done dynamically any time
      * and will affect the robot behavior from that point on)
      */
-    public void setCentricMode(CentricMode centricMode) {
+    public void setCentricMode(frc.team578.robot.subsystems.swerve.math.CentricMode centricMode) {
         this.swerveMath.setCentricMode(centricMode);
     }
 

@@ -1,4 +1,4 @@
-package frc.team578.robot.systems.interfaces;
+package frc.team578.robot.subsystems.interfaces;
 
 public interface Initializable {
     public void initialize();

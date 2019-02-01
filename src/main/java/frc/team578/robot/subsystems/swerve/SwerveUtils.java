@@ -1,4 +1,4 @@
-package frc.team578.robot.systems.swerve;
+package frc.team578.robot.subsystems.swerve;
 
 import com.ctre.phoenix.ParamEnum;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -29,7 +29,7 @@ public class SwerveUtils {
         // Make the scale of 1 rotation to be from 0 to 1 (1 being 1 rotation)
         // if that makes sense (it can be any whole number, with the number
         // corresponding to how many rotations it has gone through)
-        encPos /= SwerveConstants.MAX_ENC_VAL;
+        encPos /= frc.team578.robot.subsystems.swerve.SwerveConstants.MAX_ENC_VAL;
         // Take the mod of that number, so it displays only a number from 0 to 1
         // (inclusive, exclusive)
         encPos = encPos % 1;
@@ -60,7 +60,7 @@ public class SwerveUtils {
         WPI_TalonSRX talon = new WPI_TalonSRX(talonID);
         talon.setInverted(revMotor);
 //        talon.configSelectedFeedbackSensor(FeedbackDevice.None, 0, 0);
-        talon.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.NormallyOpen, SwerveConstants.TIMEOUT_MS);
+        talon.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.NormallyOpen, frc.team578.robot.subsystems.swerve.SwerveConstants.TIMEOUT_MS);
         talon.set(ControlMode.PercentOutput, 0);
         return talon;
     }
@@ -70,21 +70,21 @@ public class SwerveUtils {
 
         WPI_TalonSRX talon = new WPI_TalonSRX(talonID);
 
-        talon.configSelectedFeedbackSensor(FeedbackDevice.Analog, SwerveConstants.PIDLOOP_IDX, SwerveConstants.TIMEOUT_MS);
-        talon.configSetParameter(ParamEnum.eFeedbackNotContinuous, 0, 0, 0, SwerveConstants.TIMEOUT_MS); // wrap the position (1023 -> 0)
+        talon.configSelectedFeedbackSensor(FeedbackDevice.Analog, frc.team578.robot.subsystems.swerve.SwerveConstants.PIDLOOP_IDX, frc.team578.robot.subsystems.swerve.SwerveConstants.TIMEOUT_MS);
+        talon.configSetParameter(ParamEnum.eFeedbackNotContinuous, 0, 0, 0, frc.team578.robot.subsystems.swerve.SwerveConstants.TIMEOUT_MS); // wrap the position (1023 -> 0)
 
-        talon.selectProfileSlot(SwerveConstants.PROFILE_SLOT, SwerveConstants.PIDLOOP_IDX);
-        talon.config_kP(SwerveConstants.PROFILE_SLOT, pCoeff, SwerveConstants.TIMEOUT_MS);
-        talon.config_kI(SwerveConstants.PROFILE_SLOT, iCoeff, SwerveConstants.TIMEOUT_MS);
-        talon.config_kD(SwerveConstants.PROFILE_SLOT, dCoeff, SwerveConstants.TIMEOUT_MS);
-        talon.config_kF(SwerveConstants.PROFILE_SLOT, fCoeff, SwerveConstants.TIMEOUT_MS);
-        talon.config_IntegralZone(SwerveConstants.PROFILE_SLOT, iZone, SwerveConstants.TIMEOUT_MS);
+        talon.selectProfileSlot(frc.team578.robot.subsystems.swerve.SwerveConstants.PROFILE_SLOT, frc.team578.robot.subsystems.swerve.SwerveConstants.PIDLOOP_IDX);
+        talon.config_kP(frc.team578.robot.subsystems.swerve.SwerveConstants.PROFILE_SLOT, pCoeff, frc.team578.robot.subsystems.swerve.SwerveConstants.TIMEOUT_MS);
+        talon.config_kI(frc.team578.robot.subsystems.swerve.SwerveConstants.PROFILE_SLOT, iCoeff, frc.team578.robot.subsystems.swerve.SwerveConstants.TIMEOUT_MS);
+        talon.config_kD(frc.team578.robot.subsystems.swerve.SwerveConstants.PROFILE_SLOT, dCoeff, frc.team578.robot.subsystems.swerve.SwerveConstants.TIMEOUT_MS);
+        talon.config_kF(frc.team578.robot.subsystems.swerve.SwerveConstants.PROFILE_SLOT, fCoeff, frc.team578.robot.subsystems.swerve.SwerveConstants.TIMEOUT_MS);
+        talon.config_IntegralZone(frc.team578.robot.subsystems.swerve.SwerveConstants.PROFILE_SLOT, iZone, frc.team578.robot.subsystems.swerve.SwerveConstants.TIMEOUT_MS);
 
-        talon.configNominalOutputForward(0, SwerveConstants.TIMEOUT_MS);
-        talon.configNominalOutputReverse(0, SwerveConstants.TIMEOUT_MS);
+        talon.configNominalOutputForward(0, frc.team578.robot.subsystems.swerve.SwerveConstants.TIMEOUT_MS);
+        talon.configNominalOutputReverse(0, frc.team578.robot.subsystems.swerve.SwerveConstants.TIMEOUT_MS);
 
-        talon.configPeakOutputForward(1, SwerveConstants.TIMEOUT_MS);
-        talon.configPeakOutputReverse(-1, SwerveConstants.TIMEOUT_MS);
+        talon.configPeakOutputForward(1, frc.team578.robot.subsystems.swerve.SwerveConstants.TIMEOUT_MS);
+        talon.configPeakOutputReverse(-1, frc.team578.robot.subsystems.swerve.SwerveConstants.TIMEOUT_MS);
 
         talon.setInverted(revMotor);
         talon.setSensorPhase(SwerveConstants.ALIGNED_TURN_SENSOR);

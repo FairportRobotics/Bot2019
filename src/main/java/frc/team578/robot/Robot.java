@@ -2,9 +2,10 @@ package frc.team578.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.team578.robot.commands.SampleCommand;
 import frc.team578.robot.commands.SwerveDriveCommand;
-import frc.team578.robot.systems.*;
+import frc.team578.robot.subsystems.ArmSubsystem;
+import frc.team578.robot.subsystems.ElevatorSubsystem;
+import frc.team578.robot.subsystems.SwerveDriveSubsystem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,11 +17,11 @@ public class Robot extends TimedRobot {
     public static OI oi;
 
     // Subsystems
-    public static SwerveDriveSubsystem swerveDriveSubsystem;
-    public static GyroSubsystem gyroSubsystem;
-    public static ArmSubsystem armSubsystem;
-    public static CargoIntakeSubsystem cargoIntakeSubsystem;
-    public static ElevatorSubsystem elevatorSubsystem;
+    public static frc.team578.robot.subsystems.SwerveDriveSubsystem swerveDriveSubsystem;
+    public static frc.team578.robot.subsystems.GyroSubsystem gyroSubsystem;
+    public static frc.team578.robot.subsystems.ArmSubsystem armSubsystem;
+    public static frc.team578.robot.subsystems.CargoIntakeSubsystem cargoIntakeSubsystem;
+    public static frc.team578.robot.subsystems.ElevatorSubsystem elevatorSubsystem;
 
     @Override
     public void robotInit() {
@@ -29,20 +30,28 @@ public class Robot extends TimedRobot {
 
             log.info("Starting Robot Init");
 
-            gyroSubsystem = new GyroSubsystem("gyro");
+            gyroSubsystem = new frc.team578.robot.subsystems.GyroSubsystem("gyro");
             gyroSubsystem.initialize();
             log.info("Gyro Subsystem Initialized");
 
             swerveDriveSubsystem = new SwerveDriveSubsystem();
             swerveDriveSubsystem.initialize();
+            log.info("Swerve Drive Subsystem Initialized");
 
-            SampleCommand sampleCommand = new SampleCommand();
-            sampleCommand.start();
+            // TODO : Is this running in this method?
+//            SampleCommand sampleCommand = new SampleCommand();
+//            sampleCommand.start();
 
 //            CalibrateDrivesCommand calibrateDrivesCommand = new CalibrateDrivesCommand();
 //            calibrateDrivesCommand.start();
 
-            log.info("Swerve Subsystem Initialized");
+            armSubsystem = new ArmSubsystem();
+            armSubsystem.initialize();
+            log.info("Arm Subsystem Initialized");
+
+            elevatorSubsystem = new ElevatorSubsystem();
+            elevatorSubsystem.initialize();
+            log.info("Elevator Subsystem Initialized");
 
             oi = new OI();
             oi.initialize();
@@ -53,7 +62,7 @@ public class Robot extends TimedRobot {
             throw t;
         }
 
-
+        log.info("Robot Init Complete");
     }
 
     @Override
