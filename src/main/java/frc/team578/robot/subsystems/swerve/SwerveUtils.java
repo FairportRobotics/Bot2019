@@ -87,6 +87,7 @@ public class SwerveUtils {
         talon.configPeakOutputReverse(-1, frc.team578.robot.subsystems.swerve.SwerveConstants.TIMEOUT_MS);
 
         talon.setInverted(revMotor);
+
         talon.setSensorPhase(SwerveConstants.ALIGNED_TURN_SENSOR);
 
 

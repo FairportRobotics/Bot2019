@@ -2,6 +2,8 @@ package frc.team578.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.team578.robot.commands.CalibrateDrivesCommand;
+import frc.team578.robot.commands.SampleCommand;
 import frc.team578.robot.commands.SwerveDriveCommand;
 import frc.team578.robot.subsystems.ArmSubsystem;
 import frc.team578.robot.subsystems.ElevatorSubsystem;
@@ -38,12 +40,7 @@ public class Robot extends TimedRobot {
             swerveDriveSubsystem.initialize();
             log.info("Swerve Drive Subsystem Initialized");
 
-            // TODO : Is this running in this method?
-//            SampleCommand sampleCommand = new SampleCommand();
-//            sampleCommand.start();
 
-//            CalibrateDrivesCommand calibrateDrivesCommand = new CalibrateDrivesCommand();
-//            calibrateDrivesCommand.start();
 
             armSubsystem = new ArmSubsystem();
             armSubsystem.initialize();
@@ -67,6 +64,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void robotPeriodic() {
+
         Scheduler.getInstance().run();
     }
 
@@ -85,6 +83,12 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
+        // TODO : Is this running in this method?
+//        SampleCommand sampleCommand = new SampleCommand();
+//        sampleCommand.start();
+
+            CalibrateDrivesCommand calibrateDrivesCommand = new CalibrateDrivesCommand();
+            calibrateDrivesCommand.start();
     }
 
     @Override

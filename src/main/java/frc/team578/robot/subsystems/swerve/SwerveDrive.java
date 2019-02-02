@@ -87,6 +87,11 @@ public class SwerveDrive implements UpdateDashboard {
 
 
     public void zeroAllSteerEncoders() {
+        swerveEnclosureFR.stopAllTalons();
+        swerveEnclosureFL.stopAllTalons();
+        swerveEnclosureBL.stopAllTalons();
+        swerveEnclosureBR.stopAllTalons();
+
         swerveEnclosureFR.zeroSteerEncoder();
         swerveEnclosureFL.zeroSteerEncoder();
         swerveEnclosureBL.zeroSteerEncoder();

@@ -18,7 +18,7 @@ public class SwerveSteerTest extends TimedRobot {
     private static final Logger log = LogManager.getLogger(SwerveSteerTest.class);
 
     public static final boolean REVERSE_TURN = true;
-    public static final int ROTATE_TALON_ID = 12;
+    public static final int ROTATE_TALON_ID = 14;
     public static final int TIMEOUT_MS = 0; // set to zero if skipping confirmation
     public static final int PIDLOOP_IDX = 0; // set to zero if primary loop
     public static final int PROFILE_SLOT = 0;
@@ -54,7 +54,7 @@ public class SwerveSteerTest extends TimedRobot {
     }
 
     void updateTarget() {
-        int offset = 5000;
+        int offset = -776;
         int pos = _talon.getSelectedSensorPosition();
         int round = (1024 * (pos / 1024));
         target = offset + round;
@@ -67,12 +67,12 @@ public class SwerveSteerTest extends TimedRobot {
         //        _talon.set(ControlMode.PercentOutput, xSpeed);
 
         /* update motor controller */
-//        _talon.set(ControlMode.Position, 5000);
+        _talon.set(ControlMode.Position, target);
 
-        if (isFinished()) {
-            // new WaitCommand(1).start();
-            _talon.set(ControlMode.Position, _talon.getSelectedSensorPosition() < 500 ? 5000 : 0);
-        }
+//        if (isFinished()) {
+//            // new WaitCommand(1).start();
+//            _talon.set(ControlMode.Position, _talon.getSelectedSensorPosition() < 500 ? 5000 : 0);
+//        }
 
 
 
