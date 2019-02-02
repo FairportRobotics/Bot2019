@@ -2,6 +2,7 @@ package frc.team578.robot;
 
 import com.ctre.phoenix.ParamEnum;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class TalonUtil {
@@ -9,7 +10,7 @@ public class TalonUtil {
     public static final int TIMEOUT_MS = 0; // set to zero if skipping confirmation
     public static final int PIDLOOP_IDX = 0; // set to zero if primary loop
     public static final int PROFILE_SLOT = 0;
-    public static final boolean ALIGNED_SENSOR = false; // encoder polarity
+    public static final boolean ALIGNED_SENSOR = true; // encoder polarity
     public static final double turn_kP = 18;
     public static final double turn_kI = 0.0;
     public static final double turn_kD = 0.001;
@@ -22,8 +23,10 @@ public class TalonUtil {
 
         WPI_TalonSRX talon = new WPI_TalonSRX(talonID);
 
-        talon.configSelectedFeedbackSensor(FeedbackDevice.Analog, PIDLOOP_IDX, TIMEOUT_MS);
-        talon.configSetParameter(ParamEnum.eFeedbackNotContinuous, 0, 0, 0, TIMEOUT_MS); // wrap the position (1023 -> 0)
+        talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, PIDLOOP_IDX, TIMEOUT_MS);
+//        talon.configSetParameter(ParamEnum.eFeedbackNotContinuous, 0, 0, 0, TIMEOUT_MS); // wrap the position (1023 -> 0)
+        talon.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, TIMEOUT_MS);
+        talon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, TIMEOUT_MS);
 
         talon.selectProfileSlot(PROFILE_SLOT, PIDLOOP_IDX);
         talon.config_kP(PROFILE_SLOT, pCoeff, TIMEOUT_MS);
@@ -34,7 +37,6 @@ public class TalonUtil {
 
         talon.configNominalOutputForward(0, TIMEOUT_MS);
         talon.configNominalOutputReverse(0, TIMEOUT_MS);
-
         talon.configPeakOutputForward(1, TIMEOUT_MS);
         talon.configPeakOutputReverse(-1, TIMEOUT_MS);
 
