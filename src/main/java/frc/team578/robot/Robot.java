@@ -27,7 +27,9 @@ public class Robot extends TimedRobot {
 	private DigitalInput lim0;
 	private DigitalInput lim1;
 
-	PowerDistributionPanel powerDistributionPanel;
+	private PIDFinished<Double> pf;
+
+	private PowerDistributionPanel powerDistributionPanel;
 
 	public void robotInit() {
 		System.out.println("Robot Init");
@@ -55,6 +57,8 @@ public class Robot extends TimedRobot {
 		int iZone = 0;
 
 		talon = TalonUtil.createPIDTalon(talonID, revMotor, pCoeff, iCoeff, dCoeff, fCoeff, iZone);
+
+		pf = new PIDFinished<Double>(50,3,talon::getErrorDerivative,(x) -> x == 0);
 
 	}
 
@@ -89,13 +93,15 @@ public class Robot extends TimedRobot {
 	public void autonomousInit() {
 		System.out.println("Auto Init");
 		m_autoSelected = m_chooser.getSelected();
-		// m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
 		System.out.println("Auto selected: " + m_autoSelected);
 	}
 
 	@Override
 	public void autonomousPeriodic() {
 		talon.set(ControlMode.Position,m_autoSelected);
+
+		pf.checkIfStable();
+
 		updateDashboard();
 		Scheduler.getInstance().run();
 	}
@@ -118,6 +124,7 @@ public class Robot extends TimedRobot {
 			SmartDashboard.putNumber("talon.clt", talon.getClosedLoopTarget());
 			SmartDashboard.putNumber("talon.errd", talon.getErrorDerivative());
 			SmartDashboard.putBoolean("talon.errd_t", (talon.getErrorDerivative() == 0));
+			SmartDashboard.putBoolean("talon.pf", pf.getFinished());
 		}
 		SmartDashboard.putBoolean("lim0",lim0.get());
 		SmartDashboard.putBoolean("lim1",lim1.get());
