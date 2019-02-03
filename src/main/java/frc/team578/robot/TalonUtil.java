@@ -22,6 +22,7 @@ public class TalonUtil {
                                                 double fCoeff, int iZone) {
 
         WPI_TalonSRX talon = new WPI_TalonSRX(talonID);
+        talon.configFactoryDefault();
 
         talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, PIDLOOP_IDX, TIMEOUT_MS);
 //        talon.configSetParameter(ParamEnum.eFeedbackNotContinuous, 0, 0, 0, TIMEOUT_MS); // wrap the position (1023 -> 0)
