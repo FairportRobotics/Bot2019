@@ -20,12 +20,22 @@ public class Robot extends TimedRobot {
 	private static final int l2 = 500;
 	private static final int l3 = 1000;
 	private static final int l4 = 1500;
-	private static final int l5 = 1500;
+	private static final int l5 = 10000;
 	private int m_autoSelected;
 	private final SendableChooser<Integer> m_chooser = new SendableChooser<>();
 
+	private DigitalInput lim0;
+	private DigitalInput lim1;
+
+	PowerDistributionPanel powerDistributionPanel;
+
 	public void robotInit() {
 		System.out.println("Robot Init");
+
+		powerDistributionPanel = new PowerDistributionPanel(0);
+
+		lim0 = new DigitalInput(0);
+		lim1 = new DigitalInput(1);
 
 		m_chooser.setDefaultOption("l0", l0);
 		m_chooser.addOption("l1", l1);
@@ -85,7 +95,6 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousPeriodic() {
-
 		talon.set(ControlMode.Position,m_autoSelected);
 		updateDashboard();
 		Scheduler.getInstance().run();
@@ -108,6 +117,9 @@ public class Robot extends TimedRobot {
 			SmartDashboard.putNumber("talon.cle", talon.getClosedLoopError());
 			SmartDashboard.putNumber("talon.clt", talon.getClosedLoopTarget());
 			SmartDashboard.putNumber("talon.errd", talon.getErrorDerivative());
+			SmartDashboard.putBoolean("talon.errd_t", (talon.getErrorDerivative() == 0));
 		}
+		SmartDashboard.putBoolean("lim0",lim0.get());
+		SmartDashboard.putBoolean("lim1",lim1.get());
 	}
 }

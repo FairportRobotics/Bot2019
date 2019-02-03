@@ -43,6 +43,13 @@ public class TalonUtil {
         talon.setInverted(revMotor);
         talon.setSensorPhase(ALIGNED_SENSOR);
 
+        /* Set acceleration and vcruise velocity - see documentation */
+        talon.configMotionCruiseVelocity(15000, TIMEOUT_MS);
+        talon.configMotionAcceleration(6000, TIMEOUT_MS);
+
+        /* Zero the sensor */
+        talon.setSelectedSensorPosition(0);
+
 
 //		_talon.configPeakCurrentLimit(50, TIMEOUT_MS);
 //		_talon.enableCurrentLimit(true);
