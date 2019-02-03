@@ -279,7 +279,7 @@
             "content": {
               "_type": "ComboBox Chooser",
               "_source0": "network_table:///SmartDashboard/Auto choices",
-              "_title": "/SmartDashboard/Auto choices"
+              "_title": "SmartDashboard/Auto choices"
             }
           }
         }
