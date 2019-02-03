@@ -58,6 +58,7 @@ public class SwerveUtils {
 
     public static WPI_TalonSRX createDriveTalon(int talonID, boolean revMotor) {
         WPI_TalonSRX talon = new WPI_TalonSRX(talonID);
+        talon.configFactoryDefault();
         talon.setInverted(revMotor);
 //        talon.configSelectedFeedbackSensor(FeedbackDevice.None, 0, 0);
         talon.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.NormallyOpen, frc.team578.robot.subsystems.swerve.SwerveConstants.TIMEOUT_MS);
@@ -69,6 +70,7 @@ public class SwerveUtils {
                                                  double fCoeff, int iZone) {
 
         WPI_TalonSRX talon = new WPI_TalonSRX(talonID);
+        talon.configFactoryDefault();
 
         talon.configSelectedFeedbackSensor(FeedbackDevice.Analog, frc.team578.robot.subsystems.swerve.SwerveConstants.PIDLOOP_IDX, frc.team578.robot.subsystems.swerve.SwerveConstants.TIMEOUT_MS);
         talon.configSetParameter(ParamEnum.eFeedbackNotContinuous, 0, 0, 0, frc.team578.robot.subsystems.swerve.SwerveConstants.TIMEOUT_MS); // wrap the position (1023 -> 0)
