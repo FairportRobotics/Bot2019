@@ -43,7 +43,7 @@ public class SwerveDriveSubsystem extends Subsystem implements Initializable, Up
 
     @Override
     public void updateDashboard() {
-        SmartDashboard.putData(this);
+        SmartDashboard.putNumber("sd.derivsum",getSteerErrorDerivitiveSum());
 
         swerveDrive.updateDashboard();
     }

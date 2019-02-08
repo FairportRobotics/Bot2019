@@ -22,9 +22,12 @@ public class TalonSwerveEnclosure implements UpdateDashboard {
         this.driveTalon = driveMotor;
         this.steerTalon = steerMotor;
 
-        int pos = steerTalon.getSelectedSensorPosition();
-        int round = (1024 * (pos / 1024));
-        trueNorthEncoderOffset = trueNorth + round;
+//        int pos = steerTalon.getSelectedSensorPosition();
+//        int round = (1024 * (pos / 1024));
+//        trueNorthEncoderOffset = trueNorth + round;
+
+        trueNorthEncoderOffset = trueNorth;
+
     }
 
     public WPI_TalonSRX getDriveTalon() {
@@ -183,11 +186,13 @@ public class TalonSwerveEnclosure implements UpdateDashboard {
 
         SmartDashboard.putNumber(name + ".steert.araw", steerTalon.getSensorCollection().getAnalogInRaw());
         SmartDashboard.putNumber(name + ".steert.senspos", steerTalon.getSelectedSensorPosition());
+        SmartDashboard.putNumber(name + ".steert.tn", trueNorthEncoderOffset);
 
         if (steerTalon.getControlMode() == ControlMode.Position) {
             SmartDashboard.putNumber(name + ".steer.encpos", this.getSteerEncPosition());
             SmartDashboard.putNumber(name + ".steert.CLT", steerTalon.getClosedLoopTarget());
             SmartDashboard.putNumber(name + ".steert.CLE", steerTalon.getClosedLoopError());
+            SmartDashboard.putNumber(name + ".steert.errd", steerTalon.getErrorDerivative());
         }
 //        SmartDashboard.putNumber(name + ".drivet.araw",driveTalon.getSensorCollection().getAnalogInRaw());
 //        SmartDashboard.putNumber(name + ".drivet.senspos",driveTalon.getSelectedSensorPosition());

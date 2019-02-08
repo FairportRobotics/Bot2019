@@ -3,6 +3,7 @@ package frc.team578.robot.subsystems;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team578.robot.subsystems.interfaces.Initializable;
 import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
 import org.apache.logging.log4j.LogManager;
@@ -62,5 +63,6 @@ public class GyroSubsystem extends Subsystem implements Initializable, UpdateDas
 
     @Override
     public void updateDashboard() {
+        SmartDashboard.putNumber("gyro.heading", getHeading());
     }
 }
