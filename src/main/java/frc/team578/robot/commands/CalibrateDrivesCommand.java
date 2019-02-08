@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashboard {
 
@@ -24,8 +25,9 @@ public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashbo
         super(max_run_time_sec);
         System.err.println("Constructor");
 
+        Supplier<Double> supplier = Robot.swerveDriveSubsystem::getSteerErrorDerivitiveSum;
         Predicate<Double> successTest = (x) -> x == 0;
-        pidFinished = new PIDFinished(checkIntervalMillis,stableCounts, successTest);
+        pidFinished = new PIDFinished(checkIntervalMillis,stableCounts, supplier, successTest);
         requires(Robot.swerveDriveSubsystem);
     }
 
@@ -54,8 +56,7 @@ public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashbo
     @Override
     protected boolean isFinished() {
 
-        double currentDeriv = Robot.swerveDriveSubsystem.getSteerErrorDerivitiveSum();
-        boolean stableFound = pidFinished.checkIfStable(currentDeriv);
+        boolean stableFound = pidFinished.checkIfStable();
         boolean timeOutFound = isTimedOut();
         boolean isFinished = stableFound || timeOutFound;
 
