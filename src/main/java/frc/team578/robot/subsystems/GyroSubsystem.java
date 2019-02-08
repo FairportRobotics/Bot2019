@@ -24,7 +24,7 @@ public class GyroSubsystem extends Subsystem implements Initializable, UpdateDas
 
     public void initialize() {
 
-        System.err.println("Init " + this.getClass().getName());
+        log.info("Init " + this.getClass().getName());
 
         try {
             navx = new AHRS(SPI.Port.kMXP);

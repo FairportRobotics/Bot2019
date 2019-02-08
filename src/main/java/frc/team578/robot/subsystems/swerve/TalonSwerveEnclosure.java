@@ -48,7 +48,7 @@ public class TalonSwerveEnclosure implements UpdateDashboard {
      * @param angle the angle value: -0.5 - counterclockwise 180 degrees, 0 - forward 180 degrees, +0.5 - 180 degrees clockwise
      */
     public void moveToSteerAngle(double angle) {
-        steerTalon.set(ControlMode.Position, angle * frc.team578.robot.subsystems.swerve.SwerveConstants.MAX_ENC_VAL * (reverseSteer ? -1 : 1));
+        steerTalon.set(ControlMode.Position, angle * SwerveConstants.MAX_ENC_VAL * (reverseSteer ? -1 : 1));
     }
 
     public void moveSteerToEncoderPosition(int encPos) {
@@ -183,10 +183,12 @@ public class TalonSwerveEnclosure implements UpdateDashboard {
 
         SmartDashboard.putNumber(name + ".steert.araw", steerTalon.getSensorCollection().getAnalogInRaw());
         SmartDashboard.putNumber(name + ".steert.senspos", steerTalon.getSelectedSensorPosition());
-        SmartDashboard.putNumber(name + ".steert.CLE", steerTalon.getClosedLoopError());
-//        SmartDashboard.putNumber(name + ".steert.CLT", steerTalon.getClosedLoopTarget());
-        SmartDashboard.putNumber(name + ".steer.encpos", this.getSteerEncPosition());
 
+        if (steerTalon.getControlMode() == ControlMode.Position) {
+            SmartDashboard.putNumber(name + ".steer.encpos", this.getSteerEncPosition());
+            SmartDashboard.putNumber(name + ".steert.CLT", steerTalon.getClosedLoopTarget());
+            SmartDashboard.putNumber(name + ".steert.CLE", steerTalon.getClosedLoopError());
+        }
 //        SmartDashboard.putNumber(name + ".drivet.araw",driveTalon.getSensorCollection().getAnalogInRaw());
 //        SmartDashboard.putNumber(name + ".drivet.senspos",driveTalon.getSelectedSensorPosition());
 //        SmartDashboard.putNumber(name + ".drivet.CLE",driveTalon.getClosedLoopError());

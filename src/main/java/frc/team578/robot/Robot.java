@@ -7,6 +7,7 @@ import frc.team578.robot.commands.SampleCommand;
 import frc.team578.robot.commands.SwerveDriveCommand;
 import frc.team578.robot.subsystems.ArmSubsystem;
 import frc.team578.robot.subsystems.ElevatorSubsystem;
+import frc.team578.robot.subsystems.GyroSubsystem;
 import frc.team578.robot.subsystems.SwerveDriveSubsystem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,7 +33,7 @@ public class Robot extends TimedRobot {
 
             log.info("Starting Robot Init");
 
-            gyroSubsystem = new frc.team578.robot.subsystems.GyroSubsystem("gyro");
+            gyroSubsystem = new GyroSubsystem("gyro");
             gyroSubsystem.initialize();
             log.info("Gyro Subsystem Initialized");
 

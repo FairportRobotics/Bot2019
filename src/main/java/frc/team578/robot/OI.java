@@ -27,22 +27,27 @@ public class OI implements Initializable {
     }
 
     public double getPadLeftX() {
-        return gamepad.getLeftX();
+
+        double joyVal = gamepad.getLeftX();
+        return (Math.abs(joyVal) > JOYSTICK_DEADZONE) ? joyVal : 0.0;
     }
 
     public double getPadLeftY() {
-        return gamepad.getLeftY();
+        double joyVal = gamepad.getLeftY();
+        return (Math.abs(joyVal) > JOYSTICK_DEADZONE) ? joyVal : 0.0;
     }
 
     public double getPadRightX() {
-        return gamepad.getRightX();
+        double joyVal = gamepad.getRightX();
+        return (Math.abs(joyVal) > JOYSTICK_DEADZONE) ? joyVal : 0.0;
     }
 
     public double getPadRightY() {
-        return gamepad.getRightY();
+        double joyVal = gamepad.getRightY();
+        return (Math.abs(joyVal) > JOYSTICK_DEADZONE) ? joyVal : 0.0;
     }
 
-//    final double JOYSTICK_DEADZONE = 0.1;
+    final double JOYSTICK_DEADZONE = 0.1;
 //    public double getGamepadRawAxis(int axisID) {
 //        double joyVal = driveGamepad.getRawAxis(axisID);
 //        return (Math.abs(joyVal) > JOYSTICK_DEADZONE) ? joyVal : 0.0;

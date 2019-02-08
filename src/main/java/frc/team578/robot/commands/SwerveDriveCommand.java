@@ -1,6 +1,8 @@
 package frc.team578.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team578.robot.OI;
 import frc.team578.robot.Robot;
 import org.apache.logging.log4j.LogManager;
@@ -37,6 +39,12 @@ public class SwerveDriveCommand extends Command {
         double angleDeg = Robot.gyroSubsystem.getHeading();
 
         Robot.swerveDriveSubsystem.move(fwd, str, rot, angleDeg);
+
+        SmartDashboard.putNumber("swrv.fwd", fwd);
+        SmartDashboard.putNumber("swrv.str", str);
+        SmartDashboard.putNumber("swrv.rot", rot);
+        SmartDashboard.putNumber("swrv.angleDeg", angleDeg);
+
     }
 
     @Override
