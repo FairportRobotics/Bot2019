@@ -18,14 +18,14 @@ public class SwerveSteerTest extends TimedRobot {
     private static final Logger log = LogManager.getLogger(SwerveSteerTest.class);
 
     public static final boolean REVERSE_TURN = true;
-    public static final int ROTATE_TALON_ID = 14;
+    public static final int ROTATE_TALON_ID = 13;
     public static final int TIMEOUT_MS = 0; // set to zero if skipping confirmation
     public static final int PIDLOOP_IDX = 0; // set to zero if primary loop
     public static final int PROFILE_SLOT = 0;
     public static final boolean ALIGNED_TURN_SENSOR = false; // encoder polarity
     public static final double turn_kP = 18;
     public static final double turn_kI = 0.0;
-    public static final double turn_kD = 0.001;
+    public static final double turn_kD = 0.0;
     public static final double turn_kF = 0.0;
     public static final int turn_kIZone = 0;
     public static final double MAX_ENC_VAL = 1024;
@@ -54,12 +54,13 @@ public class SwerveSteerTest extends TimedRobot {
     }
 
     void updateTarget() {
-        int offset = -776;
+        int offset = 454;
         int pos = _talon.getSelectedSensorPosition();
         int round = (1024 * (pos / 1024));
         target = offset + round;
     }
 
+    int offset = -245;
     @Override
     public void teleopPeriodic() {
 
@@ -67,7 +68,7 @@ public class SwerveSteerTest extends TimedRobot {
         //        _talon.set(ControlMode.PercentOutput, xSpeed);
 
         /* update motor controller */
-        _talon.set(ControlMode.Position, target);
+        _talon.set(ControlMode.Position, offset);
 
 //        if (isFinished()) {
 //            // new WaitCommand(1).start();
