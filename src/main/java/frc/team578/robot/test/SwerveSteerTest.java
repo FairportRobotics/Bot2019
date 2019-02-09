@@ -1,29 +1,29 @@
 package frc.team578.robot.test;
 
-import com.ctre.phoenix.ParamEnum;
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.WaitCommand;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.team578.robot.Robot;
-import frc.team578.robot.commands.CalibrateDrivesCommand;
+import frc.team578.robot.subsystems.swerve.SwerveConstants;
+import frc.team578.robot.utils.PIDFinished;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class SwerveSteerTest extends TimedRobot {
 
     private static final Logger log = LogManager.getLogger(SwerveSteerTest.class);
 
     public static final boolean REVERSE_TURN = true;
-    public static final int ROTATE_TALON_ID = 13;
+
     public static final int TIMEOUT_MS = 0; // set to zero if skipping confirmation
     public static final int PIDLOOP_IDX = 0; // set to zero if primary loop
     public static final int PROFILE_SLOT = 0;
     public static final boolean ALIGNED_TURN_SENSOR = false; // encoder polarity
-    public static final double turn_kP = 18;
+    public static final double turn_kP = 8;
     public static final double turn_kI = 0.0;
     public static final double turn_kD = 0.0;
     public static final double turn_kF = 0.0;
@@ -33,54 +33,129 @@ public class SwerveSteerTest extends TimedRobot {
     boolean finished = false;
 
 
-    WPI_TalonSRX _talon;
+    WPI_TalonSRX fl_talon;
+    WPI_TalonSRX fr_talon;
+    WPI_TalonSRX bl_talon;
+    WPI_TalonSRX br_talon;
     Joystick _joystick = new Joystick(0); /* make a joystick */
-    Faults _faults = new Faults(); /* temp to fill with latest faults */
+//    Faults _faults = new Faults(); /* temp to fill with latest faults */
+
 
     @Override
     public void robotInit() {
 
 
-        _talon = TestUtils.createSteerTalon(ROTATE_TALON_ID,
+
+
+        fl_talon = TestUtils.createSteerTalon("t_fl",11,
+                REVERSE_TURN, turn_kP, turn_kI, turn_kD, turn_kF,
+                turn_kIZone);
+        fr_talon = TestUtils.createSteerTalon("t_fr",12,
+                REVERSE_TURN, turn_kP, turn_kI, turn_kD, turn_kF,
+                turn_kIZone);
+        bl_talon = TestUtils.createSteerTalon("t_bl",13,
+                REVERSE_TURN, turn_kP, turn_kI, turn_kD, turn_kF,
+                turn_kIZone);
+        br_talon = TestUtils.createSteerTalon("t_br",14,
                 REVERSE_TURN, turn_kP, turn_kI, turn_kD, turn_kF,
                 turn_kIZone);
 
-        updateTarget();
+//        updateTarget();
+
+        updateSD(fl_talon);
+        updateSD(fr_talon);
+        updateSD(bl_talon);
+        updateSD(br_talon);
+    }
+
+
+    @Override
+    public void autonomousInit() {
+
+        Supplier<Double> supplier = () -> Math.abs(fl_talon.getErrorDerivative()) + Math.abs(fr_talon.getErrorDerivative()) + Math.abs(bl_talon.getErrorDerivative()) + Math.abs(br_talon.getErrorDerivative());
+        Predicate<Double> successTest = (x) -> x == 0;
+        PIDFinished<Double> pidFinished = new PIDFinished(checkIntervalMillis,stableCounts, supplier, successTest);
+
+        fl_talon.set(ControlMode.PercentOutput,0);
+        fr_talon.set(ControlMode.PercentOutput,0);
+        bl_talon.set(ControlMode.PercentOutput,0);
+        br_talon.set(ControlMode.PercentOutput,0);
+
+        fl_talon.setSelectedSensorPosition(-fl_talon.getSensorCollection().getAnalogIn());
+        fr_talon.setSelectedSensorPosition(-fr_talon.getSensorCollection().getAnalogIn());
+        bl_talon.setSelectedSensorPosition(-bl_talon.getSensorCollection().getAnalogIn());
+        br_talon.setSelectedSensorPosition(-br_talon.getSensorCollection().getAnalogIn());
+
+        int flpos = SwerveConstants.FRONT_LEFT_TRUE_NORTH_ENC_POS;
+        int frpos = SwerveConstants.FRONT_RIGHT_TRUE_NORTH_ENC_POS;
+        int blpos = SwerveConstants.BACK_LEFT_TRUE_NORTH_ENC_POS;
+        int brpos = SwerveConstants.BACK_RIGHT_TRUE_NORTH_ENC_POS;
+
+
+        /* update motor controller */
+        fl_talon.set(ControlMode.Position, flpos);
+        fr_talon.set(ControlMode.Position, frpos);
+        bl_talon.set(ControlMode.Position, blpos);
+        br_talon.set(ControlMode.Position, brpos);
+
+        while (!pidFinished.isStable()) {
+            System.err.println("Waiting");
+            updateSD(fl_talon);
+            updateSD(fr_talon);
+            updateSD(bl_talon);
+            updateSD(br_talon);
+        }
+        System.err.println("Done");
+
+//        fl_talon.set(ControlMode.PercentOutput,0);
+//        fr_talon.set(ControlMode.PercentOutput,0);
+//        bl_talon.set(ControlMode.PercentOutput,0);
+//        br_talon.set(ControlMode.PercentOutput,0);
+//
+//
+//        fl_talon.setSelectedSensorPosition(0);
+//        fr_talon.setSelectedSensorPosition(0);
+//        bl_talon.setSelectedSensorPosition(0);
+//        br_talon.setSelectedSensorPosition(0);
+//
+//        fl_talon.set(ControlMode.Position,0);
+//        fr_talon.set(ControlMode.Position,0);
+//        bl_talon.set(ControlMode.Position,0);
+//        br_talon.set(ControlMode.Position,0);
+
+        updateSD(fl_talon);
+        updateSD(fr_talon);
+        updateSD(bl_talon);
+        updateSD(br_talon);
     }
 
     @Override
     public void teleopInit() {
-        updateTarget();
+
     }
 
-    void updateTarget() {
-        int offset = 454;
-        int pos = _talon.getSelectedSensorPosition();
-        int round = (1024 * (pos / 1024));
-        target = offset + round;
-    }
 
-    int offset = -245;
+
     @Override
     public void teleopPeriodic() {
 
-        //        double xSpeed = _joystick.getRawAxis(1) * -1; // make forward stick positive
-        //        _talon.set(ControlMode.PercentOutput, xSpeed);
-
-        /* update motor controller */
-        _talon.set(ControlMode.Position, offset);
-
-//        if (isFinished()) {
-//            // new WaitCommand(1).start();
-//            _talon.set(ControlMode.Position, _talon.getSelectedSensorPosition() < 500 ? 5000 : 0);
-//        }
+        fl_talon.set(ControlMode.PercentOutput,0);
+        fr_talon.set(ControlMode.PercentOutput,0);
+        bl_talon.set(ControlMode.PercentOutput,0);
+        br_talon.set(ControlMode.PercentOutput,0);
 
 
+        fl_talon.setSelectedSensorPosition(0);
+        fr_talon.setSelectedSensorPosition(0);
+        bl_talon.setSelectedSensorPosition(0);
+        br_talon.setSelectedSensorPosition(0);
 
-        /* check our live faults */
-        _talon.getFaults(_faults);
 
-        updateSD();
+        updateSD(fl_talon);
+        updateSD(fr_talon);
+        updateSD(bl_talon);
+        updateSD(br_talon);
+
 
     }
 
@@ -88,67 +163,45 @@ public class SwerveSteerTest extends TimedRobot {
 
     @Override
     public void disabledPeriodic() {
-        updateSD();
-        updateTarget();
+        updateSD(fl_talon);
+        updateSD(fr_talon);
+        updateSD(bl_talon);
+        updateSD(br_talon);
+//        updateTarget();
     }
 
 
     static int max_run_time_sec = 10;
     boolean found = false;
-    int stableCounts = 3;
+    int stableCounts = 2;
     double stopZone = 0;
     int successCount = 0;
     long lastChecked = 0;
-    long checkIntervalMillis = 50;
-
-    protected boolean isFinished() {
-
-//        double sumSteerCLE = Robot.swerveDriveSubsystem.getSteerCLTErrorSum();
-
-        long currentTime = System.currentTimeMillis();
-        if (currentTime - lastChecked > checkIntervalMillis) {
-            lastChecked = currentTime;
-
-//            double currentDeriv = Robot.swerveDriveSubsystem.getSteerErrorDerivitiveSum();
-            double currentDeriv = Math.abs(_talon.getErrorDerivative());
-            if (currentDeriv <= stopZone) {
-                successCount++;
-            } else {
-                successCount = 0;
-            }
-        }
-
-        found = (successCount >= stableCounts || isTimedOut());
-
-        if (found) {
-            if (isTimedOut()) {
-                log.warn("CalibrateDrivesCommand timed out");
-                Robot.swerveDriveSubsystem.stop();
-            }
-        }
-
-        return found;
-
-    }
+    long checkIntervalMillis = 30;
 
     public boolean isTimedOut() {
         return false;
     }
 
-    public void updateSD() {
+    long lastUpdate = 0;
+    public void updateSD(WPI_TalonSRX t) {
+        long now = System.currentTimeMillis();
+        if (now - lastUpdate > 100) {
+            lastUpdate = now;
 
-        SmartDashboard.putData("Talon Data", _talon);
-        SmartDashboard.putNumber("Sensor Vel:", _talon.getSelectedSensorVelocity());
-        SmartDashboard.putNumber("Sensor Pos:", _talon.getSelectedSensorPosition());
-        SmartDashboard.putNumber("Analog In", _talon.getSensorCollection().getAnalogIn());
-        SmartDashboard.putNumber("Analog In Raw", _talon.getSensorCollection().getAnalogInRaw());
-        SmartDashboard.putNumber("Out %", _talon.getMotorOutputPercent());
-        SmartDashboard.putBoolean("Any Faults:", _faults.hasAnyFault());
-        SmartDashboard.putBoolean("Out Of Phase:", _faults.SensorOutOfPhase);
-        SmartDashboard.putNumber("target:", target);
-        SmartDashboard.putNumber("errDeriv:", _talon.getErrorDerivative());
-        SmartDashboard.putNumber("clerr", _talon.getClosedLoopError());
-        SmartDashboard.putBoolean("isFinished", isFinished());
+            SmartDashboard.putData(t.getName() + "_Talon Data", t);
+            SmartDashboard.putNumber(t.getName() + "_Sensor Vel:", t.getSelectedSensorVelocity());
+            SmartDashboard.putNumber(t.getName() + "_Sensor Pos:", t.getSelectedSensorPosition());
+            SmartDashboard.putNumber(t.getName() + "_CLT:", t.getClosedLoopTarget());
+            SmartDashboard.putNumber(t.getName() + "_CLE:", t.getClosedLoopError());
+            SmartDashboard.putNumber(t.getName() + "_Analog In", t.getSensorCollection().getAnalogIn());
+            SmartDashboard.putNumber(t.getName() + "_Analog In Raw", t.getSensorCollection().getAnalogInRaw());
+            SmartDashboard.putNumber(t.getName() + "_Out %", t.getMotorOutputPercent());
+//        SmartDashboard.putBoolean(t.getName() + "_Any Faults:", _faults.hasAnyFault());
+//        SmartDashboard.putBoolean(t.getName() + "_Out Of Phase:", _faults.SensorOutOfPhase);
+            SmartDashboard.putNumber(t.getName() + "_errDeriv:", t.getErrorDerivative());
+            SmartDashboard.putNumber(t.getName() + "_clerr", t.getClosedLoopError());
+        }
 
 
     }

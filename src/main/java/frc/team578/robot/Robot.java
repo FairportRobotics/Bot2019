@@ -9,8 +9,12 @@ import frc.team578.robot.subsystems.ArmSubsystem;
 import frc.team578.robot.subsystems.ElevatorSubsystem;
 import frc.team578.robot.subsystems.GyroSubsystem;
 import frc.team578.robot.subsystems.SwerveDriveSubsystem;
+import frc.team578.robot.utils.PIDFinished;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class Robot extends TimedRobot {
 
@@ -39,6 +43,7 @@ public class Robot extends TimedRobot {
 
             swerveDriveSubsystem = new SwerveDriveSubsystem();
             swerveDriveSubsystem.initialize();
+
             log.info("Swerve Drive Subsystem Initialized");
 
 
@@ -85,11 +90,22 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         // TODO : Is this running in this method?
+
+//        Robot.swerveDriveSubsystem.moveSteerTrueNorth();
+//        Supplier<Double> supplier = Robot.swerveDriveSubsystem::getSteerErrorDerivitiveSum;
+//        Predicate<Double> successTest = (x) -> x == 0;
+//        PIDFinished pidFinished = new PIDFinished(10,3, supplier, successTest);
+//        while (!pidFinished.isStable()) {
+//
+//        }
+//        Robot.swerveDriveSubsystem.zeroAllSteerEncoders();
+
+
 //        SampleCommand sampleCommand = new SampleCommand();
 //        sampleCommand.start();
 
-            CalibrateDrivesCommand calibrateDrivesCommand = new CalibrateDrivesCommand();
-            calibrateDrivesCommand.start();
+//            CalibrateDrivesCommand calibrateDrivesCommand = new CalibrateDrivesCommand();
+//            calibrateDrivesCommand.start();
     }
 
     @Override
@@ -128,8 +144,15 @@ public class Robot extends TimedRobot {
     }
 
 
+
+    long lastUpdate = 0;
     public void updateAllDashboards() {
-        Robot.swerveDriveSubsystem.updateDashboard();
-        Robot.gyroSubsystem.updateDashboard();
+        long now = System.currentTimeMillis();
+        if (now - lastUpdate > 100) {
+            lastUpdate = now;
+            Robot.swerveDriveSubsystem.updateDashboard();
+            Robot.gyroSubsystem.updateDashboard();
+
+        }
     }
 }
