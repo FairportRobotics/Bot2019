@@ -1461,6 +1461,50 @@
               "_source0": "network_table:///SmartDashboard/t_fr_CLE:",
               "_title": "SmartDashboard/t_fr_CLE:"
             }
+          },
+          "5,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/t_br_errDeriv:",
+              "_title": "/SmartDashboard/t_br_errDeriv:"
+            }
+          },
+          "4,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/t_fl_errDeriv:",
+              "_title": "SmartDashboard/t_fl_errDeriv:"
+            }
+          },
+          "4,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/t_bl_errDeriv:",
+              "_title": "/SmartDashboard/t_bl_errDeriv:"
+            }
+          },
+          "5,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/t_fr_errDeriv:",
+              "_title": "SmartDashboard/t_fr_errDeriv:"
+            }
           }
         }
       }

@@ -72,14 +72,22 @@ public class SwerveSteerTest extends TimedRobot {
     @Override
     public void autonomousInit() {
 
-        Supplier<Double> supplier = () -> Math.abs(fl_talon.getErrorDerivative()) + Math.abs(fr_talon.getErrorDerivative()) + Math.abs(bl_talon.getErrorDerivative()) + Math.abs(br_talon.getErrorDerivative());
-        Predicate<Double> successTest = (x) -> x == 0;
-        PIDFinished<Double> pidFinished = new PIDFinished(checkIntervalMillis,stableCounts, supplier, successTest);
+        // Supplier<Double> supplier = () -> Math.abs(fl_talon.getErrorDerivative()) + Math.abs(fr_talon.getErrorDerivative()) + Math.abs(bl_talon.getErrorDerivative()) + Math.abs(br_talon.getErrorDerivative());
+        Supplier<Integer> supplier = () -> Math.abs(fl_talon.getClosedLoopError()) + Math.abs(fr_talon.getClosedLoopError()) + Math.abs(bl_talon.getClosedLoopError()) + Math.abs(br_talon.getClosedLoopError());
+        Predicate<Integer> successTest = (x) -> x < 50;
+        PIDFinished<Integer> pidFinished = new PIDFinished(checkIntervalMillis,stableCounts, supplier, successTest);
 
-        fl_talon.set(ControlMode.PercentOutput,0);
-        fr_talon.set(ControlMode.PercentOutput,0);
-        bl_talon.set(ControlMode.PercentOutput,0);
-        br_talon.set(ControlMode.PercentOutput,0);
+//        fl_talon.set(ControlMode.PercentOutput,0);
+//        fr_talon.set(ControlMode.PercentOutput,0);
+//        bl_talon.set(ControlMode.PercentOutput,0);
+//        br_talon.set(ControlMode.PercentOutput,0);
+
+        fl_talon.neutralOutput();
+        fr_talon.neutralOutput();
+        bl_talon.neutralOutput();
+        br_talon.neutralOutput();
+
+
 
         fl_talon.setSelectedSensorPosition(-fl_talon.getSensorCollection().getAnalogIn());
         fr_talon.setSelectedSensorPosition(-fr_talon.getSensorCollection().getAnalogIn());
@@ -98,7 +106,8 @@ public class SwerveSteerTest extends TimedRobot {
         bl_talon.set(ControlMode.Position, blpos);
         br_talon.set(ControlMode.Position, brpos);
 
-        while (!pidFinished.isStable()) {
+        long start = System.currentTimeMillis();
+        while (!pidFinished.isStable() || (System.currentTimeMillis() - start) > 5000) {
             System.err.println("Waiting");
             updateSD(fl_talon);
             updateSD(fr_talon);
@@ -131,13 +140,9 @@ public class SwerveSteerTest extends TimedRobot {
 
     @Override
     public void teleopInit() {
-
-    }
-
-
-
-    @Override
-    public void teleopPeriodic() {
+        // TODO : Use These?
+        // fl_talon.configAllowableClosedloopError();
+        // fl_talon.neutralOutput();
 
         fl_talon.set(ControlMode.PercentOutput,0);
         fr_talon.set(ControlMode.PercentOutput,0);
@@ -149,6 +154,14 @@ public class SwerveSteerTest extends TimedRobot {
         fr_talon.setSelectedSensorPosition(0);
         bl_talon.setSelectedSensorPosition(0);
         br_talon.setSelectedSensorPosition(0);
+    }
+
+
+
+    @Override
+    public void teleopPeriodic() {
+
+
 
 
         updateSD(fl_talon);
@@ -158,8 +171,6 @@ public class SwerveSteerTest extends TimedRobot {
 
 
     }
-
-
 
     @Override
     public void disabledPeriodic() {
@@ -167,9 +178,25 @@ public class SwerveSteerTest extends TimedRobot {
         updateSD(fr_talon);
         updateSD(bl_talon);
         updateSD(br_talon);
-//        updateTarget();
     }
 
+    @Override
+    public void testInit() {
+        fl_talon.set(ControlMode.Position,1024);
+        fr_talon.set(ControlMode.Position,1024);
+        bl_talon.set(ControlMode.Position,1024);
+        br_talon.set(ControlMode.Position,1024);
+
+    }
+
+    @Override
+    public void testPeriodic() {
+
+        updateSD(fl_talon);
+        updateSD(fr_talon);
+        updateSD(bl_talon);
+        updateSD(br_talon);
+    }
 
     static int max_run_time_sec = 10;
     boolean found = false;
