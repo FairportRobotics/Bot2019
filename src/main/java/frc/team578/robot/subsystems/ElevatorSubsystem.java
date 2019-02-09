@@ -1,63 +1,62 @@
 package frc.team578.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.DigitalInput;
 import frc.team578.robot.subsystems.interfaces.Initializable;
 import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
+import frc.team578.robot.utils.PIDFinished;
+import frc.team578.robot.utils.TalonUtil;
 
 public class ElevatorSubsystem implements Initializable, UpdateDashboard {
 
     // TODO: These will need PID.
-    private WPI_TalonSRX first;
-    private WPI_TalonSRX second;
+    private WPI_TalonSRX armTalon;
+    private WPI_TalonSRX structureTalon;
+
+    private PIDFinished<Double> pfArm;
+    private PIDFinished<Double> pfStructure;
+
+    private static final int ARM_TALON_HEIGHT = 500;
+    private static final int STRUCTURE_TALON_HEIGHT = 500;
 
     @Override
     public void initialize() {
+        // TODO: WE NEED TO ADD PID!!!!!!!!!
 
-//        elevatorTalon = new WPI_TalonSRX(RobotMap.ELEVATOR_TALON);
-//        elevatorTalon.setNeutralMode(NeutralMode.Brake);
-//
-//        elevatorTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx, kTimeoutMs);
-//        elevatorTalon.setSensorPhase(true);
-//        elevatorTalon.setInverted(false);
-//
-//        /* Set relevant frame periods to be at least as fast as periodic rate */
-//        elevatorTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, kTimeoutMs);
-//        elevatorTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, kTimeoutMs);
-//
-//        /* set the peak and nominal outputs */
-//        elevatorTalon.configNominalOutputForward(0, kTimeoutMs);
-//        elevatorTalon.configNominalOutputReverse(0, kTimeoutMs);
-//        elevatorTalon.configPeakOutputForward(1, kTimeoutMs);
-//        elevatorTalon.configPeakOutputReverse(-1, kTimeoutMs);
-//
-//        /* set closed loop gains in slot0 - see documentation */
-//        elevatorTalon.selectProfileSlot(kSlotIdx, kPIDLoopIdx);
-//        elevatorTalon.config_kF(0, 0.93, kTimeoutMs); // .455
-//        elevatorTalon.config_kP(0, 0.455, kTimeoutMs);
-//        elevatorTalon.config_kI(0, 0, kTimeoutMs);
-//        elevatorTalon.config_kD(0, 0, kTimeoutMs);
-//
-//        /* set acceleration and vcruise velocity - see documentation */
-//        elevatorTalon.configMotionCruiseVelocity(7812, kTimeoutMs); // 1689 //5000
-//        elevatorTalon.configMotionAcceleration(3000, kTimeoutMs); //4000
-//
-//        /*
-//         * TODO : zero the sensor This should be done only when elevator is at
-//         * the bottom!!!
-//         */
-//        elevatorTalon.setSelectedSensorPosition(0, kPIDLoopIdx, kTimeoutMs);
-//        elevatorTalon.set(ControlMode.MotionMagic, 0);
-//
-//        elevatorTalon.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
-//                LimitSwitchNormal.NormallyOpen, 0);
-//        elevatorTalon.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
-//                LimitSwitchNormal.NormallyOpen, 0);
+        int talonID = 7;
+        boolean revMotor = false;
+        double pCoeff = 10;
+        double iCoeff = 0;
+        double dCoeff = 0;
+        double fCoeff = 0;
+        int iZone = 0;
 
+        armTalon = TalonUtil.createPIDTalon(talonID, revMotor, pCoeff, iCoeff, dCoeff, fCoeff, iZone);
+        structureTalon = TalonUtil.createPIDTalon(talonID, revMotor, pCoeff, iCoeff, dCoeff, fCoeff, iZone);
+
+        pfArm = new PIDFinished<Double>(50,3,armTalon::getErrorDerivative,(x) -> x == 0);
+        pfStructure = new PIDFinished<Double>(50,3,armTalon::getErrorDerivative,(x) -> x == 0);
+    }
+
+    public void setPos(int level) {
+        switch (level) {
+            case 0:
+                armTalon.set(ControlMode.Position, 0);
+                structureTalon.set(ControlMode.Position, 0);
+                break;
+            case 1:
+                armTalon.set(ControlMode.Position, ARM_TALON_HEIGHT);
+                structureTalon.set(ControlMode.Position, 0);
+                break;
+            case 2:
+                armTalon.set(ControlMode.Position, ARM_TALON_HEIGHT);
+                structureTalon.set(ControlMode.Position, STRUCTURE_TALON_HEIGHT);
+                break;
+        }
     }
 
     @Override
     public void updateDashboard() {
     }
-
-
 }

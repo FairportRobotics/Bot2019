@@ -3,7 +3,6 @@ package frc.team578.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.team578.robot.commands.CalibrateDrivesCommand;
-import frc.team578.robot.commands.SampleCommand;
 import frc.team578.robot.commands.SwerveDriveCommand;
 import frc.team578.robot.subsystems.ArmSubsystem;
 import frc.team578.robot.subsystems.ElevatorSubsystem;
@@ -113,9 +112,9 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopPeriodic() {
-
         updateAllDashboards();
         Scheduler.getInstance().run();
+
     }
 
     @Override
