@@ -1,5 +1,6 @@
 package frc.team578.robot.subsystems.swerve;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.team578.robot.RobotMap;
 import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
@@ -85,17 +86,43 @@ public class SwerveDrive implements UpdateDashboard {
         swerveEnclosureBR.stopAllTalons();
     }
 
-
     public void zeroAllSteerEncoders() {
+        swerveEnclosureFR.zeroSteerEncoder();
+        swerveEnclosureFL.zeroSteerEncoder();
+        swerveEnclosureBL.zeroSteerEncoder();
+        swerveEnclosureBR.zeroSteerEncoder();
+    }
+
+
+    public void calibrateAllSteerEncoders() {
         swerveEnclosureFR.stopAllTalons();
         swerveEnclosureFL.stopAllTalons();
         swerveEnclosureBL.stopAllTalons();
         swerveEnclosureBR.stopAllTalons();
 
-        swerveEnclosureFR.zeroSteerEncoder();
-        swerveEnclosureFL.zeroSteerEncoder();
-        swerveEnclosureBL.zeroSteerEncoder();
-        swerveEnclosureBR.zeroSteerEncoder();
+        swerveEnclosureFL.setSensorToAnalogPos();
+        swerveEnclosureFR.setSensorToAnalogPos();
+        swerveEnclosureBR.setSensorToAnalogPos();
+        swerveEnclosureBL.setSensorToAnalogPos();
+
+//        swerveEnclosureFR.setSelectedSensorPosition(-fl_talon.getSensorCollection().getAnalogIn());
+//        fr_talon.setSelectedSensorPosition(-fr_talon.getSensorCollection().getAnalogIn());
+//        bl_talon.setSelectedSensorPosition(-bl_talon.getSensorCollection().getAnalogIn());
+//        br_talon.setSelectedSensorPosition(-br_talon.getSensorCollection().getAnalogIn());
+
+        int flpos = SwerveConstants.FRONT_LEFT_TRUE_NORTH_ENC_POS;
+        int frpos = SwerveConstants.FRONT_RIGHT_TRUE_NORTH_ENC_POS;
+        int blpos = SwerveConstants.BACK_LEFT_TRUE_NORTH_ENC_POS;
+        int brpos = SwerveConstants.BACK_RIGHT_TRUE_NORTH_ENC_POS;
+
+
+        /* update motor controller */
+        swerveEnclosureFL.moveSteerToEncoderPosition(flpos);
+        swerveEnclosureFR.moveSteerToEncoderPosition(frpos);
+        swerveEnclosureBL.moveSteerToEncoderPosition(blpos);
+        swerveEnclosureBR.moveSteerToEncoderPosition(brpos);
+
+
     }
 
     /*

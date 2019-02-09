@@ -39,6 +39,7 @@ public class Robot extends TimedRobot {
 
             gyroSubsystem = new GyroSubsystem("gyro");
             gyroSubsystem.initialize();
+            gyroSubsystem.setToZero();
             log.info("Gyro Subsystem Initialized");
 
             swerveDriveSubsystem = new SwerveDriveSubsystem();
@@ -98,7 +99,7 @@ public class Robot extends TimedRobot {
 //        while (!pidFinished.isStable()) {
 //
 //        }
-//        Robot.swerveDriveSubsystem.zeroAllSteerEncoders();
+//        Robot.swerveDriveSubsystem.calibrateAllSteerEncoders();
 
 
 //        SampleCommand sampleCommand = new SampleCommand();

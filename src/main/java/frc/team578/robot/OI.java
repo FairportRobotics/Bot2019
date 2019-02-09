@@ -2,6 +2,7 @@ package frc.team578.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.team578.robot.commands.CalibrateDrivesCommand;
 import frc.team578.robot.subsystems.interfaces.Initializable;
 import frc.team578.robot.utils.Gamepad;
 
@@ -23,6 +24,8 @@ public class OI implements Initializable {
     boolean dpadLeft = gamepad.getDPadLeft();
 
     public void initialize() {
+
+        buttonA.whenPressed(new CalibrateDrivesCommand());
 
     }
 

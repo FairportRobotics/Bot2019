@@ -30,6 +30,10 @@ public class SwerveDriveSubsystem extends Subsystem implements Initializable, Up
         swerveDrive.zeroAllSteerEncoders();
     }
 
+    public void calibrateAllSteerEncoders() {
+        swerveDrive.calibrateAllSteerEncoders();
+    }
+
     /*
     This should be called when the robot starts up to align the talon with the steering encoder
      */
