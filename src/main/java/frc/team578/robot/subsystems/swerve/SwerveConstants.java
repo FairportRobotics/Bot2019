@@ -22,7 +22,7 @@ public class SwerveConstants {
 
     public static final boolean FRONT_LEFT_REVERSE_TURN = true;
     public static final boolean FRONT_RIGHT_REVERSE_TURN = true;
-    public static final boolean BACK_LEFT_REVERSE_TURN = true;
+    public static final boolean BACK_LEFT_REVERSE_TURN = false;
     public static final boolean BACK_RIGHT_REVERSE_TURN = true;
 
     public static final int TIMEOUT_MS = 0; // set to zero if skipping confirmation
