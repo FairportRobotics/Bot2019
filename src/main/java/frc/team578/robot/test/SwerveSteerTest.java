@@ -88,10 +88,15 @@ public class SwerveSteerTest extends TimedRobot {
     @Override
     public void autonomousInit() {
 
+
+
         // Supplier<Double> supplier = () -> Math.abs(fl_talon.getErrorDerivative()) + Math.abs(fr_talon.getErrorDerivative()) + Math.abs(bl_talon.getErrorDerivative()) + Math.abs(br_talon.getErrorDerivative());
-        Supplier<Integer> supplier = () -> Math.abs(fl_talon.getClosedLoopError()) + Math.abs(fr_talon.getClosedLoopError()) + Math.abs(bl_talon.getClosedLoopError()) + Math.abs(br_talon.getClosedLoopError());
-        Predicate<Integer> successTest = (x) -> x < 50;
-        PIDFinished<Integer> pidFinished = new PIDFinished(checkIntervalMillis,stableCounts, supplier, successTest);
+//        Supplier<Integer> supplier = () -> Math.abs(fl_talon.getClosedLoopError()) + Math.abs(fr_talon.getClosedLoopError()) + Math.abs(bl_talon.getClosedLoopError()) + Math.abs(br_talon.getClosedLoopError());
+//        Predicate<Integer> successTest = (x) -> x < 50;
+//        PIDFinished<Integer> pidFinished = new PIDFinished(checkIntervalMillis,stableCounts, supplier, successTest);
+
+
+        fr_talon.setSelectedSensorPosition(0);
 
 //        fl_talon.set(ControlMode.PercentOutput,0);
 //        fr_talon.set(ControlMode.PercentOutput,0);

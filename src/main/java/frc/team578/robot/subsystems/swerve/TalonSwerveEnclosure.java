@@ -39,8 +39,10 @@ public class TalonSwerveEnclosure implements UpdateDashboard {
     }
 
     public void stopAllTalons() {
-        this.steerTalon.stopMotor();
-        this.driveTalon.stopMotor();
+//        this.steerTalon.stopMotor();
+//        this.driveTalon.stopMotor();
+        this.steerTalon.set(ControlMode.PercentOutput,0);
+        this.driveTalon.set(ControlMode.PercentOutput,0);
     }
 
     public void setSensorToAnalogPos() {
@@ -123,8 +125,8 @@ public class TalonSwerveEnclosure implements UpdateDashboard {
      * @param angle: the angle to turn the wheel, 0 being forward, -1.0 being full turn counterclockwise, +1.0 being full turn clockwise
      */
     public void move(double speed, double angle) {
+
         int encPosition = getSteerEncPosition();
-        angle = convertAngle(angle, encPosition);
 
         if (shouldReverse(angle, encPosition)) {
             if (angle < 0)
@@ -134,6 +136,8 @@ public class TalonSwerveEnclosure implements UpdateDashboard {
 
             speed *= -1.0;
         }
+
+        angle = convertAngle(angle, encPosition);
 
         setDriveSpeed(speed);
 
