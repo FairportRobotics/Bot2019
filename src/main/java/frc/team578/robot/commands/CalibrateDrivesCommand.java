@@ -28,15 +28,16 @@ public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashbo
         super(max_run_time_sec);
         System.err.println("Constructor");
 
-        Supplier<Double> supplier = Robot.swerveDriveSubsystem::getSteerCLTErrorSum;
-        Predicate<Double> successTest = (x) -> x < 20;
-        pidFinished = new PIDFinished(checkIntervalMillis,stableCounts, supplier, successTest);
 //        requires(Robot.swerveDriveSubsystem);
     }
 
     @Override
     protected void initialize() {
         System.err.println("Initializing CalibrateDrivesCommand");
+        Supplier<Double> supplier = Robot.swerveDriveSubsystem::getSteerCLTErrorSum;
+        Predicate<Double> successTest = (x) -> x < 20;
+
+        pidFinished = new PIDFinished(checkIntervalMillis,stableCounts, supplier, successTest);
 
         Robot.swerveDriveSubsystem.calibrateAllSteerEncoders();
 
