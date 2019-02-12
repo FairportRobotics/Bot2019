@@ -30,8 +30,12 @@ public class SwerveConstants {
     public static final int PROFILE_SLOT = 0;
     public static final boolean ALIGNED_TURN_SENSOR = false; // encoder polarity
     public static final double turn_kP = 8;
-    public static final double turn_kI = 0.0;
-    public static final double turn_kD = 0.0;
+    public static final double turn_kI = 0;
+    public static final double turn_kD = 0;
+    public static final double turn_kD1 = 300;
+    public static final double turn_kD2 = 300;
+    public static final double turn_kD3 = 750;
+    public static final double turn_kD4 = 400;
     public static final double turn_kF = 0.0;
     public static final int turn_kIZone = 0;
     public static final int MAX_ENC_VAL = 1024;

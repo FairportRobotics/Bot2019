@@ -1,10 +1,7 @@
 package frc.team578.robot.subsystems.swerve;
 
 import com.ctre.phoenix.ParamEnum;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
-import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
+import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 /**
@@ -92,7 +89,7 @@ public class SwerveUtils {
 
         talon.setSensorPhase(SwerveConstants.ALIGNED_TURN_SENSOR);
 
-
+        talon.setNeutralMode(NeutralMode.Brake);
 //		_talon.configPeakCurrentLimit(50, TIMEOUT_MS);
 //		_talon.enableCurrentLimit(true);
 
