@@ -2,6 +2,7 @@ package frc.team578.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -13,6 +14,18 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
 
     private DoubleSolenoid frontSolenoids;
     private DoubleSolenoid rearSolenoids;
+
+    // flts = front left top sensor, flbs = front left bottom sensor
+    DigitalInput flts = new DigitalInput(1);
+    DigitalInput flbs = new DigitalInput(1);
+    DigitalInput frts = new DigitalInput(1);
+    DigitalInput frbs = new DigitalInput(1);
+    DigitalInput blts = new DigitalInput(1);
+    DigitalInput blbs = new DigitalInput(1);
+    DigitalInput brts = new DigitalInput(1);
+    DigitalInput brbs = new DigitalInput(1);
+
+
     private WPI_TalonSRX climbWheelsTalon;
     private double wheel_power = .5;
 

@@ -3,6 +3,7 @@ package frc.team578.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team578.robot.RobotMap;
@@ -15,6 +16,9 @@ public class CargoIntakeSubsystem extends Subsystem implements Initializable, Up
     private DoubleSolenoid intakeSolenoid;
     private double intake_power = .5;
 
+    DigitalInput its = new DigitalInput(1);
+    DigitalInput ibs = new DigitalInput(1);
+
     @Override
     protected void initDefaultCommand() {
 
@@ -25,8 +29,6 @@ public class CargoIntakeSubsystem extends Subsystem implements Initializable, Up
         intakeTalon = new WPI_TalonSRX(RobotMap.CLIMB_WHEELS_TALON_ID);
         intakeTalon.setNeutralMode(NeutralMode.Brake);
         intakeTalon.setNeutralMode(NeutralMode.Brake);
-
-
 
         intakeSolenoid = new DoubleSolenoid(RobotMap.PCM, RobotMap.PCM_INTAKE_OPEN, RobotMap.PCM_INTAKE_CLOSE);
 

@@ -1,6 +1,7 @@
 package frc.team578.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import frc.team578.robot.subsystems.interfaces.Initializable;
 import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
@@ -9,6 +10,11 @@ public class ArmSubsystem implements Initializable, UpdateDashboard {
 
     private DoubleSolenoid firstSolenoids;
     private DoubleSolenoid secondSolenoids;
+
+    DigitalInput fsts = new DigitalInput(1);
+    DigitalInput fsbs = new DigitalInput(1);
+    DigitalInput ssts = new DigitalInput(1);
+    DigitalInput ssbs = new DigitalInput(1);
 
     @Override
     public void initialize() {
