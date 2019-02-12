@@ -124,7 +124,6 @@ public class TalonSwerveEnclosure implements UpdateDashboard {
      */
     public void move(double speed, double angle) {
         int encPosition = getSteerEncPosition();
-        angle = convertAngle(angle, encPosition);
 
         if (shouldReverse(angle, encPosition)) {
             if (angle < 0)
@@ -135,6 +134,8 @@ public class TalonSwerveEnclosure implements UpdateDashboard {
             speed *= -1.0;
         }
 
+        angle = convertAngle(angle, encPosition);
+        
         setDriveSpeed(speed);
 
         if (speed != 0.0) {
