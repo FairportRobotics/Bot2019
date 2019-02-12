@@ -28,4 +28,8 @@ public class RobotMap {
     public static final int CLIMB_WHEELS_TALON_ID = 0;
     public static final int PCM_INTAKE_OPEN = 0;
     public static final int PCM_INTAKE_CLOSE = 0;
+
+    // Elevator
+    public static final int ELEVATOR_ARM_TALON = 111111; // TODO: find talon value
+    public static final int ELEVATOR_STRUCTURE_TALON = 111112; // TODO: find talon value
 }
