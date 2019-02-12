@@ -2,12 +2,9 @@ package frc.team578.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.team578.robot.commands.CalibrateDrivesCommand;
 import frc.team578.robot.commands.SwerveDriveCommand;
-import frc.team578.robot.subsystems.ArmSubsystem;
-import frc.team578.robot.subsystems.ElevatorSubsystem;
-import frc.team578.robot.subsystems.GyroSubsystem;
-import frc.team578.robot.subsystems.SwerveDriveSubsystem;
+import frc.team578.robot.commands.TankDriveCommand;
+import frc.team578.robot.subsystems.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,11 +16,15 @@ public class Robot extends TimedRobot {
     public static OI oi;
 
     // Subsystems
-    public static frc.team578.robot.subsystems.SwerveDriveSubsystem swerveDriveSubsystem;
-    public static frc.team578.robot.subsystems.GyroSubsystem gyroSubsystem;
-    public static frc.team578.robot.subsystems.ArmSubsystem armSubsystem;
-    public static frc.team578.robot.subsystems.CargoIntakeSubsystem cargoIntakeSubsystem;
-    public static frc.team578.robot.subsystems.ElevatorSubsystem elevatorSubsystem;
+    public static SwerveDriveSubsystem swerveDriveSubsystem;
+    public static TankDriveSubsystem tankDriveSubsystem;
+
+    public static GyroSubsystem gyroSubsystem;
+    public static ArmSubsystem armSubsystem;
+    public static CargoIntakeSubsystem cargoIntakeSubsystem;
+    public static ElevatorSubsystem elevatorSubsystem;
+
+    public static final boolean useSwerveDrive = true;
 
     @Override
     public void robotInit() {
@@ -36,11 +37,15 @@ public class Robot extends TimedRobot {
             gyroSubsystem.initialize();
             log.info("Gyro Subsystem Initialized");
 
-            swerveDriveSubsystem = new SwerveDriveSubsystem();
-            swerveDriveSubsystem.initialize();
-            log.info("Swerve Drive Subsystem Initialized");
-
-
+            if (useSwerveDrive) {
+                swerveDriveSubsystem = new SwerveDriveSubsystem();
+                swerveDriveSubsystem.initialize();
+                log.info("Swerve Drive Subsystem Initialized");
+            } else {
+                tankDriveSubsystem = new TankDriveSubsystem();
+                tankDriveSubsystem.initialize();
+                log.info("Tank Drive Subsystem Initialized");
+            }
 
             armSubsystem = new ArmSubsystem();
             armSubsystem.initialize();
@@ -83,12 +88,11 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
-        // TODO : Is this running in this method?
-//        SampleCommand sampleCommand = new SampleCommand();
-//        sampleCommand.start();
 
-            CalibrateDrivesCommand calibrateDrivesCommand = new CalibrateDrivesCommand();
-            calibrateDrivesCommand.start();
+        if (useSwerveDrive) {
+//            CalibrateDrivesCommand calibrateDrivesCommand = new CalibrateDrivesCommand();
+//            calibrateDrivesCommand.start();
+        }
     }
 
     @Override
@@ -101,9 +105,14 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopInit() {
         try {
-            // Start the swerve drive command
-            SwerveDriveCommand drive = new SwerveDriveCommand();
-            drive.start();
+            // Start the drive command
+            if (useSwerveDrive) {
+                SwerveDriveCommand drive = new SwerveDriveCommand();
+                drive.start();
+            } else {
+                TankDriveCommand drive = new TankDriveCommand();
+                drive.start();
+            }
         } catch (Throwable t) {
             log.error("Error In Robot teleopInit : " + t.getMessage(), t);
             throw t;
