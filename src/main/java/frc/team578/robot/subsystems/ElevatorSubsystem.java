@@ -10,6 +10,9 @@ import frc.team578.robot.utils.TalonUtil;
 
 public class ElevatorSubsystem implements Initializable, UpdateDashboard {
 
+    public final int ARM_LEVEL_ONE_POS = 0;
+    public final int STRUCTURE_LEVEL_ONE_POS = 0;
+
     // TODO: These will need PID.
     private WPI_TalonSRX armTalon;
     private WPI_TalonSRX structureTalon;
@@ -17,43 +20,61 @@ public class ElevatorSubsystem implements Initializable, UpdateDashboard {
     private PIDFinished<Double> pfArm;
     private PIDFinished<Double> pfStructure;
 
-    private static final int ARM_TALON_HEIGHT = 500;
-    private static final int STRUCTURE_TALON_HEIGHT = 500;
+//    private static final int ARM_TALON_HEIGHT = 500;
+//    private static final int STRUCTURE_TALON_HEIGHT = 500;
 
     @Override
     public void initialize() {
         // TODO: WE NEED TO ADD PID!!!!!!!!!
 
-        int talonID = 7;
-        boolean revMotor = false;
-        double pCoeff = 10;
-        double iCoeff = 0;
-        double dCoeff = 0;
-        double fCoeff = 0;
-        int iZone = 0;
-
-        armTalon = TalonUtil.createPIDTalon(talonID, revMotor, pCoeff, iCoeff, dCoeff, fCoeff, iZone);
-        structureTalon = TalonUtil.createPIDTalon(talonID, revMotor, pCoeff, iCoeff, dCoeff, fCoeff, iZone);
-
-        pfArm = new PIDFinished<Double>(50,3,armTalon::getErrorDerivative,(x) -> x == 0);
-        pfStructure = new PIDFinished<Double>(50,3,armTalon::getErrorDerivative,(x) -> x == 0);
+//        int talonID = 7;
+//        boolean revMotor = false;
+//        double pCoeff = 10;
+//        double iCoeff = 0;
+//        double dCoeff = 0;
+//        double fCoeff = 0;
+//        int iZone = 0;
+//
+//        armTalon = TalonUtil.createPIDTalon(talonID, revMotor, pCoeff, iCoeff, dCoeff, fCoeff, iZone);
+//        structureTalon = TalonUtil.createPIDTalon(talonID, revMotor, pCoeff, iCoeff, dCoeff, fCoeff, iZone);
+//
+//        pfArm = new PIDFinished<Double>(50,3,armTalon::getErrorDerivative,x -> x == 0);
+//        pfStructure = new PIDFinished<Double>(50,3,armTalon::getErrorDerivative,(x) -> x == 0);
     }
 
-    public void setPos(int level) {
-        switch (level) {
-            case 0:
-                armTalon.set(ControlMode.Position, 0);
-                structureTalon.set(ControlMode.Position, 0);
-                break;
-            case 1:
-                armTalon.set(ControlMode.Position, ARM_TALON_HEIGHT);
-                structureTalon.set(ControlMode.Position, 0);
-                break;
-            case 2:
-                armTalon.set(ControlMode.Position, ARM_TALON_HEIGHT);
-                structureTalon.set(ControlMode.Position, STRUCTURE_TALON_HEIGHT);
-                break;
-        }
+//    public void setPos(int level) {
+//        switch (level) {
+//            case 0:
+//                armTalon.set(ControlMode.Position, 0);
+//                structureTalon.set(ControlMode.Position, 0);
+//                break;
+//            case 1:
+//                armTalon.set(ControlMode.Position, ARM_TALON_HEIGHT);
+//                structureTalon.set(ControlMode.Position, 0);
+//                break;
+//            case 2:
+//                armTalon.set(ControlMode.Position, ARM_TALON_HEIGHT);
+//                structureTalon.set(ControlMode.Position, STRUCTURE_TALON_HEIGHT);
+//                break;
+//        }
+//    }
+
+    public void moveArmMotor(double value) {
+        armTalon.set(ControlMode.PercentOutput,value);
+    }
+
+    public void moveStructureMotor(double value) {
+        structureTalon.set(ControlMode.PercentOutput,value);
+    }
+
+
+    public void moveToLevelOne() {
+        armTalon.set(ControlMode.Position,ARM_LEVEL_ONE_POS);
+        structureTalon.set(ControlMode.Position,STRUCTURE_LEVEL_ONE_POS);
+    }
+
+    public boolean isFinished() {
+        return pfArm.getFinished() && pfStructure.getFinished();
     }
 
     @Override
