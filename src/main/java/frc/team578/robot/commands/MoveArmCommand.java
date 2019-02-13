@@ -24,14 +24,16 @@ public class MoveArmCommand extends Command {
 
     @Override
     protected void execute() {
+        log.info("Exec MoveArmCommand");
         if (positionTarget == ArmPositionEnum.RETRACTED) {
             Robot.armSubsystem.retract();
         } else if (positionTarget == ArmPositionEnum.MID_EXTEND) {
             Robot.armSubsystem.extendMid();
+        } else if (positionTarget == ArmPositionEnum.MID2_EXTEND) {
+            Robot.armSubsystem.extendMid2();
         } else if (positionTarget == ArmPositionEnum.FULL_EXTEND) {
             Robot.armSubsystem.extendFull();
         }
-            log.info("Exec MoveArmCommand");
     }
 
 
@@ -42,6 +44,8 @@ public class MoveArmCommand extends Command {
 
     @Override
     protected boolean isFinished() {
+
+        Robot.armSubsystem.getArmPosition();
 
         boolean isFinished = true;
         log.info("MoveArmCommand is Finished : " + isFinished);

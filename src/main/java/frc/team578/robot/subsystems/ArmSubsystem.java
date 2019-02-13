@@ -2,6 +2,7 @@ package frc.team578.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import frc.team578.robot.RobotMap;
 import frc.team578.robot.enums.ArmPositionEnum;
 import frc.team578.robot.subsystems.interfaces.Initializable;
 import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
@@ -11,6 +12,7 @@ public class ArmSubsystem implements Initializable, UpdateDashboard {
     private DoubleSolenoid firstSolenoids;
     private DoubleSolenoid secondSolenoids;
 
+    // fsts == first solenoid top sensor
     DigitalInput fsts = new DigitalInput(0);
     DigitalInput fsbs = new DigitalInput(0);
     DigitalInput ssts = new DigitalInput(0);
@@ -24,9 +26,8 @@ public class ArmSubsystem implements Initializable, UpdateDashboard {
 
     @Override
     public void initialize() {
-//        firstSolenoids = new DoubleSolenoid(RobotMap.PCM, RobotMap.PCM_FRONT_CLIMB_UP, RobotMap.PCM_FRONT_CLIMB_DOWN);
-//        secondSolenoids = new DoubleSolenoid(RobotMap.PCM, RobotMap.PCM_REAR_CLIMB_UP, RobotMap.PCM_REAR_CLIMB_DOWN);
-
+        firstSolenoids = new DoubleSolenoid(RobotMap.PCM, RobotMap.PCM_ARM_FIRST_EXTEND, RobotMap.PCM_ARM_FIRST_RETRACT);
+        secondSolenoids = new DoubleSolenoid(RobotMap.PCM, RobotMap.PCM_ARM_SECOND_EXTEND, RobotMap.PCM_ARM_SECOND_RETRACT);
     }
 
     public void retract() {
@@ -47,6 +48,11 @@ public class ArmSubsystem implements Initializable, UpdateDashboard {
     public void extendFull() {
         firstSolenoids.set(firstExtend);
         secondSolenoids.set(secondExtend);
+    }
+
+    public boolean isArmMoving() {
+        // TODO : Or make this positional like Climber?
+        return false;
     }
 
     public ArmPositionEnum getArmPosition() {

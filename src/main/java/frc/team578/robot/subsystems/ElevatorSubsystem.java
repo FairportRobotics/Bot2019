@@ -19,9 +19,6 @@ public class ElevatorSubsystem implements Initializable, UpdateDashboard {
     private PIDFinished<Double> pfArm;
     private PIDFinished<Double> pfStructure;
 
-//    private static final int ARM_TALON_HEIGHT = 500;
-//    private static final int STRUCTURE_TALON_HEIGHT = 500;
-
     @Override
     public void initialize() {
         // TODO: WE NEED TO ADD PID!!!!!!!!!
