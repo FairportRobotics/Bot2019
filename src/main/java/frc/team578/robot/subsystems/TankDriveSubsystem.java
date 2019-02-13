@@ -6,10 +6,11 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team578.robot.RobotMap;
 import frc.team578.robot.subsystems.interfaces.Initializable;
+import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
 import frc.team578.robot.subsystems.swerve.SwerveConstants;
 import frc.team578.robot.subsystems.swerve.SwerveUtils;
 
-public class TankDriveSubsystem extends Subsystem implements Initializable {
+public class TankDriveSubsystem extends Subsystem implements Initializable, UpdateDashboard {
 
     private WPI_TalonSRX rightMaster;
     private WPI_TalonSRX rightSlave;
@@ -99,5 +100,10 @@ public class TankDriveSubsystem extends Subsystem implements Initializable {
 
     public void disableRight() {
         rightMaster.stopMotor();
+    }
+
+    @Override
+    public void updateDashboard() {
+
     }
 }

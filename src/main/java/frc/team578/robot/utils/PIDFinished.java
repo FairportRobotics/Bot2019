@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 
 public class PIDFinished<T> {
     private long lastChecked = 0;
-    private long checkIntervalMillis = 0;
+    private long checkIntervalMillis = 10;
     private int successCount = 0;
     private int stableCounts = 0;
     private boolean finished = false;
@@ -21,7 +21,7 @@ public class PIDFinished<T> {
         this.supplyVal = supplyVal;
     }
 
-    public boolean checkIfStable() {
+    public boolean isStable() {
         long currentTime = System.currentTimeMillis();
 
         if (currentTime - lastChecked > checkIntervalMillis) {

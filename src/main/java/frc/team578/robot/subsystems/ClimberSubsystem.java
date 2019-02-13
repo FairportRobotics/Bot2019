@@ -16,18 +16,24 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
     private DoubleSolenoid rearSolenoids;
 
     // flts = front left top sensor, flbs = front left bottom sensor
-    DigitalInput flts = new DigitalInput(1);
-    DigitalInput flbs = new DigitalInput(1);
-    DigitalInput frts = new DigitalInput(1);
-    DigitalInput frbs = new DigitalInput(1);
-    DigitalInput blts = new DigitalInput(1);
-    DigitalInput blbs = new DigitalInput(1);
-    DigitalInput brts = new DigitalInput(1);
-    DigitalInput brbs = new DigitalInput(1);
+    DigitalInput flts = new DigitalInput(0);
+    DigitalInput flbs = new DigitalInput(0);
+    DigitalInput frts = new DigitalInput(0);
+    DigitalInput frbs = new DigitalInput(0);
+    DigitalInput blts = new DigitalInput(0);
+    DigitalInput blbs = new DigitalInput(0);
+    DigitalInput brts = new DigitalInput(0);
+    DigitalInput brbs = new DigitalInput(0);
 
 
     private WPI_TalonSRX climbWheelsTalon;
     private double wheel_power = .5;
+
+    private DoubleSolenoid.Value frontRetract = DoubleSolenoid.Value.kForward;
+    private DoubleSolenoid.Value frontExtend = DoubleSolenoid.Value.kReverse;
+
+    private DoubleSolenoid.Value backRetract = DoubleSolenoid.Value.kForward;
+    private DoubleSolenoid.Value backExtend = DoubleSolenoid.Value.kReverse;
 
 
     @Override
@@ -41,36 +47,36 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
         climbWheelsTalon = new WPI_TalonSRX(RobotMap.CLIMB_WHEELS_TALON_ID);
     }
 
-    public void moveFrontClimberUp() {
-        frontSolenoids.set(DoubleSolenoid.Value.kForward);
+    public void retractFrontClimber() {
+        frontSolenoids.set(frontRetract);
     }
 
-    public void moveFrontClimberDown() {
-        frontSolenoids.set(DoubleSolenoid.Value.kReverse);
+    public void extendFrontClimber() {
+        frontSolenoids.set(frontExtend);
     }
 
-    public void moveRearClimberUp() {
-        rearSolenoids.set(DoubleSolenoid.Value.kForward);
+    public void retractRearClimber() {
+        rearSolenoids.set(backRetract);
     }
 
-    public void moveRearClimberDown() {
-        rearSolenoids.set(DoubleSolenoid.Value.kReverse);
+    public void extendRearClimber() {
+        rearSolenoids.set(backExtend);
     }
 
-    public boolean isFrontClimberUp() {
-        return frontSolenoids.get().equals(DoubleSolenoid.Value.kForward);
+    public boolean isFrontClimberRetracted() {
+        return frontSolenoids.get() == frontRetract && flts.get() && frts.get();
     }
 
-    public boolean isFrontClimberDown() {
-        return frontSolenoids.get().equals(DoubleSolenoid.Value.kReverse);
+    public boolean isFrontClimberExtended() {
+        return frontSolenoids.get() == frontExtend && flbs.get() && frbs.get();
     }
 
-    public boolean isRearClimberUp() {
-        return rearSolenoids.get().equals(DoubleSolenoid.Value.kForward);
+    public boolean isRearClimberRetracted() {
+        return rearSolenoids.get() == backRetract && blts.get() && brts.get();
     }
 
-    public boolean isRearClimberDown() {
-        return rearSolenoids.get().equals(DoubleSolenoid.Value.kReverse);
+    public boolean isRearClimberExtended() {
+        return rearSolenoids.get() == backExtend && blbs.get() && brbs.get();
     }
 
     public void climbWheelsForward() {

@@ -2,11 +2,10 @@ package frc.team578.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import edu.wpi.first.wpilibj.DigitalInput;
+import frc.team578.robot.enums.ElevatorPositionEnum;
 import frc.team578.robot.subsystems.interfaces.Initializable;
 import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
 import frc.team578.robot.utils.PIDFinished;
-import frc.team578.robot.utils.TalonUtil;
 
 public class ElevatorSubsystem implements Initializable, UpdateDashboard {
 
@@ -38,8 +37,8 @@ public class ElevatorSubsystem implements Initializable, UpdateDashboard {
 //        armTalon = TalonUtil.createPIDTalon(talonID, revMotor, pCoeff, iCoeff, dCoeff, fCoeff, iZone);
 //        structureTalon = TalonUtil.createPIDTalon(talonID, revMotor, pCoeff, iCoeff, dCoeff, fCoeff, iZone);
 //
-//        pfArm = new PIDFinished<Double>(50,3,armTalon::getErrorDerivative,x -> x == 0);
-//        pfStructure = new PIDFinished<Double>(50,3,armTalon::getErrorDerivative,(x) -> x == 0);
+        pfArm = new PIDFinished<Double>(50,3,armTalon::getErrorDerivative,x -> x == 0);
+        pfStructure = new PIDFinished<Double>(50,3,armTalon::getErrorDerivative,(x) -> x == 0);
     }
 
 //    public void setPos(int level) {
@@ -68,10 +67,26 @@ public class ElevatorSubsystem implements Initializable, UpdateDashboard {
     }
 
 
-    public void moveToLevelOne() {
-        armTalon.set(ControlMode.Position,ARM_LEVEL_ONE_POS);
-        structureTalon.set(ControlMode.Position,STRUCTURE_LEVEL_ONE_POS);
+    public void moveToLevel(ElevatorPositionEnum pos) {
+        switch(pos) {
+            case LEVEL_ONE:
+                armTalon.set(ControlMode.Position,ARM_LEVEL_ONE_POS);
+                structureTalon.set(ControlMode.Position,STRUCTURE_LEVEL_ONE_POS);
+                break;
+            default:
+                // no-op
+                break;
+        }
     }
+
+    public ElevatorPositionEnum getPosition() {
+        if (armTalon.getSelectedSensorPosition() == ARM_LEVEL_ONE_POS && structureTalon.getSelectedSensorPosition() == STRUCTURE_LEVEL_ONE_POS) {
+            return ElevatorPositionEnum.LEVEL_ONE;
+        } else {
+            return ElevatorPositionEnum.UNKNOWN;
+        }
+    }
+
 
     public boolean isFinished() {
         return pfArm.getFinished() && pfStructure.getFinished();

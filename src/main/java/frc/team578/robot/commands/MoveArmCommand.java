@@ -2,7 +2,7 @@ package frc.team578.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team578.robot.Robot;
-import frc.team578.robot.enums.ArmPositionEnums;
+import frc.team578.robot.enums.ArmPositionEnum;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,9 +10,9 @@ public class MoveArmCommand extends Command {
 
     private static final Logger log = LogManager.getLogger(MoveArmCommand.class);
 
-    ArmPositionEnums positionTarget;
+    ArmPositionEnum positionTarget;
 
-    public MoveArmCommand(ArmPositionEnums positionTarget) {
+    public MoveArmCommand(ArmPositionEnum positionTarget) {
         this.positionTarget = positionTarget;
         log.info("MoveArmCommand Constructor");
     }
@@ -24,11 +24,11 @@ public class MoveArmCommand extends Command {
 
     @Override
     protected void execute() {
-        if (positionTarget == ArmPositionEnums.RETRACTED) {
+        if (positionTarget == ArmPositionEnum.RETRACTED) {
             Robot.armSubsystem.retract();
-        } else if (positionTarget == ArmPositionEnums.MID_EXTEND) {
+        } else if (positionTarget == ArmPositionEnum.MID_EXTEND) {
             Robot.armSubsystem.extendMid();
-        } else if (positionTarget == ArmPositionEnums.FULL_EXTEND) {
+        } else if (positionTarget == ArmPositionEnum.FULL_EXTEND) {
             Robot.armSubsystem.extendFull();
         }
             log.info("Exec MoveArmCommand");

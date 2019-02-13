@@ -2,7 +2,7 @@ package frc.team578.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team578.robot.Robot;
-import frc.team578.robot.enums.ElevatorPositionEnums;
+import frc.team578.robot.enums.ElevatorPositionEnum;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,9 +10,9 @@ public class MoveElevatorCommand extends Command {
 
     private static final Logger log = LogManager.getLogger(MoveElevatorCommand.class);
 
-    ElevatorPositionEnums position;
+    ElevatorPositionEnum position;
 
-    public MoveElevatorCommand(ElevatorPositionEnums position) {
+    public MoveElevatorCommand(ElevatorPositionEnum position) {
         log.info("MoveElevatorCommand Constructor");
         this.position = position;
     }
@@ -25,11 +25,10 @@ public class MoveElevatorCommand extends Command {
     @Override
     protected void execute() {
         log.info("Exec MoveElevatorCommand");
-        if (position == ElevatorPositionEnums.LEVEL_ONE) {
+        if (position == ElevatorPositionEnum.LEVEL_ONE) {
             Robot.elevatorSubsystem.moveToLevelOne();
         }
     }
-
 
     @Override
     protected void interrupted() {
@@ -39,8 +38,8 @@ public class MoveElevatorCommand extends Command {
     @Override
     protected boolean isFinished() {
 
-        boolean isFinished = false;
-        log.info ("MoveElevatorCommand is Finished : " + isFinished);
+        boolean isFinished = Robot.elevatorSubsystem.isFinished();
+        log.info("MoveElevatorCommand is Finished : " + isFinished);
         return isFinished;
     }
 
