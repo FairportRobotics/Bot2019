@@ -1,5 +1,7 @@
 package frc.team578.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.team578.robot.commands.SwerveDriveCommand;
@@ -23,6 +25,8 @@ public class Robot extends TimedRobot {
     public static ArmSubsystem armSubsystem;
     public static CargoIntakeSubsystem cargoIntakeSubsystem;
     public static ElevatorSubsystem elevatorSubsystem;
+
+    UsbCamera cam;
 
     public static final boolean useSwerveDrive = false;
 
@@ -54,6 +58,11 @@ public class Robot extends TimedRobot {
 //            elevatorSubsystem = new ElevatorSubsystem();
 //            elevatorSubsystem.initialize();
 //            log.info("Elevator Subsystem Initialized");
+
+			cam = CameraServer.getInstance().startAutomaticCapture();
+			// cam.setResolution(100, 75);
+			// cam.setFPS(-1);
+			log.info("Initialize Camera");
 
             oi = new OI();
             oi.initialize();
