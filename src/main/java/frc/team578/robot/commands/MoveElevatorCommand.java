@@ -26,7 +26,7 @@ public class MoveElevatorCommand extends Command {
     protected void execute() {
         log.info("Exec MoveElevatorCommand");
         if (position == ElevatorPositionEnum.LEVEL_ONE) {
-            Robot.elevatorSubsystem.moveToLevelOne();
+            Robot.elevatorSubsystem.moveToLevel(ElevatorPositionEnum.LEVEL_ONE);
         }
     }
 

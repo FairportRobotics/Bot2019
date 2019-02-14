@@ -71,16 +71,16 @@ public class TankDriveSubsystem extends Subsystem implements Initializable, Upda
                 SwerveConstants.turn_kIZone);
 
         frontLeftSwerveTalon.setNeutralMode(NeutralMode.Brake);
-        frontLeftSwerveTalon.set(ControlMode.Position,frontLeftSwerveTalon.getSelectedSensorPosition());
+//        frontLeftSwerveTalon.set(ControlMode.Position,frontLeftSwerveTalon.getSelectedSensorPosition());
 
         frontRightSwerveTalon.setNeutralMode(NeutralMode.Brake);
-        frontRightSwerveTalon.set(ControlMode.Position,frontRightSwerveTalon.getSelectedSensorPosition());
+//        frontRightSwerveTalon.set(ControlMode.Position,frontRightSwerveTalon.getSelectedSensorPosition());
 
         backLeftSwerveTalon.setNeutralMode(NeutralMode.Brake);
-        backLeftSwerveTalon.set(ControlMode.Position,backLeftSwerveTalon.getSelectedSensorPosition());
+//        backLeftSwerveTalon.set(ControlMode.Position,backLeftSwerveTalon.getSelectedSensorPosition());
 
         backRightSwerveTalon.setNeutralMode(NeutralMode.Brake);
-        backRightSwerveTalon.set(ControlMode.Position,backRightSwerveTalon.getSelectedSensorPosition());
+//        backRightSwerveTalon.set(ControlMode.Position,backRightSwerveTalon.getSelectedSensorPosition());
 
     }
 
