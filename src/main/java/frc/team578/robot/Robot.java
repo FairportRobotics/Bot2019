@@ -24,7 +24,7 @@ public class Robot extends TimedRobot {
     public static CargoIntakeSubsystem cargoIntakeSubsystem;
     public static ElevatorSubsystem elevatorSubsystem;
 
-    public static final boolean useSwerveDrive = true;
+    public static final boolean useSwerveDrive = false;
 
     @Override
     public void robotInit() {
@@ -47,13 +47,13 @@ public class Robot extends TimedRobot {
                 log.info("Tank Drive Subsystem Initialized");
             }
 
-            armSubsystem = new ArmSubsystem();
-            armSubsystem.initialize();
-            log.info("Arm Subsystem Initialized");
-
-            elevatorSubsystem = new ElevatorSubsystem();
-            elevatorSubsystem.initialize();
-            log.info("Elevator Subsystem Initialized");
+//            armSubsystem = new ArmSubsystem();
+//            armSubsystem.initialize();
+//            log.info("Arm Subsystem Initialized");
+//
+//            elevatorSubsystem = new ElevatorSubsystem();
+//            elevatorSubsystem.initialize();
+//            log.info("Elevator Subsystem Initialized");
 
             oi = new OI();
             oi.initialize();
@@ -137,7 +137,11 @@ public class Robot extends TimedRobot {
 
 
     public void updateAllDashboards() {
-        Robot.swerveDriveSubsystem.updateDashboard();
+        if (useSwerveDrive) {
+            Robot.swerveDriveSubsystem.updateDashboard();
+        } else {
+            Robot.tankDriveSubsystem.updateDashboard();
+        }
         Robot.gyroSubsystem.updateDashboard();
     }
 }

@@ -56,7 +56,7 @@ public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashbo
     @Override
     protected boolean isFinished() {
 
-        boolean stableFound = pidFinished.checkIfStable();
+        boolean stableFound = pidFinished.isStable();
         boolean timeOutFound = isTimedOut();
         boolean isFinished = stableFound || timeOutFound;
 

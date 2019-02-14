@@ -26,6 +26,13 @@ public class TankDriveCommand extends Command {
         double ly = Robot.oi.getPadLeftY();
         double ry = Robot.oi.getPadRightY();
 
+        boolean invertJoysticks = true;
+
+        if (invertJoysticks) {
+            ly *= -1;
+            ry *= -1;
+        }
+
         Robot.tankDriveSubsystem.move(ly, ry);
     }
 

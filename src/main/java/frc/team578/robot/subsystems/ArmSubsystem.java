@@ -13,10 +13,10 @@ public class ArmSubsystem implements Initializable, UpdateDashboard {
     private DoubleSolenoid secondSolenoids;
 
     // fsts == first solenoid top sensor
-    DigitalInput fsts = new DigitalInput(0);
-    DigitalInput fsbs = new DigitalInput(0);
-    DigitalInput ssts = new DigitalInput(0);
-    DigitalInput ssbs = new DigitalInput(0);
+    DigitalInput fsts = new DigitalInput(1);
+    DigitalInput fsbs = new DigitalInput(2);
+    DigitalInput ssts = new DigitalInput(3);
+    DigitalInput ssbs = new DigitalInput(4);
 
     private DoubleSolenoid.Value firstRetract = DoubleSolenoid.Value.kForward;
     private DoubleSolenoid.Value firstExtend = DoubleSolenoid.Value.kReverse;
