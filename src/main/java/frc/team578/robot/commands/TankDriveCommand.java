@@ -1,7 +1,6 @@
 package frc.team578.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team578.robot.Robot;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,8 +22,8 @@ public class TankDriveCommand extends Command {
 
 //        double ly = Robot.oi.getJoyLeftY();
 //        double ry = Robot.oi.getJoyRightY();
-        double ly = Robot.oi.getPadLeftY();
-        double ry = Robot.oi.getPadRightY();
+        double ly = Robot.oi.getGP1().getPadLeftY();
+        double ry = Robot.oi.getGP1().getPadRightY();
 
         boolean invertJoysticks = true;
 

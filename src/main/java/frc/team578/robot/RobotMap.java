@@ -18,7 +18,7 @@ public class RobotMap {
 
     // swerve controller joystick USB IDs
     public static final int CONTROL_GAMEPAD_ID = 0;
-
+    public static final int ELEVATOR_GAMEPAD_ID = 1;
 
     // Pneumatics Control
     public static final int PCM = 0;
