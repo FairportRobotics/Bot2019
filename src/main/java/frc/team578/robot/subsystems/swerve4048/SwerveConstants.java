@@ -1,8 +1,6 @@
-package frc.team578.robot.subsystems.swerve;
+package frc.team578.robot.subsystems.swerve4048;
 
 public class SwerveConstants {
-
-
     public static final double ROBOT_LENGTH = .625;
     public static final double ROBOT_WIDTH = .47;
 

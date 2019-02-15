@@ -25,10 +25,10 @@ public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashbo
         super(max_run_time_sec);
         System.err.println("Constructor");
 
-        Supplier<Double> supplier = Robot.swerveDriveSubsystem::getSteerErrorDerivitiveSum;
-        Predicate<Double> successTest = (x) -> x == 0;
-        pidFinished = new PIDFinished(checkIntervalMillis,stableCounts, supplier, successTest);
-        requires(Robot.swerveDriveSubsystem);
+//        Supplier<Double> supplier = Robot.swerveDriveSubsystem::getSteerErrorDerivitiveSum;
+//        Predicate<Double> successTest = (x) -> x == 0;
+//        pidFinished = new PIDFinished(checkIntervalMillis,stableCounts, supplier, successTest);
+//        requires(Robot.swerveDriveSubsystem);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashbo
     protected void execute() {
         System.err.println("Exec");
         if (!isTimedOut()) {
-            Robot.swerveDriveSubsystem.moveSteerTrueNorth();
+//            Robot.swerveDriveSubsystem.moveSteerTrueNorth();
         }
     }
 
@@ -81,7 +81,7 @@ public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashbo
 
         if (!isTimedOut()) {
             log.info("Zeroing Steer Encoders");
-            Robot.swerveDriveSubsystem.zeroAllSteerEncoders();
+//            Robot.swerveDriveSubsystem.zeroAllSteerEncoders();
         }
 
         Robot.swerveDriveSubsystem.stop();
@@ -90,8 +90,8 @@ public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashbo
 
     @Override
     public void updateDashboard() {
-        SmartDashboard.putBoolean("calibc.timedout", isTimedOut());
-        SmartDashboard.putNumber("calibc.serrderiv", Robot.swerveDriveSubsystem.getSteerErrorDerivitiveSum());
+//        SmartDashboard.putBoolean("calibc.timedout", isTimedOut());
+//        SmartDashboard.putNumber("calibc.serrderiv", Robot.swerveDriveSubsystem.getSteerErrorDerivitiveSum());
 //        SmartDashboard.putBoolean("calibc.instopz", );
 
     }

@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team578.robot.RobotMap;
 import frc.team578.robot.subsystems.interfaces.Initializable;
 import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
-import frc.team578.robot.subsystems.swerve.SwerveConstants;
-import frc.team578.robot.subsystems.swerve.SwerveUtils;
+import frc.team578.robot.subsystems.swerve4048.SwerveConstants;
+import frc.team578.robot.subsystems.swerve4048.drive.SwerveUtils;
 
 public class TankDriveSubsystem extends Subsystem implements Initializable, UpdateDashboard {
 
