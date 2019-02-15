@@ -23,6 +23,7 @@ public class Robot extends TimedRobot {
     public static ArmSubsystem armSubsystem;
     public static CargoIntakeSubsystem cargoIntakeSubsystem;
     public static ElevatorSubsystem elevatorSubsystem;
+    public static ClimberSubsystem climberSubsystem;
 
     public static final boolean useSwerveDrive = false;
 
@@ -46,6 +47,10 @@ public class Robot extends TimedRobot {
                 tankDriveSubsystem.initialize();
                 log.info("Tank Drive Subsystem Initialized");
             }
+
+            climberSubsystem = new ClimberSubsystem();
+            climberSubsystem.initialize();
+            log.info("Climber Subsystem Initialized");
 
 //            armSubsystem = new ArmSubsystem();
 //            armSubsystem.initialize();

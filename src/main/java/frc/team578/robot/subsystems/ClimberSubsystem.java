@@ -83,7 +83,7 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
         climbWheelsTalon.set(ControlMode.PercentOutput, wheel_power);
     }
 
-    public void climbWheelsBackwards(int val) {
+    public void climbWheelsBackwards() {
         climbWheelsTalon.set(ControlMode.PercentOutput, -wheel_power);
     }
 
