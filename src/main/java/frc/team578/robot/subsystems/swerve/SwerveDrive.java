@@ -117,6 +117,35 @@ public class SwerveDrive implements UpdateDashboard {
         return swerveEnclosureFL.getSteerErrorDerivitiveAbs() + swerveEnclosureFR.getSteerErrorDerivitiveAbs() + swerveEnclosureBL.getSteerErrorDerivitiveAbs() + swerveEnclosureBR.getSteerErrorDerivitiveAbs();
     }
 
+    public void calibrateAllSteerEncoders() {
+        swerveEnclosureFR.stopAllTalons();
+        swerveEnclosureFL.stopAllTalons();
+        swerveEnclosureBL.stopAllTalons();
+        swerveEnclosureBR.stopAllTalons();
+
+        swerveEnclosureFL.setSensorToAnalogPos();
+        swerveEnclosureFR.setSensorToAnalogPos();
+        swerveEnclosureBR.setSensorToAnalogPos();
+        swerveEnclosureBL.setSensorToAnalogPos();
+
+//        swerveEnclosureFR.setSelectedSensorPosition(-fl_talon.getSensorCollection().getAnalogIn());
+//        fr_talon.setSelectedSensorPosition(-fr_talon.getSensorCollection().getAnalogIn());
+//        bl_talon.setSelectedSensorPosition(-bl_talon.getSensorCollection().getAnalogIn());
+//        br_talon.setSelectedSensorPosition(-br_talon.getSensorCollection().getAnalogIn());
+
+        int flpos = SwerveConstants.FRONT_LEFT_TRUE_NORTH_ENC_POS;
+        int frpos = SwerveConstants.FRONT_RIGHT_TRUE_NORTH_ENC_POS;
+        int blpos = SwerveConstants.BACK_LEFT_TRUE_NORTH_ENC_POS;
+        int brpos = SwerveConstants.BACK_RIGHT_TRUE_NORTH_ENC_POS;
+
+        /* update motor controller */
+        swerveEnclosureFL.moveSteerToEncoderPosition(flpos);
+        swerveEnclosureFR.moveSteerToEncoderPosition(frpos);
+        swerveEnclosureBL.moveSteerToEncoderPosition(blpos);
+        swerveEnclosureBR.moveSteerToEncoderPosition(brpos);
+
+    }
+
 
     public static SwerveDrive create() {
 

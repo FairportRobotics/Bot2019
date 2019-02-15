@@ -34,7 +34,7 @@ public class SwerveDriveSubsystem extends Subsystem implements Initializable, Up
     This should be called when the robot starts up to align the talon with the steering encoder
      */
     public void moveSteerTrueNorth() {
-        swerveDrive.moveSteerTrueNorth();
+//        swerveDrive.moveSteerTrueNorth();
     }
 
     public void stop() {
@@ -54,5 +54,9 @@ public class SwerveDriveSubsystem extends Subsystem implements Initializable, Up
 
     public double getSteerErrorDerivitiveSum() {
         return swerveDrive.getSteerErrorDerivitiveSum();
+    }
+
+    public void calibrateAllSteerEncoders() {
+        swerveDrive.calibrateAllSteerEncoders();
     }
 }

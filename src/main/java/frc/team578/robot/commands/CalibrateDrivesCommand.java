@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+
 public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashboard {
 
     private static final Logger log = LogManager.getLogger(CalibrateDrivesCommand.class);
@@ -25,31 +26,30 @@ public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashbo
         super(max_run_time_sec);
         System.err.println("Constructor");
 
-        Supplier<Double> supplier = Robot.swerveDriveSubsystem::getSteerErrorDerivitiveSum;
-        Predicate<Double> successTest = (x) -> x == 0;
-        pidFinished = new PIDFinished(checkIntervalMillis,stableCounts, supplier, successTest);
-        requires(Robot.swerveDriveSubsystem);
+//        requires(Robot.swerveDriveSubsystem);
     }
 
     @Override
     protected void initialize() {
-        log.info("Initializing CalibrateDrivesCommand");
+        System.err.println("Initializing CalibrateDrivesCommand");
+        Supplier<Double> supplier = Robot.swerveDriveSubsystem::getSteerCLTErrorSum;
+        Predicate<Double> successTest = (x) -> x < 20;
+
+        pidFinished = new PIDFinished(checkIntervalMillis, stableCounts, supplier, successTest);
+
+        Robot.swerveDriveSubsystem.calibrateAllSteerEncoders();
 
     }
 
-    @Override
     protected void execute() {
         System.err.println("Exec");
-        if (!isTimedOut()) {
-            Robot.swerveDriveSubsystem.moveSteerTrueNorth();
-        }
     }
 
 
     @Override
     protected void interrupted() {
-        log.info("Interrupted CalibrateDrivesCommand");
-        Robot.swerveDriveSubsystem.stop();
+        System.err.println("Interrupted CalibrateDrivesCommand");
+//        Robot.swerveDriveSubsystem.stop();
     }
 
 
@@ -61,30 +61,34 @@ public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashbo
         boolean isFinished = stableFound || timeOutFound;
 
         if (isFinished) {
-            log.info("Calibration Finish Found");
+            System.err.println("Calibration Finish Found");
             if (timeOutFound) {
                 log.warn("CalibrateDrivesCommand timed out");
             }
-            if (stableFound){
+            if (stableFound) {
                 log.info("CalibrateDrivesCommand found stable");
             }
         }
 
         System.err.println("isFinished : " + isFinished);
+        System.err.println("isFinished : " + pidFinished);
         return isFinished;
 
     }
 
     @Override
     protected void end() {
-        log.info("Ending CalibrateDrivesCommand " + timeSinceInitialized());
-
-        if (!isTimedOut()) {
-            log.info("Zeroing Steer Encoders");
-            Robot.swerveDriveSubsystem.zeroAllSteerEncoders();
-        }
+        System.err.println("Ending CalibrateDrivesCommand " + timeSinceInitialized());
 
         Robot.swerveDriveSubsystem.stop();
+        Robot.swerveDriveSubsystem.zeroAllSteerEncoders();
+
+//        if (!isTimedOut()) {
+//            log.info("Zeroing Steer Encoders");
+//            Robot.swerveDriveSubsystem.calibrateAllSteerEncoders();
+//        }
+//
+//        Robot.swerveDriveSubsystem.stop();
 
     }
 

@@ -24,7 +24,7 @@ public class Robot extends TimedRobot {
     public static CargoIntakeSubsystem cargoIntakeSubsystem;
     public static ElevatorSubsystem elevatorSubsystem;
 
-    public static final boolean useSwerveDrive = false;
+    public static final boolean useSwerveDrive = true;
 
     @Override
     public void robotInit() {
