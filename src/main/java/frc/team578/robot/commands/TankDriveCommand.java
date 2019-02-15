@@ -11,7 +11,7 @@ public class TankDriveCommand extends Command {
     private static final Logger log = LogManager.getLogger(TankDriveCommand.class);
 
     public TankDriveCommand() {
-        requires(Robot.tankDriveSubsystem);
+//        requires(Robot.tankDriveSubsystem);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class TankDriveCommand extends Command {
             ry *= -1;
         }
 
-        Robot.tankDriveSubsystem.move(ly, ry);
+//        Robot.tankDriveSubsystem.move(ly, ry);
     }
 
     @Override

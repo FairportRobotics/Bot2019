@@ -1,10 +1,9 @@
 package frc.team578.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team578.robot.subsystems.interfaces.Initializable;
 import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
-import frc.team578.robot.subsystems.swerve4048.drive.SwerveDrive;
+import org.strykeforce.thirdcoast.swerve.SwerveDrive;
 
 
 public class SwerveDriveSubsystem extends Subsystem implements Initializable, UpdateDashboard {
@@ -24,7 +23,7 @@ public class SwerveDriveSubsystem extends Subsystem implements Initializable, Up
     }
 
     public void move(double fwd, double str, double rot, double angleDeg) {
-        swerveDrive.move(fwd, str, rot, angleDeg);
+        swerveDrive.drive(fwd, str, rot);
     }
 
 //    public void zeroAllSteerEncoders() {

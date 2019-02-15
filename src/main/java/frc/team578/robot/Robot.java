@@ -19,7 +19,7 @@ public class Robot extends TimedRobot {
 
     // Subsystems
     public static SwerveDriveSubsystem swerveDriveSubsystem;
-    public static TankDriveSubsystem tankDriveSubsystem;
+//    public static TankDriveSubsystem tankDriveSubsystem;
 
     public static GyroSubsystem gyroSubsystem;
     public static ArmSubsystem armSubsystem;
@@ -46,9 +46,9 @@ public class Robot extends TimedRobot {
                 swerveDriveSubsystem.initialize();
                 log.info("Swerve Drive Subsystem Initialized");
             } else {
-                tankDriveSubsystem = new TankDriveSubsystem();
-                tankDriveSubsystem.initialize();
-                log.info("Tank Drive Subsystem Initialized");
+//                tankDriveSubsystem = new TankDriveSubsystem();
+//                tankDriveSubsystem.initialize();
+//                log.info("Tank Drive Subsystem Initialized");
             }
 
 //            armSubsystem = new ArmSubsystem();
@@ -149,7 +149,7 @@ public class Robot extends TimedRobot {
         if (useSwerveDrive) {
             Robot.swerveDriveSubsystem.updateDashboard();
         } else {
-            Robot.tankDriveSubsystem.updateDashboard();
+//            Robot.tankDriveSubsystem.updateDashboard();
         }
         Robot.gyroSubsystem.updateDashboard();
     }
