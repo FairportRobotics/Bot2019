@@ -9,7 +9,7 @@ import frc.team578.robot.subsystems.swerve.math.SwerveDirective;
 import frc.team578.robot.subsystems.swerve.math.SwerveMath;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+import java.lang.*;
 import java.util.List;
 
 /**
@@ -114,14 +114,15 @@ public class SwerveDrive implements UpdateDashboard {
         int frpos = SwerveConstants.FRONT_RIGHT_TRUE_NORTH_ENC_POS;
         int blpos = SwerveConstants.BACK_LEFT_TRUE_NORTH_ENC_POS;
         int brpos = SwerveConstants.BACK_RIGHT_TRUE_NORTH_ENC_POS;
-
-
+        try {
+            Thread.sleep(100);
+        }catch(Exception e)
+        {}
         /* update motor controller */
         swerveEnclosureFL.moveSteerToEncoderPosition(flpos);
         swerveEnclosureFR.moveSteerToEncoderPosition(frpos);
         swerveEnclosureBL.moveSteerToEncoderPosition(blpos);
         swerveEnclosureBR.moveSteerToEncoderPosition(brpos);
-
 
     }
 

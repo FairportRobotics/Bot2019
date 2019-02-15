@@ -83,7 +83,7 @@ public class CalibrateDrivesCommand extends TimedCommand implements UpdateDashbo
         System.err.println("Ending CalibrateDrivesCommand " + timeSinceInitialized());
 
         Robot.swerveDriveSubsystem.stop();
-        Robot.swerveDriveSubsystem.zeroAllSteerEncoders();
+        //Robot.swerveDriveSubsystem.zeroAllSteerEncoders();
 
 //        if (!isTimedOut()) {
 //            log.info("Zeroing Steer Encoders");
