@@ -21,7 +21,6 @@ public class OI implements Initializable {
     }
 
     public void initialize() {
-        gp1.buttonA.whenPressed(new CalibrateDrivesCommand());
 
         // Gamepad 1
 

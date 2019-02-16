@@ -38,6 +38,10 @@ public class SwerveDrive implements UpdateDashboard {
         // instantiate the swerve library with a gyro provider using pigeon1
         this.swerveMath = new SwerveMath(width, length);
 
+        this.swerveEnclosureFR.orientSensor();
+        this.swerveEnclosureFL.orientSensor();
+        this.swerveEnclosureBL.orientSensor();
+        this.swerveEnclosureBR.orientSensor();
     }
 
     /**
@@ -190,6 +194,7 @@ public class SwerveDrive implements UpdateDashboard {
                 frontRightSwerveTalon, SwerveConstants.FRONT_RIGHT_TRUE_NORTH_ENC_POS);
         backLeft = new TalonSwerveEnclosure("bl", backLeftDriveTalon, backLeftSwerveTalon, SwerveConstants.BACK_LEFT_TRUE_NORTH_ENC_POS);
         backRight = new TalonSwerveEnclosure("br", backRightDriveTalon, backRightSwerveTalon, SwerveConstants.BACK_RIGHT_TRUE_NORTH_ENC_POS);
+
 
         return new SwerveDrive(frontLeft, frontRight, backLeft, backRight, SwerveConstants.ROBOT_WIDTH, SwerveConstants.ROBOT_LENGTH);
     }

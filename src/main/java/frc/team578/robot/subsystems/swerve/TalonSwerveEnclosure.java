@@ -47,6 +47,16 @@ public class TalonSwerveEnclosure implements UpdateDashboard {
         this.steerTalon.setSelectedSensorPosition(this.steerTalon.getSensorCollection().getAnalogInRaw());
     }
 
+    public void orientSensor()
+    {
+        int where = this.steerTalon.getSensorCollection().getAnalogInRaw()-trueNorthEncoderOffset;
+        if(where<0) {
+            where += 1024;
+        }
+        where%=1024;
+        this.steerTalon.setSelectedSensorPosition(where);
+    }
+
     // ------------ Steer Related
 
     /**
