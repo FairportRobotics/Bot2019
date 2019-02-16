@@ -2,19 +2,11 @@ package frc.team578.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.team578.robot.commands.CalibrateDrivesCommand;
-import frc.team578.robot.commands.SampleCommand;
 import frc.team578.robot.commands.SwerveDriveCommand;
-import frc.team578.robot.subsystems.ArmSubsystem;
-import frc.team578.robot.subsystems.ElevatorSubsystem;
-import frc.team578.robot.subsystems.GyroSubsystem;
-import frc.team578.robot.subsystems.SwerveDriveSubsystem;
-import frc.team578.robot.utils.PIDFinished;
+import frc.team578.robot.commands.TankDriveCommand;
+import frc.team578.robot.subsystems.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 public class Robot extends TimedRobot {
 
@@ -24,11 +16,16 @@ public class Robot extends TimedRobot {
     public static OI oi;
 
     // Subsystems
-    public static frc.team578.robot.subsystems.SwerveDriveSubsystem swerveDriveSubsystem;
-    public static frc.team578.robot.subsystems.GyroSubsystem gyroSubsystem;
-    public static frc.team578.robot.subsystems.ArmSubsystem armSubsystem;
-    public static frc.team578.robot.subsystems.CargoIntakeSubsystem cargoIntakeSubsystem;
-    public static frc.team578.robot.subsystems.ElevatorSubsystem elevatorSubsystem;
+    public static SwerveDriveSubsystem swerveDriveSubsystem;
+    public static TankDriveSubsystem tankDriveSubsystem;
+
+    public static GyroSubsystem gyroSubsystem;
+    public static ArmSubsystem armSubsystem;
+    public static CargoIntakeSubsystem cargoIntakeSubsystem;
+    public static ElevatorSubsystem elevatorSubsystem;
+    public static ClimberSubsystem climberSubsystem;
+
+    public static final boolean useSwerveDrive = false;
 
     @Override
     public void robotInit() {
@@ -41,20 +38,27 @@ public class Robot extends TimedRobot {
             gyroSubsystem.initialize();
             log.info("Gyro Subsystem Initialized");
 
-            swerveDriveSubsystem = new SwerveDriveSubsystem();
-            swerveDriveSubsystem.initialize();
+            if (useSwerveDrive) {
+                swerveDriveSubsystem = new SwerveDriveSubsystem();
+                swerveDriveSubsystem.initialize();
+                log.info("Swerve Drive Subsystem Initialized");
+            } else {
+                tankDriveSubsystem = new TankDriveSubsystem();
+                tankDriveSubsystem.initialize();
+                log.info("Tank Drive Subsystem Initialized");
+            }
 
-            log.info("Swerve Drive Subsystem Initialized");
+            climberSubsystem = new ClimberSubsystem();
+            climberSubsystem.initialize();
+            log.info("Climber Subsystem Initialized");
 
-
-
-            armSubsystem = new ArmSubsystem();
-            armSubsystem.initialize();
-            log.info("Arm Subsystem Initialized");
-
-            elevatorSubsystem = new ElevatorSubsystem();
-            elevatorSubsystem.initialize();
-            log.info("Elevator Subsystem Initialized");
+//            armSubsystem = new ArmSubsystem();
+//            armSubsystem.initialize();
+//            log.info("Arm Subsystem Initialized");
+//
+//            elevatorSubsystem = new ElevatorSubsystem();
+//            elevatorSubsystem.initialize();
+//            log.info("Elevator Subsystem Initialized");
 
             oi = new OI();
             oi.initialize();
@@ -89,23 +93,11 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
-        // TODO : Is this running in this method?
 
-//        Robot.swerveDriveSubsystem.moveSteerTrueNorth();
-//        Supplier<Double> supplier = Robot.swerveDriveSubsystem::getSteerErrorDerivitiveSum;
-//        Predicate<Double> successTest = (x) -> x == 0;
-//        PIDFinished pidFinished = new PIDFinished(10,3, supplier, successTest);
-//        while (!pidFinished.isStable()) {
-//
-//        }
-//        Robot.swerveDriveSubsystem.zeroAllSteerEncoders();
-
-
-//        SampleCommand sampleCommand = new SampleCommand();
-//        sampleCommand.start();
-
+        if (useSwerveDrive) {
 //            CalibrateDrivesCommand calibrateDrivesCommand = new CalibrateDrivesCommand();
 //            calibrateDrivesCommand.start();
+        }
     }
 
     @Override
@@ -118,9 +110,14 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopInit() {
         try {
-            // Start the swerve drive command
-            SwerveDriveCommand drive = new SwerveDriveCommand();
-            drive.start();
+            // Start the drive command
+            if (useSwerveDrive) {
+                SwerveDriveCommand drive = new SwerveDriveCommand();
+                drive.start();
+            } else {
+                TankDriveCommand drive = new TankDriveCommand();
+                drive.start();
+            }
         } catch (Throwable t) {
             log.error("Error In Robot teleopInit : " + t.getMessage(), t);
             throw t;
@@ -129,9 +126,9 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopPeriodic() {
-
         updateAllDashboards();
         Scheduler.getInstance().run();
+
     }
 
     @Override
@@ -144,15 +141,12 @@ public class Robot extends TimedRobot {
     }
 
 
-
-    long lastUpdate = 0;
     public void updateAllDashboards() {
-        long now = System.currentTimeMillis();
-        if (now - lastUpdate > 100) {
-            lastUpdate = now;
+        if (useSwerveDrive) {
             Robot.swerveDriveSubsystem.updateDashboard();
-            Robot.gyroSubsystem.updateDashboard();
-
+        } else {
+            Robot.tankDriveSubsystem.updateDashboard();
         }
+        Robot.gyroSubsystem.updateDashboard();
     }
 }

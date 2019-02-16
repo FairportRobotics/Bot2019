@@ -1,9 +1,7 @@
 package frc.team578.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.team578.robot.OI;
 import frc.team578.robot.Robot;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,13 +21,13 @@ public class SwerveDriveCommand extends Command {
     @Override
     protected void execute() {
 
-        double fwd = Robot.oi.getPadLeftY();
+        double fwd = Robot.oi.getGP1().getPadLeftY();
 //        double fwd = Robot.oi.getGamepadRawAxis(OI.LEFT_Y_AXIS);
 
-        double str = Robot.oi.getPadLeftX();
+        double str = Robot.oi.getGP1().getPadLeftX();
 //        double str = Robot.oi.getGamepadRawAxis(OI.LEFT_X_AXIS);
 
-        double rot = Robot.oi.getPadRightX();
+        double rot = Robot.oi.getGP1().getPadRightX();
 //        double rot = Robot.oi.getGamepadRawAxis(OI.RIGHT_X_AXIS);
 
         // The joystick forward is negative for some reason.
