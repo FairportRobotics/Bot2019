@@ -43,6 +43,10 @@ public class TalonSwerveEnclosure implements UpdateDashboard {
         this.driveTalon.stopMotor();
     }
 
+    public void setSensorToAnalogPos() {
+        this.steerTalon.setSelectedSensorPosition(this.steerTalon.getSensorCollection().getAnalogInRaw());
+    }
+
     // ------------ Steer Related
 
     /**
@@ -120,6 +124,7 @@ public class TalonSwerveEnclosure implements UpdateDashboard {
      */
     public void move(double speed, double angle) {
         int encPosition = getSteerEncPosition();
+
         angle = convertAngle(angle, encPosition);
 
         if (shouldReverse(angle, encPosition)) {

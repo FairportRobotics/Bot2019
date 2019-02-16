@@ -71,11 +71,11 @@ public class SwerveDrive implements UpdateDashboard {
     public void move(double fwd, double str, double rcw, Double gyroValue) {
         // Get the move command calculated
         List<SwerveDirective> swerveDirectives = swerveMath.move(fwd, str, rcw, gyroValue);
-
-        swerveEnclosureFR.move(swerveDirectives.get(0).getSpeed(), swerveDirectives.get(0).getAngle());
-        swerveEnclosureFL.move(swerveDirectives.get(1).getSpeed(), swerveDirectives.get(1).getAngle());
-        swerveEnclosureBL.move(swerveDirectives.get(2).getSpeed(), swerveDirectives.get(2).getAngle());
-        swerveEnclosureBR.move(swerveDirectives.get(3).getSpeed(), swerveDirectives.get(3).getAngle());
+        //Reversed left and right for fun
+        swerveEnclosureFL.move(swerveDirectives.get(0).getSpeed(), swerveDirectives.get(0).getAngle());
+        swerveEnclosureFR.move(swerveDirectives.get(1).getSpeed(), swerveDirectives.get(1).getAngle());
+        swerveEnclosureBR.move(swerveDirectives.get(2).getSpeed(), swerveDirectives.get(2).getAngle());
+        swerveEnclosureBL.move(swerveDirectives.get(3).getSpeed(), swerveDirectives.get(3).getAngle());
     }
 
     public void stop() {
@@ -115,6 +115,35 @@ public class SwerveDrive implements UpdateDashboard {
 
     public double getSteerErrorDerivitiveSum() {
         return swerveEnclosureFL.getSteerErrorDerivitiveAbs() + swerveEnclosureFR.getSteerErrorDerivitiveAbs() + swerveEnclosureBL.getSteerErrorDerivitiveAbs() + swerveEnclosureBR.getSteerErrorDerivitiveAbs();
+    }
+
+    public void calibrateAllSteerEncoders() {
+        swerveEnclosureFR.stopAllTalons();
+        swerveEnclosureFL.stopAllTalons();
+        swerveEnclosureBL.stopAllTalons();
+        swerveEnclosureBR.stopAllTalons();
+
+        swerveEnclosureFL.setSensorToAnalogPos();
+        swerveEnclosureFR.setSensorToAnalogPos();
+        swerveEnclosureBR.setSensorToAnalogPos();
+        swerveEnclosureBL.setSensorToAnalogPos();
+
+//        swerveEnclosureFR.setSelectedSensorPosition(-fl_talon.getSensorCollection().getAnalogIn());
+//        fr_talon.setSelectedSensorPosition(-fr_talon.getSensorCollection().getAnalogIn());
+//        bl_talon.setSelectedSensorPosition(-bl_talon.getSensorCollection().getAnalogIn());
+//        br_talon.setSelectedSensorPosition(-br_talon.getSensorCollection().getAnalogIn());
+
+        int flpos = SwerveConstants.FRONT_LEFT_TRUE_NORTH_ENC_POS;
+        int frpos = SwerveConstants.FRONT_RIGHT_TRUE_NORTH_ENC_POS;
+        int blpos = SwerveConstants.BACK_LEFT_TRUE_NORTH_ENC_POS;
+        int brpos = SwerveConstants.BACK_RIGHT_TRUE_NORTH_ENC_POS;
+
+        /* update motor controller */
+        swerveEnclosureFL.moveSteerToEncoderPosition(flpos);
+        swerveEnclosureFR.moveSteerToEncoderPosition(frpos);
+        swerveEnclosureBL.moveSteerToEncoderPosition(blpos);
+        swerveEnclosureBR.moveSteerToEncoderPosition(brpos);
+
     }
 
 
