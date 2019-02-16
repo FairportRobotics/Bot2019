@@ -71,11 +71,11 @@ public class SwerveDrive implements UpdateDashboard {
     public void move(double fwd, double str, double rcw, Double gyroValue) {
         // Get the move command calculated
         List<SwerveDirective> swerveDirectives = swerveMath.move(fwd, str, rcw, gyroValue);
-
-        swerveEnclosureFR.move(swerveDirectives.get(0).getSpeed(), swerveDirectives.get(0).getAngle());
-        swerveEnclosureFL.move(swerveDirectives.get(1).getSpeed(), swerveDirectives.get(1).getAngle());
-        swerveEnclosureBL.move(swerveDirectives.get(2).getSpeed(), swerveDirectives.get(2).getAngle());
-        swerveEnclosureBR.move(swerveDirectives.get(3).getSpeed(), swerveDirectives.get(3).getAngle());
+        //Reversed left and right for fun
+        swerveEnclosureFL.move(swerveDirectives.get(0).getSpeed(), swerveDirectives.get(0).getAngle());
+        swerveEnclosureFR.move(swerveDirectives.get(1).getSpeed(), swerveDirectives.get(1).getAngle());
+        swerveEnclosureBR.move(swerveDirectives.get(2).getSpeed(), swerveDirectives.get(2).getAngle());
+        swerveEnclosureBL.move(swerveDirectives.get(3).getSpeed(), swerveDirectives.get(3).getAngle());
     }
 
     public void stop() {
