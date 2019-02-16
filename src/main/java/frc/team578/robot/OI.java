@@ -1,5 +1,6 @@
 package frc.team578.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.team578.robot.commands.*;
 import frc.team578.robot.enums.ArmPositionEnum;
@@ -7,6 +8,9 @@ import frc.team578.robot.subsystems.interfaces.Initializable;
 import frc.team578.robot.utils.Gamepad;
 
 public class OI implements Initializable {
+
+    public Joystick leftJoystick = new Joystick(1);
+    public Joystick rightJoystick = new Joystick(2);
 
     private GP gp1 = new GP(RobotMap.CONTROL_GAMEPAD_ID); // Elevator and arm functions
     private GP gp2 = new GP(RobotMap.ELEVATOR_GAMEPAD_ID); // Climber functions
@@ -84,17 +88,20 @@ public class OI implements Initializable {
 
         public double getPadLeftX() {
 
-            double joyVal = gamepad.getLeftX();
+//            double joyVal = gamepad.getLeftX();
+            double joyVal = leftJoystick.getX();
             return (Math.abs(joyVal) > JOYSTICK_DEADZONE) ? joyVal : 0.0;
         }
 
         public double getPadLeftY() {
-            double joyVal = gamepad.getLeftY();
+//            double joyVal = gamepad.getLeftY();
+            double joyVal = leftJoystick.getY();
             return (Math.abs(joyVal) > JOYSTICK_DEADZONE) ? joyVal : 0.0;
         }
 
         public double getPadRightX() {
-            double joyVal = gamepad.getRightX();
+//            double joyVal = gamepad.getRightX();
+            double joyVal = rightJoystick.getX();
             return (Math.abs(joyVal) > JOYSTICK_DEADZONE) ? joyVal : 0.0;
         }
 
@@ -103,7 +110,7 @@ public class OI implements Initializable {
             return (Math.abs(joyVal) > JOYSTICK_DEADZONE) ? joyVal : 0.0;
         }
 
-        final double JOYSTICK_DEADZONE = 0.1;
+        final double JOYSTICK_DEADZONE = 0.2;
 //    public double getGamepadRawAxis(int axisID) {
 //        double joyVal = driveGamepad.getRawAxis(axisID);
 //        return (Math.abs(joyVal) > JOYSTICK_DEADZONE) ? joyVal : 0.0;

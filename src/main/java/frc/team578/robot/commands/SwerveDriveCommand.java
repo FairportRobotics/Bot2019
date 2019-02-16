@@ -22,12 +22,15 @@ public class SwerveDriveCommand extends Command {
     protected void execute() {
 
         double fwd = Robot.oi.getGP1().getPadLeftY();
+//        double fwd = Robot.oi.leftJoystick.getY();
 //        double fwd = Robot.oi.getGamepadRawAxis(OI.LEFT_Y_AXIS);
 
         double str = Robot.oi.getGP1().getPadLeftX();
+//        double str = Robot.oi.leftJoystick.getX();
 //        double str = Robot.oi.getGamepadRawAxis(OI.LEFT_X_AXIS);
 
         double rot = Robot.oi.getGP1().getPadRightX();
+//        double rot = Robot.oi.rightJoystick.getX();
 //        double rot = Robot.oi.getGamepadRawAxis(OI.RIGHT_X_AXIS);
 
         // The joystick forward is negative for some reason.
