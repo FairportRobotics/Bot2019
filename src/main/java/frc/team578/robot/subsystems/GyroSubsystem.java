@@ -29,6 +29,8 @@ public class GyroSubsystem extends Subsystem implements Initializable, UpdateDas
 
         try {
             navx = new AHRS(SPI.Port.kMXP);
+
+            this.setToZero();
         } catch (RuntimeException ex) {
             log.error("Error instantiating navX-MXP:  " + ex.getMessage(),ex);
         }

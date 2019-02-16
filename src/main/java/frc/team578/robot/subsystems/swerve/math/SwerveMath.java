@@ -39,10 +39,10 @@ public class SwerveMath {
     private final double SCALE_SPEED = 1.00;
 
     // The "Centric" mode for the robot
-    private CentricMode centricMode = CentricMode.ROBOT;
+    private CentricMode centricMode = CentricMode.FIELD;
 
     public void setModeField() {
-        centricMode = frc.team578.robot.subsystems.swerve.math.CentricMode.ROBOT;
+        centricMode = frc.team578.robot.subsystems.swerve.math.CentricMode.FIELD;
     }
 
     /**
@@ -67,9 +67,9 @@ public class SwerveMath {
     }
 
 
-    public void setCentricMode(CentricMode centricMode) {
-        this.centricMode = centricMode;
-    }
+//    public void setCentricMode(CentricMode centricMode) {
+//        this.centricMode = centricMode;
+//    }
 
 
     /**
@@ -92,11 +92,12 @@ public class SwerveMath {
 
         //Adjust for Gyro (if wanted)
         if (isFieldCentric()) {
+
             //Convert the gyro angle (in degrees) to radians.
             double gyro = (gyroValue * Math.PI) / 180;
 
-            double temp = fwd * Math.cos(gyro) + str * Math.sin(gyro);
-            str = -fwd * Math.sin(gyro) + str * Math.cos(gyro);
+            double temp = fwd * Math.cos(gyro) - str * Math.sin(gyro);
+            str = fwd * Math.sin(gyro) + str * Math.cos(gyro);
             fwd = temp;
         }
 

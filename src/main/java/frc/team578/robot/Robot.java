@@ -51,9 +51,9 @@ public class Robot extends TimedRobot {
                 log.info("Tank Drive Subsystem Initialized");
             }
 
-            climberSubsystem = new ClimberSubsystem();
-            climberSubsystem.initialize();
-            log.info("Climber Subsystem Initialized");
+//            climberSubsystem = new ClimberSubsystem();
+//            climberSubsystem.initialize();
+//            log.info("Climber Subsystem Initialized");
 
 //            armSubsystem = new ArmSubsystem();
 //            armSubsystem.initialize();

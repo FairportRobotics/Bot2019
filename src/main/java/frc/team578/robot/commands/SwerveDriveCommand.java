@@ -31,7 +31,7 @@ public class SwerveDriveCommand extends Command {
 //        double rot = Robot.oi.getGamepadRawAxis(OI.RIGHT_X_AXIS);
 
         // The joystick forward is negative for some reason.
-        fwd *= -1;
+//        fwd *= -1;
 //		str *= -1;
 
         double angleDeg = Robot.gyroSubsystem.getHeading();

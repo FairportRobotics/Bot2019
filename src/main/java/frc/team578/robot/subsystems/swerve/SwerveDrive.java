@@ -44,17 +44,17 @@ public class SwerveDrive implements UpdateDashboard {
      * Change the centric-mode of the robot (this can be done dynamically any time
      * and will affect the robot behavior from that point on)
      */
-    public void setCentricMode(frc.team578.robot.subsystems.swerve.math.CentricMode centricMode) {
-        this.swerveMath.setCentricMode(centricMode);
-    }
-
-    public void setModeField() {
-        this.swerveMath.setModeField();
-    }
-
-    public CentricMode getCentricMode() {
-        return this.swerveMath.getCentricMode();
-    }
+//    public void setCentricMode(frc.team578.robot.subsystems.swerve.math.CentricMode centricMode) {
+//        this.swerveMath.setCentricMode(centricMode);
+//    }
+//
+//    public void setModeField() {
+//        this.swerveMath.setModeField();
+//    }
+//
+//    public CentricMode getCentricMode() {
+//        return this.swerveMath.getCentricMode();
+//    }
 
     /**
      * move Moves the robot based on 3 inputs - fwd (forward), str(strafe), and

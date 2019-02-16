@@ -7,18 +7,18 @@ public class SwerveConstants {
     public static final double ROBOT_WIDTH = .47;
 
     // Analog: Pos: -485u   |   Vel: 0u/100ms   |   ADC:539   |   1.7 V
-    public static final int FRONT_LEFT_TRUE_NORTH_ENC_POS = 535;
+    public static final int FRONT_LEFT_TRUE_NORTH_ENC_POS = 605;
     // Analog: Pos: -453u   |   Vel: 0u/100ms   |   ADC:571   |   1.7 V
-    public static final int FRONT_RIGHT_TRUE_NORTH_ENC_POS = 573;
+    public static final int FRONT_RIGHT_TRUE_NORTH_ENC_POS = 644;
     // Analog: Pos: 245u   |   Vel: 0u/100ms   |   ADC:245   |   0.8 V
-    public static final int BACK_LEFT_TRUE_NORTH_ENC_POS = 245;
+    public static final int BACK_LEFT_TRUE_NORTH_ENC_POS = 273;
     // Analog: Pos: 679u   |   Vel: 2u/100ms   |   ADC:679   |   2.2 V
-    public static final int BACK_RIGHT_TRUE_NORTH_ENC_POS = 679;
+    public static final int BACK_RIGHT_TRUE_NORTH_ENC_POS = 776;
 
-    public static final boolean FRONT_LEFT_REVERSE_DRIVE = true;
-    public static final boolean FRONT_RIGHT_REVERSE_DRIVE = false;
-    public static final boolean BACK_LEFT_REVERSE_DRIVE = true;
-    public static final boolean BACK_RIGHT_REVERSE_DRIVE = false;
+    public static final boolean FRONT_LEFT_REVERSE_DRIVE = false;
+    public static final boolean FRONT_RIGHT_REVERSE_DRIVE = true;
+    public static final boolean BACK_LEFT_REVERSE_DRIVE = false;
+    public static final boolean BACK_RIGHT_REVERSE_DRIVE = true;
 
     public static final boolean FRONT_LEFT_REVERSE_TURN = false;
     public static final boolean FRONT_RIGHT_REVERSE_TURN = false;
