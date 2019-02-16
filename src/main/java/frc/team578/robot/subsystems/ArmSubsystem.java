@@ -2,12 +2,13 @@ package frc.team578.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team578.robot.RobotMap;
 import frc.team578.robot.enums.ArmPositionEnum;
 import frc.team578.robot.subsystems.interfaces.Initializable;
 import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
 
-public class ArmSubsystem implements Initializable, UpdateDashboard {
+public class ArmSubsystem  extends Subsystem implements Initializable, UpdateDashboard {
 
     private DoubleSolenoid firstSolenoids;
     private DoubleSolenoid secondSolenoids;
@@ -69,6 +70,11 @@ public class ArmSubsystem implements Initializable, UpdateDashboard {
 
     @Override
     public void updateDashboard() {
+
+    }
+
+    @Override
+    protected void initDefaultCommand() {
 
     }
 }

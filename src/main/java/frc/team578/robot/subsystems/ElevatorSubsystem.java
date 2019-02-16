@@ -2,12 +2,13 @@ package frc.team578.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team578.robot.enums.ElevatorPositionEnum;
 import frc.team578.robot.subsystems.interfaces.Initializable;
 import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
 import frc.team578.robot.utils.PIDFinished;
 
-public class ElevatorSubsystem implements Initializable, UpdateDashboard {
+public class ElevatorSubsystem extends Subsystem implements Initializable, UpdateDashboard {
 
     public final int ARM_LEVEL_ONE_POS = 0;
     public final int STRUCTURE_LEVEL_ONE_POS = 0;
@@ -91,5 +92,10 @@ public class ElevatorSubsystem implements Initializable, UpdateDashboard {
 
     @Override
     public void updateDashboard() {
+    }
+
+    @Override
+    protected void initDefaultCommand() {
+
     }
 }

@@ -29,8 +29,8 @@ public class OI implements Initializable {
         gp1.buttonX.whenPressed(new MoveArmCommand(ArmPositionEnum.MID2_EXTEND));
         gp1.buttonY.whenPressed(new MoveArmCommand(ArmPositionEnum.FULL_EXTEND));
         // Intake buttons
-        gp1.lb.whenPressed(new IntakeSpinInwardCommand());
-        gp1.rb.whenPressed(new IntakeSpinOutwardCommand());
+        gp1.lb.whileHeld(new IntakeSpinInwardCommand());
+        gp1.rb.whileHeld(new IntakeSpinOutwardCommand());
         gp1.lt.whenPressed(new IntakeExtendCommand());
         gp1.rt.whenPressed(new IntakeRetractCommand());
 
@@ -44,6 +44,7 @@ public class OI implements Initializable {
 
         gp2.start.whileHeld(new ClimberDriveForwardsCommand());
         gp2.back.whileHeld(new ClimberDriveReverseCommand());
+
     }
 
     public class GP {
