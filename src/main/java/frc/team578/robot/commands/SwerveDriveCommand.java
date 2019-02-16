@@ -21,16 +21,16 @@ public class SwerveDriveCommand extends Command {
     @Override
     protected void execute() {
 
-        double fwd = Robot.oi.getGP1().getPadLeftY();
-//        double fwd = Robot.oi.leftJoystick.getY();
+//        double fwd = Robot.oi.getGP1().getPadLeftY();
+        double fwd = Robot.oi.leftJoystick.getY();
 //        double fwd = Robot.oi.getGamepadRawAxis(OI.LEFT_Y_AXIS);
 
-        double str = Robot.oi.getGP1().getPadLeftX();
-//        double str = Robot.oi.leftJoystick.getX();
+//        double str = Robot.oi.getGP1().getPadLeftX();
+        double str = Robot.oi.leftJoystick.getX();
 //        double str = Robot.oi.getGamepadRawAxis(OI.LEFT_X_AXIS);
 
-        double rot = Robot.oi.getGP1().getPadRightX();
-//        double rot = Robot.oi.rightJoystick.getX();
+//        double rot = Robot.oi.getGP1().getPadRightX();
+        double rot = Robot.oi.rightJoystick.getX();
 //        double rot = Robot.oi.getGamepadRawAxis(OI.RIGHT_X_AXIS);
 
         // The joystick forward is negative for some reason.
@@ -39,7 +39,7 @@ public class SwerveDriveCommand extends Command {
 
         double angleDeg = Robot.gyroSubsystem.getHeading();
 
-        Robot.swerveDriveSubsystem.move(fwd, str, rot, angleDeg);
+        Robot.swerveDriveSubsystem.move(deadband(fwd), deadband(str), deadband(rot), angleDeg);
 
         SmartDashboard.putNumber("swrv.fwd", fwd);
         SmartDashboard.putNumber("swrv.str", str);
@@ -62,6 +62,12 @@ public class SwerveDriveCommand extends Command {
     protected void interrupted() {
         log.info("SwerveDriveCommand Interrupted");
 
+    }
+
+    final double DEADBAND = 0.2;
+    private double deadband(double value) {
+        if (Math.abs(value) < DEADBAND) return 0.0;
+        return value;
     }
 
 }

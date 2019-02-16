@@ -4,8 +4,6 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.team578.robot.commands.SwerveDriveCommand;
-import frc.team578.robot.commands.TankDriveCommand;
 import frc.team578.robot.subsystems.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,12 +17,11 @@ public class Robot extends TimedRobot {
 
     // Subsystems
     public static SwerveDriveSubsystem swerveDriveSubsystem;
-    public static TankDriveSubsystem tankDriveSubsystem;
     public static GyroSubsystem gyroSubsystem;
     public static ArmSubsystem armSubsystem;
     public static CargoIntakeSubsystem cargoIntakeSubsystem;
     public static ElevatorSubsystem elevatorSubsystem;
-    public static UsbCamera cam;
+    public static UsbCamera camera;
     public static ClimberSubsystem climberSubsystem;
 
     public static final boolean useSwerveDrive = true;
@@ -41,15 +38,9 @@ public class Robot extends TimedRobot {
             gyroSubsystem.initialize();
             log.info("Gyro Subsystem Initialized");
 
-            if (useSwerveDrive) {
-                swerveDriveSubsystem = new SwerveDriveSubsystem();
-                swerveDriveSubsystem.initialize();
-                log.info("Swerve Drive Subsystem Initialized");
-            } else {
-                tankDriveSubsystem = new TankDriveSubsystem();
-                tankDriveSubsystem.initialize();
-                log.info("Tank Drive Subsystem Initialized");
-            }
+            swerveDriveSubsystem = new SwerveDriveSubsystem();
+            swerveDriveSubsystem.initialize();
+            log.info("Swerve Drive Subsystem Initialized");
 
 //            climberSubsystem = new ClimberSubsystem();
 //            climberSubsystem.initialize();
@@ -63,10 +54,10 @@ public class Robot extends TimedRobot {
 //            elevatorSubsystem.initialize();
 //            log.info("Elevator Subsystem Initialized");
 
-			cam = CameraServer.getInstance().startAutomaticCapture();
-			// cam.setResolution(100, 75);
-			// cam.setFPS(-1);
-			log.info("Initialize Camera");
+            camera = CameraServer.getInstance().startAutomaticCapture();
+            // cam.setResolution(100, 75);
+            // cam.setFPS(-1);
+            log.info("Initialized Camera");
 
             oi = new OI();
             oi.initialize();
@@ -101,10 +92,6 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
 
-        if (useSwerveDrive) {
-//            CalibrateDrivesCommand calibrateDrivesCommand = new CalibrateDrivesCommand();
-//            calibrateDrivesCommand.start();
-        }
     }
 
     @Override
@@ -116,19 +103,6 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
-        try {
-            // Start the drive command
-            if (useSwerveDrive) {
-                SwerveDriveCommand drive = new SwerveDriveCommand();
-                drive.start();
-            } else {
-                TankDriveCommand drive = new TankDriveCommand();
-                drive.start();
-            }
-        } catch (Throwable t) {
-            log.error("Error In Robot teleopInit : " + t.getMessage(), t);
-            throw t;
-        }
     }
 
     @Override
@@ -149,11 +123,7 @@ public class Robot extends TimedRobot {
 
 
     public void updateAllDashboards() {
-        if (useSwerveDrive) {
-            Robot.swerveDriveSubsystem.updateDashboard();
-        } else {
-            Robot.tankDriveSubsystem.updateDashboard();
-        }
+        Robot.swerveDriveSubsystem.updateDashboard();
         Robot.gyroSubsystem.updateDashboard();
     }
 }
