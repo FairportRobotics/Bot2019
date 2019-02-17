@@ -30,7 +30,7 @@ public class CargoIntakeSubsystem extends Subsystem implements Initializable, Up
 
     @Override
     public void initialize() {
-        intakeTalon = new WPI_TalonSRX(RobotMap.CLIMB_WHEELS_TALON_ID);
+        intakeTalon = new WPI_TalonSRX(RobotMap.INTAKE_TALON);
         intakeTalon.setNeutralMode(NeutralMode.Brake);
 
         intakeSolenoid = new DoubleSolenoid(RobotMap.PCM, RobotMap.PCM_INTAKE_OPEN, RobotMap.PCM_INTAKE_CLOSE);
