@@ -6,25 +6,25 @@ import frc.team578.robot.enums.ArmPositionEnum;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class MoveArmCommand extends Command {
+public class MoveArmPIDCommand extends Command {
 
-    private static final Logger log = LogManager.getLogger(MoveArmCommand.class);
+    private static final Logger log = LogManager.getLogger(MoveArmPIDCommand.class);
 
     ArmPositionEnum positionTarget;
 
-    public MoveArmCommand(ArmPositionEnum positionTarget) {
+    public MoveArmPIDCommand(ArmPositionEnum positionTarget) {
         this.positionTarget = positionTarget;
-        log.info("MoveArmCommand Constructor");
+        log.info("MoveArmPIDCommand Constructor");
     }
 
     @Override
     protected void initialize() {
-        log.info("Initializing MoveArmCommand");
+        log.info("Initializing MoveArmPIDCommand");
     }
 
     @Override
     protected void execute() {
-        log.info("Exec MoveArmCommand");
+        log.info("Exec MoveArmPIDCommand");
         if (positionTarget == ArmPositionEnum.RETRACTED) {
             Robot.armSubsystem.retract();
         } else if (positionTarget == ArmPositionEnum.MID_EXTEND) {
@@ -39,7 +39,7 @@ public class MoveArmCommand extends Command {
 
     @Override
     protected void interrupted() {
-        log.info("Interrupted MoveArmCommand");
+        log.info("Interrupted MoveArmPIDCommand");
     }
 
     @Override
@@ -48,12 +48,12 @@ public class MoveArmCommand extends Command {
         Robot.armSubsystem.getArmPosition();
 
         boolean isFinished = true;
-        log.info("MoveArmCommand is Finished : " + isFinished);
+        log.info("MoveArmPIDCommand is Finished : " + isFinished);
         return isFinished;
     }
 
     @Override
     protected void end() {
-        log.info("Ending MoveArmCommand " + timeSinceInitialized());
+        log.info("Ending MoveArmPIDCommand " + timeSinceInitialized());
     }
 }

@@ -22,10 +22,6 @@ public class TalonSwerveEnclosure implements UpdateDashboard {
         this.driveTalon = driveMotor;
         this.steerTalon = steerMotor;
 
-//        int pos = steerTalon.getSelectedSensorPosition();
-//        int round = (1024 * (pos / 1024));
-//        trueNorthEncoderOffset = trueNorth + round;
-
         trueNorthEncoderOffset = trueNorth;
 
     }

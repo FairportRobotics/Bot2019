@@ -19,7 +19,6 @@ public class SwerveUtils {
      * to negative values as well
      *
      * @param encoderValue the value returned by the encoder
-     * @param gearRatio    the ratio of values in a single turn
      * @return the encoder value in the -0.5 to +0.5 range
      */
     public static double convertEncoderValue(double encoderValue) {

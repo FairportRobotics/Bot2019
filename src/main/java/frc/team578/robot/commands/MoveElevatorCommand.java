@@ -38,7 +38,7 @@ public class MoveElevatorCommand extends Command {
     @Override
     protected boolean isFinished() {
 
-        boolean isFinished = Robot.elevatorSubsystem.isFinished();
+        boolean isFinished = true; // Robot.elevatorSubsystem.isFinished();
         log.info("MoveElevatorCommand is Finished : " + isFinished);
         return isFinished;
     }
