@@ -8,7 +8,7 @@ Good Job Guys. We are so smrt. Do we gud code?
 ## FRC Meme Of The Week
 
 
-[![FRC Meme of the week](https://preview.redd.it/bvfg9eup2ef21.png?width=640&crop=smart&auto=webp&s=705d647db2ac5bdf6fd8ccb40dd7e24961fea3fa)](https://www.youtube.com/watch?v=xNinaxLugiY)
+[![FRC Meme of the week](https://i.redd.it/cocqev6hwyg21.jpg?width=640&crop=smart&auto=webp&s=705d647db2ac5bdf6fd8ccb40dd7e24961fea3fa)](https://www.youtube.com/watch?v=xNinaxLugiY)
 
 
 
