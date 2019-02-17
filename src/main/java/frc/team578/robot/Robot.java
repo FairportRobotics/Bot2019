@@ -50,9 +50,9 @@ public class Robot extends TimedRobot {
 //            armSubsystem.initialize();
 //            log.info("Arm Subsystem Initialized");
 //
-//            elevatorSubsystem = new ElevatorSubsystem();
-//            elevatorSubsystem.initialize();
-//            log.info("Elevator Subsystem Initialized");
+            elevatorSubsystem = new ElevatorSubsystem();
+            elevatorSubsystem.initialize();
+            log.info("Elevator Subsystem Initialized");
 
             camera = CameraServer.getInstance().startAutomaticCapture();
             // cam.setResolution(100, 75);
@@ -103,10 +103,13 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
+
     }
 
     @Override
     public void teleopPeriodic() {
+
+
         updateAllDashboards();
         Scheduler.getInstance().run();
 

@@ -3,6 +3,8 @@ package frc.team578.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.team578.robot.RobotMap;
+import frc.team578.robot.commands.MoveArmAnalogCommand;
 import frc.team578.robot.enums.ElevatorPositionEnum;
 import frc.team578.robot.subsystems.interfaces.Initializable;
 import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
@@ -35,6 +37,10 @@ public class ElevatorSubsystem extends Subsystem implements Initializable, Updat
 //        armTalon = TalonUtil.createPIDTalon(talonID, revMotor, pCoeff, iCoeff, dCoeff, fCoeff, iZone);
 //        structureTalon = TalonUtil.createPIDTalon(talonID, revMotor, pCoeff, iCoeff, dCoeff, fCoeff, iZone);
 //
+
+        armTalon = new WPI_TalonSRX(RobotMap.ELEVATOR_ARM_TALON);
+        structureTalon = new WPI_TalonSRX(RobotMap.ELEVATOR_STRUCTURE_TALON);
+
         pfArm = new PIDFinished<Double>(50,3,armTalon::getErrorDerivative,x -> x == 0);
         pfStructure = new PIDFinished<Double>(50,3,armTalon::getErrorDerivative,(x) -> x == 0);
     }
@@ -96,6 +102,6 @@ public class ElevatorSubsystem extends Subsystem implements Initializable, Updat
 
     @Override
     protected void initDefaultCommand() {
-
+        setDefaultCommand(new MoveArmAnalogCommand());
     }
 }
