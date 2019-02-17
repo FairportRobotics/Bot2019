@@ -2,6 +2,7 @@ package frc.team578.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.team578.robot.commands.SwerveDriveCommand;
 import frc.team578.robot.subsystems.interfaces.Initializable;
 import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
 import frc.team578.robot.subsystems.swerve.SwerveDrive;
@@ -12,9 +13,8 @@ public class SwerveDriveSubsystem extends Subsystem implements Initializable, Up
 
     @Override
     protected void initDefaultCommand() {
-        /*
-        TODO : Should SwerveDriveCommand go here?
-         */
+        // This is where the swerve command starts
+        setDefaultCommand(new SwerveDriveCommand());
     }
 
     @Override
@@ -30,20 +30,14 @@ public class SwerveDriveSubsystem extends Subsystem implements Initializable, Up
         swerveDrive.zeroAllSteerEncoders();
     }
 
-    /*
-    This should be called when the robot starts up to align the talon with the steering encoder
-     */
-    public void moveSteerTrueNorth() {
-//        swerveDrive.moveSteerTrueNorth();
-    }
-
     public void stop() {
         swerveDrive.stop();
     }
 
     @Override
     public void updateDashboard() {
-        SmartDashboard.putNumber("sd.derivsum",getSteerErrorDerivitiveSum());
+
+//        SmartDashboard.putNumber("sd.derivsum",getSteerErrorDerivitiveSum());
 
         swerveDrive.updateDashboard();
     }

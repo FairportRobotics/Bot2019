@@ -21,9 +21,8 @@ public class ElevatorMoveAnalogCommand extends Command {
     @Override
     protected void execute() {
 
-        double arm = Robot.oi.getGP2().getPadLeftY();
-
-        double structure = Robot.oi.getGP2().getPadRightY();
+        double arm = Robot.oi.gp2.getPadLeftY();
+        double structure = Robot.oi.gp2.getPadRightY();
 
         Robot.elevatorSubsystem.moveStructureMotor(structure);
         Robot.elevatorSubsystem.moveArmMotor(arm);

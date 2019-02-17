@@ -11,18 +11,8 @@ public class OI implements Initializable {
 
     public Joystick leftJoystick = new Joystick(1);
     public Joystick rightJoystick = new Joystick(2);
-
-    private GP gp1 = new GP(RobotMap.CONTROL_GAMEPAD_ID); // Elevator and arm functions
-    private GP gp2 = new GP(RobotMap.ELEVATOR_GAMEPAD_ID); // Climber functions
-
-
-    public GP getGP1() {
-        return gp1;
-    }
-
-    public GP getGP2() {
-        return gp2;
-    }
+    public GP gp1 = new GP(RobotMap.CONTROL_GAMEPAD_ID); // Elevator and arm functions
+    public GP gp2 = new GP(RobotMap.ELEVATOR_GAMEPAD_ID); // Climber functions
 
     public void initialize() {
 
@@ -52,6 +42,8 @@ public class OI implements Initializable {
 
     }
 
+    // This is here to make buttons persistant (i.e. Gamepad makes a new instance every request
+    // TODO : Want to fix that at some point.
     public class GP {
 
         Gamepad gamepad;
@@ -87,33 +79,19 @@ public class OI implements Initializable {
 
 
         public double getPadLeftX() {
-
-//            double joyVal = gamepad.getLeftX();
-            double joyVal = leftJoystick.getX();
-            return (Math.abs(joyVal) > JOYSTICK_DEADZONE) ? joyVal : 0.0;
+            return gamepad.getLeftX();
         }
 
         public double getPadLeftY() {
-//            double joyVal = gamepad.getLeftY();
-            double joyVal = leftJoystick.getY();
-            return (Math.abs(joyVal) > JOYSTICK_DEADZONE) ? joyVal : 0.0;
+            return gamepad.getLeftY();
         }
 
         public double getPadRightX() {
-//            double joyVal = gamepad.getRightX();
-            double joyVal = rightJoystick.getX();
-            return (Math.abs(joyVal) > JOYSTICK_DEADZONE) ? joyVal : 0.0;
+            return gamepad.getRightX();
         }
 
         public double getPadRightY() {
-            double joyVal = gamepad.getRightY();
-            return (Math.abs(joyVal) > JOYSTICK_DEADZONE) ? joyVal : 0.0;
+            return gamepad.getRightY();
         }
-
-        final double JOYSTICK_DEADZONE = 0.2;
-//    public double getGamepadRawAxis(int axisID) {
-//        double joyVal = driveGamepad.getRawAxis(axisID);
-//        return (Math.abs(joyVal) > JOYSTICK_DEADZONE) ? joyVal : 0.0;
-//    }
     }
 }
