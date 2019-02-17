@@ -14,6 +14,15 @@ public class OI implements Initializable {
     public GP gp1 = new GP(RobotMap.CONTROL_GAMEPAD_ID); // Elevator and arm functions
     public GP gp2 = new GP(RobotMap.ELEVATOR_GAMEPAD_ID); // Climber functions
 
+
+    double lastXValue;
+    public double getStrafe() {
+        if (!leftJoystick.getTrigger()) {
+            lastXValue = leftJoystick.getX();
+        }
+        return lastXValue;
+    }
+
     public void initialize() {
 
         // Gamepad 1

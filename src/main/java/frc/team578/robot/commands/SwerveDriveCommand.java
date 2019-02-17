@@ -26,7 +26,7 @@ public class SwerveDriveCommand extends Command {
 //        double fwd = Robot.oi.getGamepadRawAxis(OI.LEFT_Y_AXIS);
 
 //        double str = Robot.oi.getGP1().getPadLeftX();
-        double str = Robot.oi.leftJoystick.getX();
+        double str = Robot.oi.getStrafe();
 //        double str = Robot.oi.getGamepadRawAxis(OI.LEFT_X_AXIS);
 
 //        double rot = Robot.oi.getGP1().getPadRightX();
