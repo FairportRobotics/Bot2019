@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team578.robot.RobotMap;
 import frc.team578.robot.subsystems.interfaces.Initializable;
@@ -13,7 +14,8 @@ import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
 public class CargoIntakeSubsystem extends Subsystem implements Initializable, UpdateDashboard {
 
     private WPI_TalonSRX intakeTalon;
-    private DoubleSolenoid intakeSolenoid;
+    private Solenoid intakeSolenoid;
+    private double outake_power = 1;
     private double intake_power = .75;
 
 //     its = Intake Top Sensor
@@ -33,7 +35,7 @@ public class CargoIntakeSubsystem extends Subsystem implements Initializable, Up
         intakeTalon = new WPI_TalonSRX(RobotMap.INTAKE_TALON);
         intakeTalon.setNeutralMode(NeutralMode.Brake);
 
-//        intakeSolenoid = new DoubleSolenoid(RobotMap.PCM, RobotMap.PCM_INTAKE_OPEN, RobotMap.PCM_INTAKE_CLOSE);
+        intakeSolenoid = new Solenoid(RobotMap.PCM, RobotMap.PCM_INTAKE);
     }
 
 
@@ -42,7 +44,7 @@ public class CargoIntakeSubsystem extends Subsystem implements Initializable, Up
     }
 
     public void spinIntakeOutwards() {
-        intakeTalon.set(ControlMode.PercentOutput, -intake_power);
+        intakeTalon.set(ControlMode.PercentOutput, -outake_power);
     }
 
     public void spinIntakeStop() {
@@ -50,20 +52,20 @@ public class CargoIntakeSubsystem extends Subsystem implements Initializable, Up
     }
 
     public void extendIntake() {
-        intakeSolenoid.set(intakeExtend);
+        intakeSolenoid.set(true);
     }
 
     public void retractIntake() {
-        intakeSolenoid.set(intakeRetract);
+        intakeSolenoid.set(false);
     }
 
-    public boolean isIntakeExtended() {
-        return intakeSolenoid.get() == intakeExtend;
-    }
-
-    public boolean isIntakeRetracted() {
-        return intakeSolenoid.get() == intakeRetract;
-    }
+//    public boolean isIntakeExtended() {
+//        return intakeSolenoid.get() == intakeExtend;
+//    }
+//
+//    public boolean isIntakeRetracted() {
+//        return intakeSolenoid.get() == intakeRetract;
+//    }
 
     @Override
     public void updateDashboard() {

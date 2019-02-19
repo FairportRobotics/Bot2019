@@ -2,6 +2,7 @@ package frc.team578.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team578.robot.RobotMap;
 import frc.team578.robot.enums.ArmPositionEnum;
@@ -14,41 +15,44 @@ public class ArmSubsystem  extends Subsystem implements Initializable, UpdateDas
     private DoubleSolenoid secondSolenoids;
 
     // fsts == first solenoid top sensor
-    DigitalInput fsts = new DigitalInput(1);
-    DigitalInput fsbs = new DigitalInput(2);
-    DigitalInput ssts = new DigitalInput(3);
-    DigitalInput ssbs = new DigitalInput(4);
+    DigitalInput fsts;// = new DigitalInput(1);
+    DigitalInput fsbs;// = new DigitalInput(2);
+    DigitalInput ssts;// = new DigitalInput(3);
+    DigitalInput ssbs;// = new DigitalInput(4);
 
-    private DoubleSolenoid.Value firstRetract = DoubleSolenoid.Value.kForward;
-    private DoubleSolenoid.Value firstExtend = DoubleSolenoid.Value.kReverse;
+    private Solenoid top = new Solenoid(RobotMap.PCM, RobotMap.PCM_ARM_TOP);
+    private Solenoid bottom = new Solenoid(RobotMap.PCM, RobotMap.PCM_ARM_BOTTOM);
 
-    private DoubleSolenoid.Value secondRetract = DoubleSolenoid.Value.kForward;
-    private DoubleSolenoid.Value secondExtend = DoubleSolenoid.Value.kReverse;
+//    private DoubleSolenoid.Value firstRetract = Solenoid.Value.kForward;
+//    private DoubleSolenoid.Value firstExtend = DoubleSolenoid.Value.kReverse;
+//
+//    private DoubleSolenoid.Value secondRetract = DoubleSolenoid.Value.kForward;
+//    private DoubleSolenoid.Value secondExtend = DoubleSolenoid.Value.kReverse;
 
     @Override
     public void initialize() {
-        firstSolenoids = new DoubleSolenoid(RobotMap.PCM, RobotMap.PCM_ARM_FIRST_EXTEND, RobotMap.PCM_ARM_FIRST_RETRACT);
-        secondSolenoids = new DoubleSolenoid(RobotMap.PCM, RobotMap.PCM_ARM_SECOND_EXTEND, RobotMap.PCM_ARM_SECOND_RETRACT);
+//        firstSolenoids = new DoubleSolenoid(RobotMap.PCM, RobotMap.PCM_ARM_FIRST_EXTEND, RobotMap.PCM_ARM_FIRST_RETRACT);
+//        secondSolenoids = new DoubleSolenoid(RobotMap.PCM, RobotMap.PCM_ARM_SECOND_EXTEND, RobotMap.PCM_ARM_SECOND_RETRACT);
     }
 
     public void retract() {
-        firstSolenoids.set(firstRetract);
-        secondSolenoids.set(secondRetract);
+        top.set(false);
+        bottom.set(false);
     }
 
     public void extendMid() {
-        firstSolenoids.set(firstExtend);
-        secondSolenoids.set(secondRetract);
+        top.set(false);
+        bottom.set(true);
     }
 
     public void extendMid2() {
-        firstSolenoids.set(firstRetract);
-        secondSolenoids.set(secondExtend);
+        top.set(true);
+        bottom.set(false);
     }
 
     public void extendFull() {
-        firstSolenoids.set(firstExtend);
-        secondSolenoids.set(secondExtend);
+        top.set(true);
+        bottom.set(true);
     }
 
     public boolean isArmMoving() {
@@ -56,17 +60,17 @@ public class ArmSubsystem  extends Subsystem implements Initializable, UpdateDas
         return false;
     }
 
-    public ArmPositionEnum getArmPosition() {
-        if (firstSolenoids.get() == firstExtend && secondSolenoids.get() == secondExtend) {
-            return ArmPositionEnum.FULL_EXTEND;
-        } else if (firstSolenoids.get() == firstExtend && secondSolenoids.get() == secondRetract) {
-            return ArmPositionEnum.MID_EXTEND;
-        } else if (firstSolenoids.get() == firstRetract && secondSolenoids.get() == secondExtend) {
-            return ArmPositionEnum.MID2_EXTEND;
-        } else {
-            return ArmPositionEnum.RETRACTED;
-        }
-    }
+//    public ArmPositionEnum getArmPosition() {
+//        if (firstSolenoids.get() == firstExtend && secondSolenoids.get() == secondExtend) {
+//            return ArmPositionEnum.FULL_EXTEND;
+//        } else if (firstSolenoids.get() == firstExtend && secondSolenoids.get() == secondRetract) {
+//            return ArmPositionEnum.MID_EXTEND;
+//        } else if (firstSolenoids.get() == firstRetract && secondSolenoids.get() == secondExtend) {
+//            return ArmPositionEnum.MID2_EXTEND;
+//        } else {
+//            return ArmPositionEnum.RETRACTED;
+//        }
+//    }
 
     @Override
     public void updateDashboard() {

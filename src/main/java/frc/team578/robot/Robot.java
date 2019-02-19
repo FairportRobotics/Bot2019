@@ -46,10 +46,10 @@ public class Robot extends TimedRobot {
             climberSubsystem.initialize();
             log.info("Climber Subsystem Initialized");
 
-//            armSubsystem = new ArmSubsystem();
-//            armSubsystem.initialize();
-//            log.info("Arm Subsystem Initialized");
-//
+            armSubsystem = new ArmSubsystem();
+            armSubsystem.initialize();
+            log.info("Arm Subsystem Initialized");
+
             cargoIntakeSubsystem = new CargoIntakeSubsystem();
             cargoIntakeSubsystem.initialize();
             log.info("Cargo Intake Subsystem Initialized");
@@ -97,6 +97,8 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
 
+        Robot.swerveDriveSubsystem.stop();
+
     }
 
     @Override
@@ -108,6 +110,8 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
+
+        Robot.swerveDriveSubsystem.stop();
 
     }
 

@@ -34,7 +34,7 @@ public class IntakeExtendCommand extends Command {
 
     @Override
     protected boolean isFinished() {
-        boolean isFinished = Robot.cargoIntakeSubsystem.isIntakeExtended();
+        boolean isFinished = true; //Robot.cargoIntakeSubsystem.isIntakeExtended();
         log.info("IntakeExtendCommand is Finished : " + isFinished);
         return isFinished;
     }

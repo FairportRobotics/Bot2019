@@ -34,7 +34,7 @@ public class ClimberRetractRearCommand extends Command {
 
     @Override
     protected boolean isFinished() {
-        boolean isFinished = Robot.climberSubsystem.isRearClimberRetracted();
+        boolean isFinished = true; //Robot.climberSubsystem.isRearClimberRetracted();
         log.info("ClimberRetractRearCommand is Finished : " + isFinished);
         return isFinished;
     }

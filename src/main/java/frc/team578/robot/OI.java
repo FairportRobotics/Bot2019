@@ -28,10 +28,10 @@ public class OI implements Initializable {
         // Gamepad 1
 
         // Arm buttons
-//        gp1.buttonA.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.RETRACTED));
-//        gp1.buttonB.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.MID_EXTEND));
-//        gp1.buttonX.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.MID2_EXTEND));
-//        gp1.buttonY.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.FULL_EXTEND));
+        gp1.buttonA.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.RETRACTED));
+        gp1.buttonB.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.MID_EXTEND));
+        gp1.buttonX.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.MID2_EXTEND));
+        gp1.buttonY.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.FULL_EXTEND));
 //        // Intake buttons
         gp1.lb.whileHeld(new IntakeSpinInwardCommand());
         gp1.rb.whileHeld(new IntakeSpinOutwardCommand());

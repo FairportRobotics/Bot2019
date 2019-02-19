@@ -34,7 +34,7 @@ public class ClimberRetractFrontCommand extends Command {
 
     @Override
     protected boolean isFinished() {
-        boolean isFinished = Robot.climberSubsystem.isFrontClimberRetracted();
+        boolean isFinished = true; //Robot.climberSubsystem.isFrontClimberRetracted();
         log.info("ClimberRetractFrontCommand is Finished : " + isFinished);
         return isFinished;
     }

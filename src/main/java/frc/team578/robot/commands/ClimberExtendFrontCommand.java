@@ -34,7 +34,7 @@ public class ClimberExtendFrontCommand extends Command {
 
     @Override
     protected boolean isFinished() {
-        boolean isFinished = Robot.climberSubsystem.isFrontClimberExtended();
+        boolean isFinished = true; // Robot.climberSubsystem.isFrontClimberExtended();
         log.info("ClimberExtendFrontCommand is Finished : " + isFinished);
         return isFinished;
     }

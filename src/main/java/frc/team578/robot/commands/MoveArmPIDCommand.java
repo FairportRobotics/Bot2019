@@ -45,7 +45,7 @@ public class MoveArmPIDCommand extends Command {
     @Override
     protected boolean isFinished() {
 
-        Robot.armSubsystem.getArmPosition();
+//        Robot.armSubsystem.getArmPosition();
 
         boolean isFinished = true;
         log.info("MoveArmPIDCommand is Finished : " + isFinished);

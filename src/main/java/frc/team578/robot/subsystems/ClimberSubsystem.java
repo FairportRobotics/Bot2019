@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team578.robot.RobotMap;
@@ -12,8 +13,8 @@ import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
 
 public class ClimberSubsystem extends Subsystem implements Initializable, UpdateDashboard {
 
-    private DoubleSolenoid frontSolenoids;
-    private DoubleSolenoid rearSolenoids;
+    private Solenoid frontSolenoids;
+    private Solenoid rearSolenoids;
 
     // flts = front left top sensor, flbs = front left bottom sensor
     DigitalInput flts;// = new DigitalInput(0);
@@ -29,11 +30,11 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
     private WPI_TalonSRX climbWheelsTalon;
     private double wheel_power = .5;
 
-    private DoubleSolenoid.Value frontRetract = DoubleSolenoid.Value.kForward;
-    private DoubleSolenoid.Value frontExtend = DoubleSolenoid.Value.kReverse;
-
-    private DoubleSolenoid.Value backRetract = DoubleSolenoid.Value.kForward;
-    private DoubleSolenoid.Value backExtend = DoubleSolenoid.Value.kReverse;
+//    private DoubleSolenoid.Value frontRetract = DoubleSolenoid.Value.kForward;
+//    private DoubleSolenoid.Value frontExtend = DoubleSolenoid.Value.kReverse;
+//
+//    private DoubleSolenoid.Value backRetract = DoubleSolenoid.Value.kForward;
+//    private DoubleSolenoid.Value backExtend = DoubleSolenoid.Value.kReverse;
 
 
     @Override
@@ -42,42 +43,42 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
 
     @Override
     public void initialize() {
-//        frontSolenoids = new DoubleSolenoid(RobotMap.PCM, RobotMap.PCM_FRONT_CLIMB_UP, RobotMap.PCM_FRONT_CLIMB_DOWN);
-//        rearSolenoids = new DoubleSolenoid(RobotMap.PCM, RobotMap.PCM_REAR_CLIMB_UP, RobotMap.PCM_REAR_CLIMB_DOWN);
+        frontSolenoids = new Solenoid(RobotMap.PCM, RobotMap.PCM_FRONT_CLIMB);
+        rearSolenoids = new Solenoid(RobotMap.PCM, RobotMap.PCM_REAR_CLIMB);
         climbWheelsTalon = new WPI_TalonSRX(RobotMap.CLIMB_WHEELS_TALON_ID);
     }
 
     public void retractFrontClimber() {
-        frontSolenoids.set(frontRetract);
+        frontSolenoids.set(false);
     }
 
     public void extendFrontClimber() {
-        frontSolenoids.set(frontExtend);
+        frontSolenoids.set(true);
     }
 
     public void retractRearClimber() {
-        rearSolenoids.set(backRetract);
+        rearSolenoids.set(false);
     }
 
     public void extendRearClimber() {
-        rearSolenoids.set(backExtend);
+        rearSolenoids.set(true);
     }
 
-    public boolean isFrontClimberRetracted() {
-        return frontSolenoids.get() == frontRetract && flts.get() && frts.get();
-    }
+//    public boolean isFrontClimberRetracted() {
+//        return frontSolenoids.get() == frontRetract && flts.get() && frts.get();
+//    }
 
-    public boolean isFrontClimberExtended() {
-        return frontSolenoids.get() == frontExtend && flbs.get() && frbs.get();
-    }
+//    public boolean isFrontClimberExtended() {
+//        return frontSolenoids.get() == frontExtend && flbs.get() && frbs.get();
+//    }
+//
+//    public boolean isRearClimberRetracted() {
+//        return rearSolenoids.get() == backRetract && blts.get() && brts.get();
+//    }
 
-    public boolean isRearClimberRetracted() {
-        return rearSolenoids.get() == backRetract && blts.get() && brts.get();
-    }
-
-    public boolean isRearClimberExtended() {
-        return rearSolenoids.get() == backExtend && blbs.get() && brbs.get();
-    }
+//    public boolean isRearClimberExtended() {
+//        return rearSolenoids.get() == backExtend && blbs.get() && brbs.get();
+//    }
 
     public void climbWheelsForward() {
         climbWheelsTalon.set(ControlMode.PercentOutput, -wheel_power);

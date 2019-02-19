@@ -34,7 +34,7 @@ public class IntakeRetractCommand extends Command {
 
     @Override
     protected boolean isFinished() {
-        boolean isFinished = Robot.cargoIntakeSubsystem.isIntakeRetracted();
+        boolean isFinished = true; // Robot.cargoIntakeSubsystem.isIntakeRetracted();
         log.info("IntakeRetractCommand is Finished : " + isFinished);
         return isFinished;
     }

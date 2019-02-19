@@ -30,8 +30,12 @@ public class RobotMap {
     public static final int CLIMB_WHEELS_TALON_ID = 23;
 
     // Intake
-    public static final int PCM_INTAKE_OPEN = 0;
-    public static final int PCM_INTAKE_CLOSE = 0;
+//    public static final int PCM_INTAKE_OPEN = 0;
+    public static final int PCM_INTAKE = 3;
+    public static final int PCM_ARM_TOP = 5;
+    public static final int PCM_ARM_BOTTOM = 4;
+    public static final int PCM_FRONT_CLIMB = 0;
+    public static final int PCM_REAR_CLIMB = 1;
     public static int INTAKE_TALON = 20;
 
     // Elevator
@@ -39,10 +43,10 @@ public class RobotMap {
     public static final int ELEVATOR_STRUCTURE_TALON = 21; // TODO: find talon value
 
     // ARM
-    public static final int PCM_ARM_FIRST_EXTEND = -1;
-    public static final int PCM_ARM_FIRST_RETRACT = -1;
-    public static final int PCM_ARM_SECOND_EXTEND = -1;
-    public static final int PCM_ARM_SECOND_RETRACT = -1;
+//    public static final int PCM_ARM_FIRST_EXTEND = -1;
+//    public static final int PCM_ARM_FIRST_RETRACT = -1;
+//    public static final int PCM_ARM_SECOND_EXTEND = -1;
+//    public static final int PCM_ARM_SECOND_RETRACT = -1;
 
 
 
