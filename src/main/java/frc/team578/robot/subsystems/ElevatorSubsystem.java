@@ -37,10 +37,10 @@ public class ElevatorSubsystem extends Subsystem implements Initializable, Updat
         armTalon.configNominalOutputReverse(0, 0);
         armTalon.configPeakOutputForward(1, 0);
         armTalon.configPeakOutputReverse(-1, 0);
-        armTalon.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
-                LimitSwitchNormal.NormallyOpen, 0);
-        armTalon.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
-                LimitSwitchNormal.NormallyOpen, 0);
+            armTalon.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
+                    LimitSwitchNormal.NormallyClosed, 0);
+            armTalon.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
+                    LimitSwitchNormal.NormallyOpen, 0);
 
         structureTalon = new WPI_TalonSRX(RobotMap.ELEVATOR_STRUCTURE_TALON);
         structureTalon.setNeutralMode(NeutralMode.Brake);
@@ -54,7 +54,7 @@ public class ElevatorSubsystem extends Subsystem implements Initializable, Updat
         structureTalon.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
                 LimitSwitchNormal.NormallyOpen, 0);
         structureTalon.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
-                LimitSwitchNormal.NormallyOpen, 0);
+                LimitSwitchNormal.NormallyClosed, 0);
 
 
         // TODO: WE NEED TO ADD PID!!!!!!!!!
