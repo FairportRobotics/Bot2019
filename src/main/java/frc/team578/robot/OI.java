@@ -33,8 +33,8 @@ public class OI implements Initializable {
 //        gp1.buttonX.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.MID2_EXTEND));
 //        gp1.buttonY.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.FULL_EXTEND));
 //        // Intake buttons
-//        gp1.lb.whileHeld(new IntakeSpinInwardCommand());
-//        gp1.rb.whileHeld(new IntakeSpinOutwardCommand());
+        gp1.lb.whileHeld(new IntakeSpinInwardCommand());
+        gp1.rb.whileHeld(new IntakeSpinOutwardCommand());
 //        gp1.lt.whenPressed(new IntakeExtendCommand());
 //        gp1.rt.whenPressed(new IntakeRetractCommand());
 //

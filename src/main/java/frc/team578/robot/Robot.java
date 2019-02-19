@@ -50,9 +50,9 @@ public class Robot extends TimedRobot {
 //            armSubsystem.initialize();
 //            log.info("Arm Subsystem Initialized");
 //
-//            cargoIntakeSubsystem = new CargoIntakeSubsystem();
-//            cargoIntakeSubsystem.initialize();
-//            log.info("Cargo Intake Subsystem Initialized");
+            cargoIntakeSubsystem = new CargoIntakeSubsystem();
+            cargoIntakeSubsystem.initialize();
+            log.info("Cargo Intake Subsystem Initialized");
 
 
             elevatorSubsystem = new ElevatorSubsystem();

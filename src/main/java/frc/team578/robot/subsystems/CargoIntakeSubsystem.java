@@ -14,11 +14,11 @@ public class CargoIntakeSubsystem extends Subsystem implements Initializable, Up
 
     private WPI_TalonSRX intakeTalon;
     private DoubleSolenoid intakeSolenoid;
-    private double intake_power = .5;
+    private double intake_power = .75;
 
-    // its = Intake Top Sensor
-    DigitalInput its = new DigitalInput(1);
-    DigitalInput ibs = new DigitalInput(1);
+//     its = Intake Top Sensor
+//    DigitalInput its = new DigitalInput(1);
+//    DigitalInput ibs = new DigitalInput(1);
 
     private DoubleSolenoid.Value intakeRetract = DoubleSolenoid.Value.kForward;
     private DoubleSolenoid.Value intakeExtend = DoubleSolenoid.Value.kReverse;
@@ -33,7 +33,7 @@ public class CargoIntakeSubsystem extends Subsystem implements Initializable, Up
         intakeTalon = new WPI_TalonSRX(RobotMap.INTAKE_TALON);
         intakeTalon.setNeutralMode(NeutralMode.Brake);
 
-        intakeSolenoid = new DoubleSolenoid(RobotMap.PCM, RobotMap.PCM_INTAKE_OPEN, RobotMap.PCM_INTAKE_CLOSE);
+//        intakeSolenoid = new DoubleSolenoid(RobotMap.PCM, RobotMap.PCM_INTAKE_OPEN, RobotMap.PCM_INTAKE_CLOSE);
     }
 
 
