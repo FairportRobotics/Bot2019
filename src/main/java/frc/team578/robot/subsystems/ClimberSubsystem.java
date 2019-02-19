@@ -16,14 +16,14 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
     private DoubleSolenoid rearSolenoids;
 
     // flts = front left top sensor, flbs = front left bottom sensor
-    DigitalInput flts = new DigitalInput(0);
-    DigitalInput flbs = new DigitalInput(0);
-    DigitalInput frts = new DigitalInput(0);
-    DigitalInput frbs = new DigitalInput(0);
-    DigitalInput blts = new DigitalInput(0);
-    DigitalInput blbs = new DigitalInput(0);
-    DigitalInput brts = new DigitalInput(0);
-    DigitalInput brbs = new DigitalInput(0);
+    DigitalInput flts;// = new DigitalInput(0);
+    DigitalInput flbs;// = new DigitalInput(0);
+    DigitalInput frts;// = new DigitalInput(0);
+    DigitalInput frbs;// = new DigitalInput(0);
+    DigitalInput blts;// = new DigitalInput(0);
+    DigitalInput blbs;// = new DigitalInput(0);
+    DigitalInput brts;// = new DigitalInput(0);
+    DigitalInput brbs;// = new DigitalInput(0);
 
 
     private WPI_TalonSRX climbWheelsTalon;
@@ -44,7 +44,7 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
     public void initialize() {
 //        frontSolenoids = new DoubleSolenoid(RobotMap.PCM, RobotMap.PCM_FRONT_CLIMB_UP, RobotMap.PCM_FRONT_CLIMB_DOWN);
 //        rearSolenoids = new DoubleSolenoid(RobotMap.PCM, RobotMap.PCM_REAR_CLIMB_UP, RobotMap.PCM_REAR_CLIMB_DOWN);
-//        climbWheelsTalon = new WPI_TalonSRX(RobotMap.CLIMB_WHEELS_TALON_ID);
+        climbWheelsTalon = new WPI_TalonSRX(RobotMap.CLIMB_WHEELS_TALON_ID);
     }
 
     public void retractFrontClimber() {
@@ -80,11 +80,11 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
     }
 
     public void climbWheelsForward() {
-        climbWheelsTalon.set(ControlMode.PercentOutput, wheel_power);
+        climbWheelsTalon.set(ControlMode.PercentOutput, -wheel_power);
     }
 
     public void climbWheelsBackwards() {
-        climbWheelsTalon.set(ControlMode.PercentOutput, -wheel_power);
+        climbWheelsTalon.set(ControlMode.PercentOutput, wheel_power);
     }
 
     public void climbWheelsStop() {

@@ -46,8 +46,8 @@ public class OI implements Initializable {
 //        gp2.buttonX.whenPressed(new ClimberRetractFrontCommand());
 //        gp2.buttonY.whenPressed(new ClimberRetractRearCommand());
 
-//        gp2.start.whileHeld(new ClimberDriveForwardsCommand());
-//        gp2.back.whileHeld(new ClimberDriveReverseCommand());
+        gp1.start.whileHeld(new ClimberDriveForwardsCommand());
+        gp1.back.whileHeld(new ClimberDriveReverseCommand());
 
     }
 

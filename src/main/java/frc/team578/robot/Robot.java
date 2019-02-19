@@ -42,9 +42,9 @@ public class Robot extends TimedRobot {
             swerveDriveSubsystem.initialize();
             log.info("Swerve Drive Subsystem Initialized");
 
-//            climberSubsystem = new ClimberSubsystem();
-//            climberSubsystem.initialize();
-//            log.info("Climber Subsystem Initialized");
+            climberSubsystem = new ClimberSubsystem();
+            climberSubsystem.initialize();
+            log.info("Climber Subsystem Initialized");
 
 //            armSubsystem = new ArmSubsystem();
 //            armSubsystem.initialize();
