@@ -1,8 +1,15 @@
 package frc.team578.robot.enums;
 
 public enum ElevatorPositionEnum {
-    LEVEL_ONE,
-    LEVEL_TWO,
-    LEVEL_THREE,
+    LEVEL_ONE_HATCH,
+    LEVEL_TWO_HATCH,
+    LEVEL_THREE_HATCH,
+    CARG0_BAY_CARGO,
+//    CARGO_BAY_HATCH,
+    LEVEL_ONE_CARGO,
+    LEVEL_TWO_CARGO,
+    LEVEL_THREE_CARGO,
+    PLAYER_STATION_CARGO,
+//    PLAYER_STATION_HATCH,
     UNKNOWN
 }
