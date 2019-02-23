@@ -9,9 +9,9 @@ public class RobotMap {
     public static final int BACK_RIGHT_DRIVE_TALON_ID = 4;
 
     // steer controllers IDs
-    public static final int FRONT_LEFT_ROTATE_TALON_ID = 11;
+    public static final int FRONT_LEFT_ROTATE_TALON_ID = 15;
     public static final int FRONT_RIGHT_ROTATE_TALON_ID = 12;
-    public static final int BACK_LEFT_ROTATE_TALON_ID = 13;
+    public static final int BACK_LEFT_ROTATE_TALON_ID = 6;
     public static final int BACK_RIGHT_ROTATE_TALON_ID = 14;
 
     // swerve controller joystick USB IDs
