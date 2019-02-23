@@ -25,6 +25,8 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
     DigitalInput blbs;// = new DigitalInput(0);
     DigitalInput brts;// = new DigitalInput(0);
     DigitalInput brbs;// = new DigitalInput(0);
+    DigitalInput fps = new DigitalInput(8);
+    DigitalInput bps = new DigitalInput(9);
 
 
     private WPI_TalonSRX climbWheelsTalon;
@@ -92,10 +94,13 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
         climbWheelsTalon.set(ControlMode.PercentOutput, 0);
     }
 
+
     @Override
     public void updateDashboard() {
         SmartDashboard.putData("climb.fs",frontSolenoids);
         SmartDashboard.putData("climb.rs",rearSolenoids);
         SmartDashboard.putData("climb.cwtal",climbWheelsTalon);
+        SmartDashboard.putData("fps",fps);
+        SmartDashboard.putData("bps",bps);
     }
 }

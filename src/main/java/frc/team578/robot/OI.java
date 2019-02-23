@@ -28,23 +28,24 @@ public class OI implements Initializable {
         // Gamepad 1
 
         // Arm buttons
-        gp1.buttonA.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.RETRACTED));
-        gp1.buttonB.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.MID_EXTEND));
-        gp1.buttonX.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.MID2_EXTEND));
-        gp1.buttonY.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.FULL_EXTEND));
+
+        gp1.lb.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.RETRACTED));
+        gp1.rb.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.MID_EXTEND));
+//        gp1.buttonX.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.MID2_EXTEND));
+//        gp1.buttonY.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.FULL_EXTEND));
 //        // Intake buttons
-        gp1.lb.whileHeld(new IntakeSpinInwardCommand());
-        gp1.rb.whileHeld(new IntakeSpinOutwardCommand());
-//        gp1.lt.whenPressed(new IntakeExtendCommand());
-//        gp1.rt.whenPressed(new IntakeRetractCommand());
+//        gp1.lb.whileHeld(new IntakeSpinInwardCommand());
+//        gp1.rb.whileHeld(new IntakeSpinOutwardCommand());
+        gp1.lt.whenPressed(new IntakeExtendCommand());
+        gp1.rt.whenPressed(new IntakeRetractCommand());
 //
 //        // Gamepad 2
 //
 //        // Climber buttons
-//        gp2.buttonA.whenPressed(new ClimberExtendFrontCommand());
-//        gp2.buttonB.whenPressed(new ClimberExtendRearCommand());
-//        gp2.buttonX.whenPressed(new ClimberRetractFrontCommand());
-//        gp2.buttonY.whenPressed(new ClimberRetractRearCommand());
+        gp1.buttonX.whenPressed(new ClimberExtendAllCommand());
+        gp1.buttonY.whenPressed(new ClimberRetractAllCommand());
+        gp1.buttonA.whenPressed(new ClimberRetractFrontCommand());
+        gp1.buttonB.whenPressed(new ClimberRetractRearCommand());
 
         gp1.start.whileHeld(new ClimberDriveForwardsCommand());
         gp1.back.whileHeld(new ClimberDriveReverseCommand());

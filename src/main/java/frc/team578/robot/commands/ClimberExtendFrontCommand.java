@@ -22,7 +22,6 @@ public class ClimberExtendFrontCommand extends Command {
     protected void execute() {
         log.info("Exec ClimberExtendFrontCommand");
         Robot.climberSubsystem.extendFrontClimber();
-        Robot.climberSubsystem.extendRearClimber();
     }
 
     @Override

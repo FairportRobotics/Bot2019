@@ -40,7 +40,7 @@ public class ElevatorSubsystem extends Subsystem implements Initializable, Updat
             armTalon.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
                     LimitSwitchNormal.NormallyClosed, 0);
             armTalon.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
-                    LimitSwitchNormal.NormallyOpen, 0);
+                    LimitSwitchNormal.NormallyClosed, 0);
 
         structureTalon = new WPI_TalonSRX(RobotMap.ELEVATOR_STRUCTURE_TALON);
         structureTalon.setNeutralMode(NeutralMode.Brake);
@@ -52,7 +52,7 @@ public class ElevatorSubsystem extends Subsystem implements Initializable, Updat
         structureTalon.configPeakOutputForward(1, 0);
         structureTalon.configPeakOutputReverse(-1, 0);
         structureTalon.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
-                LimitSwitchNormal.NormallyOpen, 0);
+                LimitSwitchNormal.NormallyClosed, 0);
         structureTalon.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
                 LimitSwitchNormal.NormallyClosed, 0);
 

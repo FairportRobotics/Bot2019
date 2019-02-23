@@ -137,5 +137,6 @@ public class Robot extends TimedRobot {
     public void updateAllDashboards() {
         Robot.swerveDriveSubsystem.updateDashboard();
         Robot.gyroSubsystem.updateDashboard();
+        Robot.climberSubsystem.updateDashboard();
     }
 }
