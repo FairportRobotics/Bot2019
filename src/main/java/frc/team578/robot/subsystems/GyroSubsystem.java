@@ -42,6 +42,11 @@ public class GyroSubsystem extends Subsystem implements Initializable, UpdateDas
         return angle;
     }
 
+    public double getTilt()
+    {
+        return navx.getPitch();
+    }
+
     public void setToZero() {
         navx.zeroYaw();
     }
@@ -66,5 +71,6 @@ public class GyroSubsystem extends Subsystem implements Initializable, UpdateDas
     @Override
     public void updateDashboard() {
         SmartDashboard.putNumber("gyro.heading", getHeading());
+        SmartDashboard.putNumber("gyro.pitch", getTilt());
     }
 }

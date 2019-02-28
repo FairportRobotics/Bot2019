@@ -15,6 +15,7 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
 
     private Solenoid frontSolenoids;
     private Solenoid rearSolenoids;
+    private Solenoid backCutSolenoid;
 
     // flts = front left top sensor, flbs = front left bottom sensor
     DigitalInput flts;// = new DigitalInput(0);
@@ -47,6 +48,7 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
     public void initialize() {
         frontSolenoids = new Solenoid(RobotMap.PCM, RobotMap.PCM_FRONT_CLIMB);
         rearSolenoids = new Solenoid(RobotMap.PCM, RobotMap.PCM_REAR_CLIMB);
+        backCutSolenoid = new Solenoid(RobotMap.PCM, RobotMap.PCM_REAR_CUT);
         climbWheelsTalon = new WPI_TalonSRX(RobotMap.CLIMB_WHEELS_TALON_ID);
     }
 
@@ -64,6 +66,12 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
 
     public void extendRearClimber() {
         rearSolenoids.set(true);
+        backCutSolenoid.set(false);
+    }
+
+    public void cutRear()
+    {
+        backCutSolenoid.set(true);
     }
 
 //    public boolean isFrontClimberRetracted() {

@@ -36,6 +36,7 @@ public class RobotMap {
     public static final int PCM_ARM_BOTTOM = 4;
     public static final int PCM_FRONT_CLIMB = 0;
     public static final int PCM_REAR_CLIMB = 1;
+    public static final int PCM_REAR_CUT = 2;
     public static int INTAKE_TALON = 20;
 
     // Elevator

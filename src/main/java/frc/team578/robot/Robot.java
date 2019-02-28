@@ -38,31 +38,31 @@ public class Robot extends TimedRobot {
             gyroSubsystem.initialize();
             log.info("Gyro Subsystem Initialized");
 
-            swerveDriveSubsystem = new SwerveDriveSubsystem();
-            swerveDriveSubsystem.initialize();
-            log.info("Swerve Drive Subsystem Initialized");
+//            swerveDriveSubsystem = new SwerveDriveSubsystem();
+//            swerveDriveSubsystem.initialize();
+//            log.info("Swerve Drive Subsystem Initialized");
 
             climberSubsystem = new ClimberSubsystem();
             climberSubsystem.initialize();
             log.info("Climber Subsystem Initialized");
 
-            armSubsystem = new ArmSubsystem();
-            armSubsystem.initialize();
-            log.info("Arm Subsystem Initialized");
-
-            cargoIntakeSubsystem = new CargoIntakeSubsystem();
-            cargoIntakeSubsystem.initialize();
-            log.info("Cargo Intake Subsystem Initialized");
-
-
-            elevatorSubsystem = new ElevatorSubsystem();
-            elevatorSubsystem.initialize();
-            log.info("Elevator Subsystem Initialized");
-
-            camera = CameraServer.getInstance().startAutomaticCapture();
-            // cam.setResolution(100, 75);
-            // cam.setFPS(-1);
-            log.info("Initialized Camera");
+//            armSubsystem = new ArmSubsystem();
+//            armSubsystem.initialize();
+//            log.info("Arm Subsystem Initialized");
+//
+//            cargoIntakeSubsystem = new CargoIntakeSubsystem();
+//            cargoIntakeSubsystem.initialize();
+//            log.info("Cargo Intake Subsystem Initialized");
+//
+//
+//            elevatorSubsystem = new ElevatorSubsystem();
+//            elevatorSubsystem.initialize();
+//            log.info("Elevator Subsystem Initialized");
+//
+//            camera = CameraServer.getInstance().startAutomaticCapture();
+//            // cam.setResolution(100, 75);
+//            // cam.setFPS(-1);
+//            log.info("Initialized Camera");
 
             oi = new OI();
             oi.initialize();
@@ -97,7 +97,7 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
 
-        Robot.swerveDriveSubsystem.stop();
+       // Robot.swerveDriveSubsystem.stop();
 
     }
 
@@ -111,7 +111,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopInit() {
 
-        Robot.swerveDriveSubsystem.stop();
+       // Robot.swerveDriveSubsystem.stop();
 
     }
 
@@ -135,7 +135,7 @@ public class Robot extends TimedRobot {
 
 
     public void updateAllDashboards() {
-        Robot.swerveDriveSubsystem.updateDashboard();
+        //Robot.swerveDriveSubsystem.updateDashboard();
         Robot.gyroSubsystem.updateDashboard();
         Robot.climberSubsystem.updateDashboard();
     }
