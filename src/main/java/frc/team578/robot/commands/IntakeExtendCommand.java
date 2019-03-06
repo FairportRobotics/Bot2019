@@ -20,7 +20,7 @@ public class IntakeExtendCommand extends Command {
 
     @Override
     protected void execute() {
-        log.info("Exec MoveArmPIDCommand");
+        log.info("Exec MoveArmCommand");
         Robot.cargoIntakeSubsystem.extendIntake();
     }
 

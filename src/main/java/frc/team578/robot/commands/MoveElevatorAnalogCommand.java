@@ -2,7 +2,6 @@ package frc.team578.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team578.robot.Robot;
-import frc.team578.robot.enums.ElevatorPositionEnum;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,8 +24,8 @@ public class MoveElevatorAnalogCommand extends Command {
 
     @Override
     protected void execute() {
-        Robot.elevatorSubsystem.moveArmMotor(Robot.oi.gp1.getPadLeftY() * SCALE_FACTOR);
-        Robot.elevatorSubsystem.moveStructureMotor(Robot.oi.gp1.getPadRightY() * SCALE_FACTOR);
+        Robot.elevatorSubsystem.moveArmMotor(Robot.oi.getArmUp() * SCALE_FACTOR);
+        Robot.elevatorSubsystem.moveStructureMotor(Robot.oi.getStructureUp() * SCALE_FACTOR);
     }
 
     @Override

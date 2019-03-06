@@ -12,43 +12,26 @@ public class OI implements Initializable {
     public Joystick leftJoystick = new Joystick(1);
     public Joystick rightJoystick = new Joystick(2);
     public GP gp1 = new GP(RobotMap.CONTROL_GAMEPAD_ID); // Elevator and arm functions
-    public GP gp2 = new GP(RobotMap.ELEVATOR_GAMEPAD_ID); // Climber functions
+    public GP gp2 = new GP(RobotMap.CLIMB_GAMEPAD_ID); // Climber functions
 
-
-    double lastXValue;
-    public double getStrafe() {
-        if (!leftJoystick.getTrigger()) {
-            lastXValue = leftJoystick.getX();
-        }
-        return lastXValue;
-    }
 
     public void initialize() {
 
-        // Gamepad 1
-
-        // Arm buttons
-
-        gp1.lb.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.RETRACTED));
-        gp1.rb.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.MID_EXTEND));
-//        gp1.buttonX.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.MID2_EXTEND));
-//        gp1.buttonY.whenPressed(new MoveArmPIDCommand(ArmPositionEnum.FULL_EXTEND));
-//        // Intake buttons
-//        gp1.lb.whileHeld(new IntakeSpinInwardCommand());
-//        gp1.rb.whileHeld(new IntakeSpinOutwardCommand());
+        gp1.buttonA.whenPressed(new MoveArmCommand(ArmPositionEnum.RETRACTED));
+        gp1.buttonX.whenPressed(new MoveArmCommand(ArmPositionEnum.MID_EXTEND));
+        gp1.buttonY.whenPressed(new MoveArmCommand(ArmPositionEnum.FULL_EXTEND));
+        gp1.lb.whileHeld(new IntakeSpinInwardCommand());
+        gp1.rb.whileHeld(new IntakeSpinOutwardCommand());
         gp1.lt.whenPressed(new IntakeExtendCommand());
         gp1.rt.whenPressed(new IntakeRetractCommand());
-//
-//        // Gamepad 2
-//
-//        // Climber buttons
-        gp1.buttonX.whenPressed(new ClimberExtendAllCommand());
-        gp1.buttonY.whenPressed(new ClimberRetractAllCommand());
-        gp1.buttonA.whenPressed(new ClimberRetractFrontCommand());
-        gp1.buttonB.whenPressed(new ClimberRetractRearCommand());
 
-        gp1.start.whileHeld(new ClimberDriveForwardsCommand());
-        gp1.back.whileHeld(new ClimberDriveReverseCommand());
+        gp2.buttonA.whenPressed(new ClimberExtendAllCommand());
+        gp2.buttonB.whenPressed(new ClimberRetractFrontCommand());
+        gp2.buttonY.whenPressed(new ClimberRetractRearCommand());
+        gp2.buttonX.whenPressed(new ClimberRetractAllCommand());
+
+        gp2.start.whileHeld(new ClimberDriveForwardsCommand());
+        gp2.back.whileHeld(new ClimberDriveReverseCommand());
 
     }
 
@@ -103,5 +86,45 @@ public class OI implements Initializable {
         public double getPadRightY() {
             return gamepad.getRightY();
         }
+    }
+
+    public double getArmUp() {
+
+        if (gp1 != null) {
+            if (deadband(gp1.getPadLeftY()) != 0) {
+                return gp1.getPadLeftY();
+            }
+        }
+
+        if (gp2 != null) {
+            if (deadband(gp2.getPadLeftY()) != 0) {
+                return gp2.getPadLeftY();
+            }
+        }
+
+        return 0d;
+    }
+
+    public double getStructureUp() {
+        if (gp1 != null) {
+            if (deadband(gp1.getPadRightY()) != 0) {
+                return gp1.getPadRightY();
+            }
+        }
+
+        if (gp2 != null) {
+            if (deadband(gp2.getPadRightY()) != 0) {
+                return gp2.getPadRightY();
+            }
+        }
+
+        return 0d;
+    }
+
+    // This affects drive and arm movement deadbands
+    final double DEADBAND = 0.2;
+    public double deadband(double value) {
+        if (Math.abs(value) < DEADBAND) return 0.0;
+        return value;
     }
 }

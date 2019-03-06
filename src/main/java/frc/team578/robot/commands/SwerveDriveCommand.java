@@ -33,7 +33,7 @@ public class SwerveDriveCommand extends Command {
 
         double angleDeg = Robot.gyroSubsystem.getHeading();
 
-        Robot.swerveDriveSubsystem.move(deadband(fwd), deadband(str), deadband(rot), angleDeg);
+        Robot.swerveDriveSubsystem.move(Robot.oi.deadband(fwd), Robot.oi.deadband(str), Robot.oi.deadband(rot), angleDeg);
 
         SmartDashboard.putNumber("swrv.fwd", fwd);
         SmartDashboard.putNumber("swrv.str", str);
@@ -56,13 +56,6 @@ public class SwerveDriveCommand extends Command {
     protected void interrupted() {
         log.info("SwerveDriveCommand Interrupted");
 
-    }
-
-    final double DEADBAND = 0.2;
-
-    private double deadband(double value) {
-        if (Math.abs(value) < DEADBAND) return 0.0;
-        return value;
     }
 
 }
