@@ -16,7 +16,7 @@ public class CargoIntakeSubsystem extends Subsystem implements Initializable, Up
     private WPI_TalonSRX intakeTalon;
     private Solenoid intakeSolenoid;
     private double outake_power = 1;
-    private double intake_power = .75;
+    private double intake_power = .33;
 
 //     its = Intake Top Sensor
 //    DigitalInput its = new DigitalInput(1);
