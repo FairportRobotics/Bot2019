@@ -21,7 +21,7 @@ public class ClimbEvenCommand extends Command {
         protected void execute() {
             log.info("Exec ClimbEvenCommand");
             Robot.climberSubsystem.extendFrontClimber();
-            if (Robot.gyroSubsystem.getTilt() < -10) {
+            if (Robot.gyroSubsystem.getTilt() < 3) {
                 Robot.climberSubsystem.extendRearClimber();
             } else {
                 Robot.climberSubsystem.cutRear();
