@@ -14,6 +14,10 @@ public class OI implements Initializable {
     public GP gp1 = new GP(RobotMap.CONTROL_GAMEPAD_ID); // Elevator and arm functions
     public GP gp2 = new GP(RobotMap.CLIMB_GAMEPAD_ID); // Climber functions
 
+    int JOYSTICK_TRIGGER_BUTTON_NUMBER = 1;
+    JoystickButton leftTrigger = new JoystickButton(leftJoystick, JOYSTICK_TRIGGER_BUTTON_NUMBER);
+    JoystickButton rightTrigger = new JoystickButton(rightJoystick, JOYSTICK_TRIGGER_BUTTON_NUMBER);
+
 
     public void initialize() {
 
@@ -31,15 +35,18 @@ public class OI implements Initializable {
         gp2.buttonX.whenPressed(new ClimberRetractAllCommand());
 
         gp2.start.whileHeld(new ClimberDriveForwardsCommand());
-     //   gp2.back.whileHeld(new ClimberDriveReverseCommand());
+        gp2.back.whileHeld(new ClimberDriveReverseCommand());
 
 //        leftJoystick.getTriggerPressed(new CentricModeRobotCommand());
 //        gp2.back.whileHeld(new CentricModeFieldCommand());
 
-        if(leftJoystick.getTriggerPressed())
-            new CentricModeRobotCommand();
-        if(leftJoystick.getTriggerReleased())
-            new CentricModeFieldCommand();
+//        if(leftJoystick.getTriggerPressed())
+//            new CentricModeRobotCommand();
+//        if(leftJoystick.getTriggerReleased())
+//            new CentricModeFieldCommand();
+
+        leftTrigger.whenPressed(new CentricModeRobotCommand());
+        rightTrigger.whenPressed(new CentricModeFieldCommand());
     }
 
     // This is here to make buttons persistant (i.e. Gamepad makes a new instance every request
