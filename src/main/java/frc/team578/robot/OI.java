@@ -36,6 +36,10 @@ public class OI implements Initializable {
 //        leftJoystick.getTriggerPressed(new CentricModeRobotCommand());
 //        gp2.back.whileHeld(new CentricModeFieldCommand());
 
+        if(leftJoystick.getTriggerPressed())
+            new CentricModeRobotCommand();
+        if(leftJoystick.getTriggerReleased())
+            new CentricModeFieldCommand();
     }
 
     // This is here to make buttons persistant (i.e. Gamepad makes a new instance every request
