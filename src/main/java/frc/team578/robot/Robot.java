@@ -1,50 +1,54 @@
 package frc.team578.robot;
 
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 import java.lang.*;
 
 public class Robot extends TimedRobot {
 
-	// Joystick pointer
-	private static Joystick joystick;
+	private static Gamepad gp;
 
-	/* DoubleSolenoid.Value list
-		kOff is off (duh)
-		kForward is extended
-		kReverse is retracted
-	*/
-	private DoubleSolenoid testDouble; // piston pointer
-	private boolean pistonExtended; // state of the piston, will be found on robot startup (!)
+	private DoubleSolenoid testDouble;
+	private JoystickButton buttonA;
+	private JoystickButton buttonB;
+	private JoystickButton buttonX;
+
+//	private Solenoid testSingle;
 
 	public void robotInit() {
 		System.out.println("Turned robot on");
 
-		// assign pointers to their values
-		testDouble = new DoubleSolenoid(RobotMap.DOUBLE_SOLENOID_ID, RobotMap.DS_FORWARD_CHANNEL_ID, RobotMap.DS_REVERSE_CHANNEL_ID);
-		joystick = new Joystick(RobotMap.CONTROL_GAMEPAD_ID);
+		int PCM = 40;
+		int FW_CHANNEL = 0;
+		int REV_CHANNEL = 1;
+
+		testDouble = new DoubleSolenoid(PCM,FW_CHANNEL,REV_CHANNEL);
+		gp = new Gamepad(0);
+		buttonA = gp.getButtonA();
+		buttonB = gp.getButtonB();
+		buttonX = gp.getButtonX();
+
 	}
 
 	public void disabledInit() {
-		System.out.println("Disabled robot :sad face:");
-		pistonExtended = testDouble.get().equals(DoubleSolenoid.Value.kForward) ? true : false; // gets disabled on startup, no worries
+		System.out.println("Disabled robot");
 	}
 
 	public void teleopInit() {
-		System.out.println("Enabled in teleop mode");
+		System.err.println("Enabled in teleop mode");
 	}
 
-	// long currentTime = System.currentTimeMillis();
-
 	public void teleopPeriodic() {
-		boolean button1Pressed = joystick.getRawButton(RobotMap.BUTTON_1_ID);
-		if(button1Pressed) {
-			if(pistonExtended) {
-				testDouble.set(DoubleSolenoid.Value.kReverse);
-				pistonExtended = false;
-			} else if(!pistonExtended) {
-				testDouble.set(DoubleSolenoid.Value.kForward);
-				pistonExtended = true;
-			}
+		if (buttonA.get()) {
+			System.err.println("DS Forward");
+			testDouble.set(DoubleSolenoid.Value.kForward);
+		} else if (buttonB.get()) {
+			System.err.println("DS Reverse");
+			testDouble.set(DoubleSolenoid.Value.kReverse);
+		} else if (buttonX.get()) {
+			System.err.println("DS Off");
+			testDouble.set(DoubleSolenoid.Value.kOff);
 		}
 	}
 }
