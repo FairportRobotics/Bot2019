@@ -31,7 +31,10 @@ public class OI implements Initializable {
         gp2.buttonX.whenPressed(new ClimberRetractAllCommand());
 
         gp2.start.whileHeld(new ClimberDriveForwardsCommand());
-        gp2.back.whileHeld(new ClimberDriveReverseCommand());
+     //   gp2.back.whileHeld(new ClimberDriveReverseCommand());
+
+//        leftJoystick.getTriggerPressed(new CentricModeRobotCommand());
+//        gp2.back.whileHeld(new CentricModeFieldCommand());
 
     }
 

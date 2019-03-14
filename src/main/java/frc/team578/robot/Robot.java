@@ -98,6 +98,7 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
 
         Robot.swerveDriveSubsystem.stop();
+        Robot.swerveDriveSubsystem.setModeRobot();
 
     }
 
@@ -112,6 +113,7 @@ public class Robot extends TimedRobot {
     public void teleopInit() {
 
         Robot.swerveDriveSubsystem.stop();
+        Robot.swerveDriveSubsystem.setModeField();
 
     }
 

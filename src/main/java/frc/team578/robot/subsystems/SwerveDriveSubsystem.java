@@ -53,4 +53,7 @@ public class SwerveDriveSubsystem extends Subsystem implements Initializable, Up
     public void calibrateAllSteerEncoders() {
         swerveDrive.calibrateAllSteerEncoders();
     }
+
+    public void setModeField() {swerveDrive.setModeField();}
+    public void setModeRobot() {swerveDrive.setModeRobot();}
 }

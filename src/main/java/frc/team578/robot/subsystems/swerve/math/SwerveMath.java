@@ -39,10 +39,13 @@ public class SwerveMath {
     private final double SCALE_SPEED = 1.00;
 
     // The "Centric" mode for the robot
-    private CentricMode centricMode = CentricMode.FIELD;
+    private CentricMode centricMode = CentricMode.ROBOT;
 
     public void setModeField() {
         centricMode = frc.team578.robot.subsystems.swerve.math.CentricMode.FIELD;
+    }
+    public void setModeRobot() {
+        centricMode = frc.team578.robot.subsystems.swerve.math.CentricMode.ROBOT;
     }
 
     /**

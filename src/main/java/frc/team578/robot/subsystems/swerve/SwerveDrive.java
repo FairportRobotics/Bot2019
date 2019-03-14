@@ -209,4 +209,6 @@ public class SwerveDrive implements UpdateDashboard {
     }
 
 
+    public void setModeField() {swerveMath.setModeField();}
+    public void setModeRobot() {swerveMath.setModeRobot();}
 }
