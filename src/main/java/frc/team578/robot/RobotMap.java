@@ -19,23 +19,26 @@ public class RobotMap {
     public static final int CLIMB_GAMEPAD_ID = 1;
 
     // Pneumatics Control
-    public static final int PCM = 40;
+    public static final int PCM1 = 40;
+    public static final int PCM2 = 41;
 
 
     // Climber
-    public static final int PCM_FRONT_CLIMB_UP = 0;
-    public static final int PCM_FRONT_CLIMB_DOWN = 0;
-    public static final int PCM_REAR_CLIMB_UP = 0;
-    public static final int PCM_REAR_CLIMB_DOWN = 0;
+    public static final int PCM1_FRONT_CLIMB_UP = 0;
+    public static final int PCM1_FRONT_CLIMB_DOWN = 1;
+    public static final int PCM1_REAR_CLIMB_UP = 2;
+    public static final int PCM1_REAR_CLIMB_DOWN = 3;
+    public static final int PCM1_CUTOFF_OPEN = 4;
+    public static final int PCM1_CUTOFF_CLOSE = 5;
     public static final int CLIMB_WHEELS_TALON_ID = 23;
 
     // Intake
-//    public static final int PCM_INTAKE_OPEN = 0;
-    public static final int PCM_INTAKE = 3;
-    public static final int PCM_ARM_TOP = 5;
-    public static final int PCM_ARM_BOTTOM = 4;
-    public static final int PCM_FRONT_CLIMB = 0;
-    public static final int PCM_REAR_CLIMB = 1;
+    public static final int PCM1_INTAKE_OPEN = 7;
+    public static final int PCM1_INTAKE_CLOSED = 6;
+    public static final int PCM2_ARM_TOP = 0;
+    public static final int PCM2_ARM_BOTTOM = 1;
+//    public static final int PCM_FRONT_CLIMB = 0;
+//    public static final int PCM_REAR_CLIMB = 1;
     public static int INTAKE_TALON = 20;
 
     // Elevator

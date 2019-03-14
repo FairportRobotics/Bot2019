@@ -3,7 +3,6 @@ package frc.team578.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -14,7 +13,7 @@ import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
 public class CargoIntakeSubsystem extends Subsystem implements Initializable, UpdateDashboard {
 
     private WPI_TalonSRX intakeTalon;
-    private Solenoid intakeSolenoid;
+//    private Solenoid intakeSolenoid;
     private double outake_power = 1;
     private double intake_power = .33;
 
@@ -22,8 +21,7 @@ public class CargoIntakeSubsystem extends Subsystem implements Initializable, Up
 //    DigitalInput its = new DigitalInput(1);
 //    DigitalInput ibs = new DigitalInput(1);
 
-    private DoubleSolenoid.Value intakeRetract = DoubleSolenoid.Value.kForward;
-    private DoubleSolenoid.Value intakeExtend = DoubleSolenoid.Value.kReverse;
+    private DoubleSolenoid intakeSwitch;
 
     @Override
     protected void initDefaultCommand() {
@@ -35,7 +33,8 @@ public class CargoIntakeSubsystem extends Subsystem implements Initializable, Up
         intakeTalon = new WPI_TalonSRX(RobotMap.INTAKE_TALON);
         intakeTalon.setNeutralMode(NeutralMode.Brake);
 
-        intakeSolenoid = new Solenoid(RobotMap.PCM, RobotMap.PCM_INTAKE);
+//        intakeSolenoid = new Solenoid(RobotMap.PCM1, RobotMap.PCM_INTAKE);
+        intakeSwitch = new DoubleSolenoid(RobotMap.PCM1, RobotMap.PCM1_INTAKE_OPEN, RobotMap.PCM1_INTAKE_CLOSED);
     }
 
 
@@ -52,12 +51,13 @@ public class CargoIntakeSubsystem extends Subsystem implements Initializable, Up
     }
 
     public void extendIntake() {
-        intakeSolenoid.set(true);
+        intakeSwitch.set(DoubleSolenoid.Value.kForward);
     }
 
     public void retractIntake() {
-        intakeSolenoid.set(false);
+        intakeSwitch.set(DoubleSolenoid.Value.kReverse);
     }
+
 
 //    public boolean isIntakeExtended() {
 //        return intakeSolenoid.get() == intakeExtend;

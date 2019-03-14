@@ -3,7 +3,6 @@ package frc.team578.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -45,8 +44,8 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
 
     @Override
     public void initialize() {
-        frontSolenoids = new Solenoid(RobotMap.PCM, RobotMap.PCM_FRONT_CLIMB);
-        rearSolenoids = new Solenoid(RobotMap.PCM, RobotMap.PCM_REAR_CLIMB);
+        frontSolenoids = new Solenoid(RobotMap.PCM1, RobotMap.PCM1_FRONT_CLIMB_UP);
+        rearSolenoids = new Solenoid(RobotMap.PCM1, RobotMap.PCM1_REAR_CLIMB_DOWN);
         climbWheelsTalon = new WPI_TalonSRX(RobotMap.CLIMB_WHEELS_TALON_ID);
     }
 

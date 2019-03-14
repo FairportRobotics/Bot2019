@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team578.robot.RobotMap;
-import frc.team578.robot.enums.ArmPositionEnum;
 import frc.team578.robot.subsystems.interfaces.Initializable;
 import frc.team578.robot.subsystems.interfaces.UpdateDashboard;
 
@@ -20,8 +19,8 @@ public class ArmSubsystem  extends Subsystem implements Initializable, UpdateDas
     DigitalInput ssts;// = new DigitalInput(3);
     DigitalInput ssbs;// = new DigitalInput(4);
 
-    private Solenoid top = new Solenoid(RobotMap.PCM, RobotMap.PCM_ARM_TOP);
-    private Solenoid bottom = new Solenoid(RobotMap.PCM, RobotMap.PCM_ARM_BOTTOM);
+    private Solenoid top = new Solenoid(RobotMap.PCM1, RobotMap.PCM_ARM_TOP);
+    private Solenoid bottom = new Solenoid(RobotMap.PCM1, RobotMap.PCM_ARM_BOTTOM);
 
 //    private DoubleSolenoid.Value firstRetract = Solenoid.Value.kForward;
 //    private DoubleSolenoid.Value firstExtend = DoubleSolenoid.Value.kReverse;
@@ -31,8 +30,8 @@ public class ArmSubsystem  extends Subsystem implements Initializable, UpdateDas
 
     @Override
     public void initialize() {
-//        firstSolenoids = new DoubleSolenoid(RobotMap.PCM, RobotMap.PCM_ARM_FIRST_EXTEND, RobotMap.PCM_ARM_FIRST_RETRACT);
-//        secondSolenoids = new DoubleSolenoid(RobotMap.PCM, RobotMap.PCM_ARM_SECOND_EXTEND, RobotMap.PCM_ARM_SECOND_RETRACT);
+//        firstSolenoids = new DoubleSolenoid(RobotMap.PCM1, RobotMap.PCM_ARM_FIRST_EXTEND, RobotMap.PCM_ARM_FIRST_RETRACT);
+//        secondSolenoids = new DoubleSolenoid(RobotMap.PCM1, RobotMap.PCM_ARM_SECOND_EXTEND, RobotMap.PCM_ARM_SECOND_RETRACT);
     }
 
     public void retract() {
