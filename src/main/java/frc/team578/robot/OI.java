@@ -9,8 +9,8 @@ import frc.team578.robot.utils.Gamepad;
 
 public class OI implements Initializable {
 
-    public Joystick leftJoystick = new Joystick(1);
-    public Joystick rightJoystick = new Joystick(2);
+    public Joystick leftJoystick = new Joystick(RobotMap.LEFT_JOYSTICK_ID);
+    public Joystick rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK_ID);
     public GP gp1 = new GP(RobotMap.CONTROL_GAMEPAD_ID); // Elevator and arm functions
     public GP gp2 = new GP(RobotMap.CLIMB_GAMEPAD_ID); // Climber functions
 

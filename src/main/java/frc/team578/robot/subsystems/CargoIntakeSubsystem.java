@@ -33,7 +33,6 @@ public class CargoIntakeSubsystem extends Subsystem implements Initializable, Up
         intakeTalon = new WPI_TalonSRX(RobotMap.INTAKE_TALON);
         intakeTalon.setNeutralMode(NeutralMode.Brake);
 
-//        intakeSolenoid = new Solenoid(RobotMap.PCM1, RobotMap.PCM_INTAKE);
         intakeSwitch = new DoubleSolenoid(RobotMap.PCM1, RobotMap.PCM1_INTAKE_OPEN, RobotMap.PCM1_INTAKE_CLOSED);
     }
 

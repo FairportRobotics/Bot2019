@@ -17,6 +17,8 @@ public class RobotMap {
     // swerve controller joystick USB IDs
     public static final int CONTROL_GAMEPAD_ID = 0;
     public static final int CLIMB_GAMEPAD_ID = 1;
+    public static final int LEFT_JOYSTICK_ID = 2;
+    public static final int RIGHT_JOYSTICK_ID = 3;
 
     // Pneumatics Control
     public static final int PCM1 = 40;
@@ -33,12 +35,12 @@ public class RobotMap {
     public static final int CLIMB_WHEELS_TALON_ID = 23;
 
     // Intake
-    public static final int PCM1_INTAKE_OPEN = 7;
-    public static final int PCM1_INTAKE_CLOSED = 6;
-    public static final int PCM2_ARM_TOP = 0;
-    public static final int PCM2_ARM_BOTTOM = 1;
-//    public static final int PCM_FRONT_CLIMB = 0;
-//    public static final int PCM_REAR_CLIMB = 1;
+    public static final int PCM1_INTAKE_OPEN = 6;
+    public static final int PCM1_INTAKE_CLOSED = 7;
+    public static final int PCM2_ARM_ONE_EXTEND = 0;
+    public static final int PCM2_ARM_ONE_RETRACT = 1;
+    public static final int PCM2_ARM_TWO_EXTEND = 2;
+    public static final int PCM2_ARM_TWO_RETRACT = 3;
     public static int INTAKE_TALON = 20;
 
     // Elevator

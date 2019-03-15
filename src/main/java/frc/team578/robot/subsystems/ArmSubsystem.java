@@ -19,8 +19,11 @@ public class ArmSubsystem  extends Subsystem implements Initializable, UpdateDas
     DigitalInput ssts;// = new DigitalInput(3);
     DigitalInput ssbs;// = new DigitalInput(4);
 
-    private Solenoid top = new Solenoid(RobotMap.PCM1, RobotMap.PCM_ARM_TOP);
-    private Solenoid bottom = new Solenoid(RobotMap.PCM1, RobotMap.PCM_ARM_BOTTOM);
+//    private Solenoid top = new Solenoid(RobotMap.PCM1, RobotMap.PCM_ARM_TOP);
+//    private Solenoid bottom = new Solenoid(RobotMap.PCM1, RobotMap.PCM_ARM_BOTTOM);
+
+    private DoubleSolenoid armFirstPiston;
+    private DoubleSolenoid armSecondPiston;
 
 //    private DoubleSolenoid.Value firstRetract = Solenoid.Value.kForward;
 //    private DoubleSolenoid.Value firstExtend = DoubleSolenoid.Value.kReverse;
@@ -30,28 +33,37 @@ public class ArmSubsystem  extends Subsystem implements Initializable, UpdateDas
 
     @Override
     public void initialize() {
-//        firstSolenoids = new DoubleSolenoid(RobotMap.PCM1, RobotMap.PCM_ARM_FIRST_EXTEND, RobotMap.PCM_ARM_FIRST_RETRACT);
-//        secondSolenoids = new DoubleSolenoid(RobotMap.PCM1, RobotMap.PCM_ARM_SECOND_EXTEND, RobotMap.PCM_ARM_SECOND_RETRACT);
+        armFirstPiston = new DoubleSolenoid(RobotMap.PCM2, RobotMap.PCM2_ARM_ONE_EXTEND, RobotMap.PCM2_ARM_ONE_RETRACT);
+        armSecondPiston = new DoubleSolenoid(RobotMap.PCM2, RobotMap.PCM2_ARM_TWO_EXTEND, RobotMap.PCM2_ARM_TWO_RETRACT);
+
     }
 
     public void retract() {
-        top.set(false);
-        bottom.set(false);
+        armFirstPiston.set(DoubleSolenoid.Value.kReverse);
+        armSecondPiston.set(DoubleSolenoid.Value.kReverse);
+//        top.set(false);
+//        bottom.set(false);
     }
 
     public void extendMid() {
-        top.set(false);
-        bottom.set(true);
+        armFirstPiston.set(DoubleSolenoid.Value.kForward);
+        armSecondPiston.set(DoubleSolenoid.Value.kReverse);
+//        top.set(false);
+//        bottom.set(true);
     }
 
     public void extendMid2() {
-        top.set(true);
-        bottom.set(false);
+        armFirstPiston.set(DoubleSolenoid.Value.kReverse);
+        armSecondPiston.set(DoubleSolenoid.Value.kForward);
+//        top.set(true);
+//        bottom.set(false);
     }
 
     public void extendFull() {
-        top.set(true);
-        bottom.set(true);
+        armFirstPiston.set(DoubleSolenoid.Value.kForward);
+        armSecondPiston.set(DoubleSolenoid.Value.kForward);
+//        top.set(true);
+//        bottom.set(true);
     }
 
     public boolean isArmMoving() {
