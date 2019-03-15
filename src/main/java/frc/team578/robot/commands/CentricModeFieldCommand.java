@@ -34,7 +34,7 @@ public class CentricModeFieldCommand extends Command {
     @Override
     protected boolean isFinished() {
 
-        boolean isFinished = false;
+        boolean isFinished = true;
         log.info ("CentricModeFieldCommand is Finished : " + isFinished);
         return isFinished;
     }

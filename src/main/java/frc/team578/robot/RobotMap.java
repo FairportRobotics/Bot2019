@@ -26,21 +26,21 @@ public class RobotMap {
 
 
     // Climber
-    public static final int PCM1_FRONT_CLIMB_UP = 0;
-    public static final int PCM1_FRONT_CLIMB_DOWN = 1;
-    public static final int PCM1_REAR_CLIMB_UP = 2;
-    public static final int PCM1_REAR_CLIMB_DOWN = 3;
+    public static final int PCM1_FRONT_CLIMB_UP = 1;
+    public static final int PCM1_FRONT_CLIMB_DOWN = 0;
+    public static final int PCM1_REAR_CLIMB_UP = 3;
+    public static final int PCM1_REAR_CLIMB_DOWN = 2;
     public static final int PCM1_CUTOFF_OPEN = 4;
     public static final int PCM1_CUTOFF_CLOSE = 5;
     public static final int CLIMB_WHEELS_TALON_ID = 23;
 
     // Intake
-    public static final int PCM1_INTAKE_OPEN = 6;
-    public static final int PCM1_INTAKE_CLOSED = 7;
-    public static final int PCM2_ARM_ONE_EXTEND = 0;
-    public static final int PCM2_ARM_ONE_RETRACT = 1;
-    public static final int PCM2_ARM_TWO_EXTEND = 2;
-    public static final int PCM2_ARM_TWO_RETRACT = 3;
+    public static final int PCM1_INTAKE_OPEN = 7;
+    public static final int PCM1_INTAKE_CLOSED = 6;
+    public static final int PCM2_ARM_ONE_EXTEND = 1;
+    public static final int PCM2_ARM_ONE_RETRACT = 0;
+    public static final int PCM2_ARM_TWO_EXTEND = 3;
+    public static final int PCM2_ARM_TWO_RETRACT = 2;
     public static int INTAKE_TALON = 20;
 
     // Elevator

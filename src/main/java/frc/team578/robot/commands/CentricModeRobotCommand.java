@@ -34,7 +34,7 @@ public class CentricModeRobotCommand extends Command {
     @Override
     protected boolean isFinished() {
 
-        boolean isFinished = false;
+        boolean isFinished = true;
         log.info ("CentricModeRobotCommand is Finished : " + isFinished);
         return isFinished;
     }

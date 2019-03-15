@@ -16,6 +16,7 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
 
     private DoubleSolenoid frontSolenoids;
     private DoubleSolenoid rearSolenoids;
+    private DoubleSolenoid cutoffSolinoid;
 
 
     // flts = front left top sensor, flbs = front left bottom sensor
@@ -48,7 +49,12 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
     @Override
     public void initialize() {
         frontSolenoids = new DoubleSolenoid(RobotMap.PCM1, RobotMap.PCM1_FRONT_CLIMB_UP, RobotMap.PCM1_FRONT_CLIMB_DOWN);
+        frontSolenoids.set(DoubleSolenoid.Value.kReverse);
         rearSolenoids = new DoubleSolenoid(RobotMap.PCM1, RobotMap.PCM1_REAR_CLIMB_UP, RobotMap.PCM1_REAR_CLIMB_DOWN);
+        rearSolenoids.set(DoubleSolenoid.Value.kReverse);
+        cutoffSolinoid = new DoubleSolenoid(RobotMap.PCM1, RobotMap.PCM1_CUTOFF_OPEN, RobotMap.PCM1_CUTOFF_CLOSE);
+        cutoffSolinoid.set(DoubleSolenoid.Value.kReverse);
+
         climbWheelsTalon = new WPI_TalonSRX(RobotMap.CLIMB_WHEELS_TALON_ID);
     }
 
@@ -60,9 +66,14 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
         frontSolenoids.set(DoubleSolenoid.Value.kForward);
     }
 
-    public void retractRearClimber() { rearSolenoids.set(DoubleSolenoid.Value.kReverse); }
-
-    public void extendRearClimber() { rearSolenoids.set(DoubleSolenoid.Value.kForward); }
+    public void retractRearClimber() {
+ //       cutoffSolinoid.set(DoubleSolenoid.Value.kReverse);
+        rearSolenoids.set(DoubleSolenoid.Value.kReverse);
+    }
+    public void extendRearClimber() {
+ //       cutoffSolinoid.set(DoubleSolenoid.Value.kForward);
+        rearSolenoids.set(DoubleSolenoid.Value.kForward); 
+        }
 
 //    public boolean isFrontClimberRetracted() {
 //        return frontSolenoids.get() == frontRetract && flts.get() && frts.get();

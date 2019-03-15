@@ -15,6 +15,10 @@ public class ElevatorSubsystem extends Subsystem implements Initializable, Updat
     public final int ARM_LEVEL_ONE_POS = 0;
     public final int STRUCTURE_LEVEL_ONE_POS = 0;
 
+    private final double STRUCTURE_SPEED_SCALE = .8;
+    private final double ARM_SPEED_SCALE = .8;
+
+
     private WPI_TalonSRX armTalon;
     private WPI_TalonSRX structureTalon;
 
@@ -35,22 +39,21 @@ public class ElevatorSubsystem extends Subsystem implements Initializable, Updat
         armTalon.setNeutralMode(NeutralMode.Brake);
         armTalon.configNominalOutputForward(0, 0);
         armTalon.configNominalOutputReverse(0, 0);
-        armTalon.configPeakOutputForward(1, 0);
-        armTalon.configPeakOutputReverse(-1, 0);
+        armTalon.configPeakOutputForward(ARM_SPEED_SCALE, 0);
+        armTalon.configPeakOutputReverse(-ARM_SPEED_SCALE, 0);
             armTalon.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
                     LimitSwitchNormal.NormallyClosed, 0);
             armTalon.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
                     LimitSwitchNormal.NormallyClosed, 0);
 
         structureTalon = new WPI_TalonSRX(RobotMap.ELEVATOR_STRUCTURE_TALON);
-        structureTalon.setNeutralMode(NeutralMode.Brake);
         structureTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, 0);
         structureTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, 0);
         structureTalon.setNeutralMode(NeutralMode.Brake);
         structureTalon.configNominalOutputForward(0, 0);
         structureTalon.configNominalOutputReverse(0, 0);
-        structureTalon.configPeakOutputForward(1, 0);
-        structureTalon.configPeakOutputReverse(-1, 0);
+        structureTalon.configPeakOutputForward(STRUCTURE_SPEED_SCALE, 0);
+        structureTalon.configPeakOutputReverse(-STRUCTURE_SPEED_SCALE, 0);
         structureTalon.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
                 LimitSwitchNormal.NormallyClosed, 0);
         structureTalon.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,

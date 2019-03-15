@@ -856,6 +856,94 @@
                   "_source0": "network_table:///LiveWindow/Ungrouped/t_fl",
                   "_title": "t_fl",
                   "Visuals/Orientation": "HORIZONTAL"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Solenoid[40,1]/Value",
+                  "_title": "Solenoid[40,1]/Value",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Speed Controller",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Talon SRX [21]",
+                  "_title": "Talon SRX [21]",
+                  "Visuals/Orientation": "HORIZONTAL"
+                },
+                {
+                  "_type": "Speed Controller",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Talon SRX [23]",
+                  "_title": "Talon SRX [23]",
+                  "Visuals/Orientation": "HORIZONTAL"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/DigitalInput[9]/Value",
+                  "_title": "DigitalInput[9]/Value",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Speed Controller",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Talon SRX [20]",
+                  "_title": "Talon SRX [20]",
+                  "Visuals/Orientation": "HORIZONTAL"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Solenoid[40,3]/Value",
+                  "_title": "Solenoid[40,3]/Value",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Speed Controller",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Talon SRX [22]",
+                  "_title": "Talon SRX [22]",
+                  "Visuals/Orientation": "HORIZONTAL"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Solenoid[40,0]/Value",
+                  "_title": "Solenoid[40,0]/Value",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Solenoid[40,5]/Value",
+                  "_title": "Solenoid[40,5]/Value",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Solenoid[40,4]/Value",
+                  "_title": "Solenoid[40,4]/Value",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/DigitalInput[8]/Value",
+                  "_title": "DigitalInput[8]/Value",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/DoubleSolenoid[40,0]/Value",
+                  "_title": "DoubleSolenoid[40,0]/Value"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/DoubleSolenoid[41,0]/Value",
+                  "_title": "DoubleSolenoid[41,0]/Value"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/DoubleSolenoid[40,6]/Value",
+                  "_title": "DoubleSolenoid[40,6]/Value"
                 }
               ]
             }
@@ -882,6 +970,45 @@
               "_type": "Subsystem Layout",
               "_source0": "network_table:///LiveWindow/SwerveDriveSubsystem",
               "_title": "SwerveDriveSubsystem",
+              "Layout/Label position": "BOTTOM",
+              "_children": []
+            }
+          },
+          "6,0": {
+            "size": [
+              2,
+              4
+            ],
+            "content": {
+              "_type": "Subsystem Layout",
+              "_source0": "network_table:///LiveWindow/CargoIntakeSubsystem",
+              "_title": "CargoIntakeSubsystem",
+              "Layout/Label position": "BOTTOM",
+              "_children": []
+            }
+          },
+          "8,0": {
+            "size": [
+              2,
+              4
+            ],
+            "content": {
+              "_type": "Subsystem Layout",
+              "_source0": "network_table:///LiveWindow/ClimberSubsystem",
+              "_title": "ClimberSubsystem",
+              "Layout/Label position": "BOTTOM",
+              "_children": []
+            }
+          },
+          "10,0": {
+            "size": [
+              2,
+              4
+            ],
+            "content": {
+              "_type": "Subsystem Layout",
+              "_source0": "network_table:///LiveWindow/ArmSubsystem",
+              "_title": "ArmSubsystem",
               "Layout/Label position": "BOTTOM",
               "_children": []
             }
@@ -1508,12 +1635,44 @@
           }
         }
       }
+    },
+    {
+      "title": "Tab 5",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "1,0": {
+            "size": [
+              8,
+              4
+            ],
+            "content": {
+              "_type": "Camera Stream",
+              "_source0": "camera_server://USB Camera 0",
+              "_title": "USB Camera 0",
+              "Crosshair/Show crosshair": true,
+              "Crosshair/Crosshair color": "#FFFFFFFF",
+              "Controls/Show controls": true,
+              "Controls/Rotation": "NONE",
+              "compression": -1.0,
+              "fps": -1,
+              "imageWidth": -1,
+              "imageHeight": -1
+            }
+          }
+        }
+      }
     }
   ],
   "windowGeometry": {
     "x": 0.0,
     "y": 0.0,
-    "width": 1920.0,
-    "height": 1057.0
+    "width": 1386.0,
+    "height": 745.0
   }
 }

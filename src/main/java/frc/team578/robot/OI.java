@@ -26,14 +26,14 @@ public class OI implements Initializable {
         gp1.buttonY.whenPressed(new MoveArmCommand(ArmPositionEnum.FULL_EXTEND));
         gp1.lb.whileHeld(new IntakeSpinInwardCommand());
         gp1.rb.whileHeld(new IntakeSpinOutwardCommand());
-        gp1.lt.whenPressed(new IntakeExtendCommand());
-        gp1.rt.whenPressed(new IntakeRetractCommand());
+        gp1.rt.whenPressed(new IntakeExtendCommand());
+        gp1.lt.whenPressed(new IntakeRetractCommand());
 
-        gp2.buttonA.whenPressed(new ClimberExtendAllCommand());
-        gp2.buttonB.whenPressed(new ClimberRetractFrontCommand());
-        gp2.buttonY.whenPressed(new ClimberRetractRearCommand());
-        gp2.buttonX.whenPressed(new ClimberRetractAllCommand());
-
+        gp2.buttonY.whenPressed(new ClimberExtendAllCommand());
+        gp2.buttonX.whenPressed(new ClimberRetractFrontCommand());
+        gp2.buttonB.whenPressed(new ClimberRetractRearCommand());
+        gp2.buttonA.whenPressed(new ClimberRetractAllCommand());
+        gp2.lb.whenPressed(new ClimberExtendRearCommand());
         gp2.start.whileHeld(new ClimberDriveForwardsCommand());
         gp2.back.whileHeld(new ClimberDriveReverseCommand());
 
@@ -136,9 +136,9 @@ public class OI implements Initializable {
     }
 
     // This affects drive and arm movement deadbands
-    final double DEADBAND = 0.2;
+    final double DEADBAND = 0.05;
     public double deadband(double value) {
         if (Math.abs(value) < DEADBAND) return 0.0;
-        return value;
+        return value*Math.abs(value);
     }
 }

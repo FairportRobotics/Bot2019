@@ -34,34 +34,36 @@ public class ArmSubsystem  extends Subsystem implements Initializable, UpdateDas
     @Override
     public void initialize() {
         armFirstPiston = new DoubleSolenoid(RobotMap.PCM2, RobotMap.PCM2_ARM_ONE_EXTEND, RobotMap.PCM2_ARM_ONE_RETRACT);
+        armFirstPiston.set(DoubleSolenoid.Value.kReverse);
         armSecondPiston = new DoubleSolenoid(RobotMap.PCM2, RobotMap.PCM2_ARM_TWO_EXTEND, RobotMap.PCM2_ARM_TWO_RETRACT);
+        armSecondPiston.set(DoubleSolenoid.Value.kForward);
 
     }
 
     public void retract() {
         armFirstPiston.set(DoubleSolenoid.Value.kReverse);
-        armSecondPiston.set(DoubleSolenoid.Value.kReverse);
+        armSecondPiston.set(DoubleSolenoid.Value.kForward);
 //        top.set(false);
 //        bottom.set(false);
     }
 
     public void extendMid() {
         armFirstPiston.set(DoubleSolenoid.Value.kForward);
-        armSecondPiston.set(DoubleSolenoid.Value.kReverse);
+        armSecondPiston.set(DoubleSolenoid.Value.kForward);
 //        top.set(false);
 //        bottom.set(true);
     }
 
     public void extendMid2() {
         armFirstPiston.set(DoubleSolenoid.Value.kReverse);
-        armSecondPiston.set(DoubleSolenoid.Value.kForward);
+        armSecondPiston.set(DoubleSolenoid.Value.kReverse);
 //        top.set(true);
 //        bottom.set(false);
     }
 
     public void extendFull() {
         armFirstPiston.set(DoubleSolenoid.Value.kForward);
-        armSecondPiston.set(DoubleSolenoid.Value.kForward);
+        armSecondPiston.set(DoubleSolenoid.Value.kReverse);
 //        top.set(true);
 //        bottom.set(true);
     }
