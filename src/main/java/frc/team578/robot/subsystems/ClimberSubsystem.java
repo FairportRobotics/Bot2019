@@ -51,7 +51,7 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
         frontSolenoids = new DoubleSolenoid(RobotMap.PCM1, RobotMap.PCM1_FRONT_CLIMB_UP, RobotMap.PCM1_FRONT_CLIMB_DOWN);
         frontSolenoids.set(DoubleSolenoid.Value.kReverse);
         rearSolenoids = new DoubleSolenoid(RobotMap.PCM1, RobotMap.PCM1_REAR_CLIMB_UP, RobotMap.PCM1_REAR_CLIMB_DOWN);
-        rearSolenoids.set(DoubleSolenoid.Value.kReverse);
+        rearSolenoids.set(DoubleSolenoid.Value.kForward);
         cutoffSolinoid = new DoubleSolenoid(RobotMap.PCM1, RobotMap.PCM1_CUTOFF_OPEN, RobotMap.PCM1_CUTOFF_CLOSE);
         cutoffSolinoid.set(DoubleSolenoid.Value.kReverse);
 
@@ -77,12 +77,12 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
     }
 
     public void retractRearClimber() {
- //       cutoffSolinoid.set(DoubleSolenoid.Value.kReverse);
-        rearSolenoids.set(DoubleSolenoid.Value.kReverse);
+        cutoffSolinoid.set(DoubleSolenoid.Value.kReverse);
+        rearSolenoids.set(DoubleSolenoid.Value.kForward);
     }
     public void extendRearClimber() {
  //       cutoffSolinoid.set(DoubleSolenoid.Value.kForward);
-        rearSolenoids.set(DoubleSolenoid.Value.kForward);
+        rearSolenoids.set(DoubleSolenoid.Value.kReverse);
         }
 
 //    public boolean isFrontClimberRetracted() {

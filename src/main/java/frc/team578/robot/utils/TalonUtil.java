@@ -17,7 +17,7 @@ public class TalonUtil {
     public static final int turn_kIZone = 0;
     public static final int MAX_ENC_VAL = 1024;
 
-    public static WPI_TalonSRX createPIDTalon(int talonID, boolean revMotor, double pCoeff, double iCoeff, double dCoeff,
+    public static WPI_TalonSRX createMotionPIDTalon(int talonID, boolean revMotor, double pCoeff, double iCoeff, double dCoeff,
                                               double fCoeff, int iZone) {
 
         WPI_TalonSRX talon = new WPI_TalonSRX(talonID);

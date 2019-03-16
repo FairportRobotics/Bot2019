@@ -30,14 +30,14 @@ public class OI implements Initializable {
         gp1.rt.whenPressed(new IntakeExtendCommand());
         gp1.lt.whenPressed(new IntakeRetractCommand());
 
-        gp2.buttonY.whenPressed(new ClimberExtendAllCommand());
+        //gp2.buttonY.whenPressed(new ClimberExtendAllCommand());
         gp2.buttonX.whenPressed(new ClimberRetractFrontCommand());
         gp2.buttonB.whenPressed(new ClimberRetractRearCommand());
         gp2.buttonA.whenPressed(new ClimberRetractAllCommand());
-        //gp2.buttonY.whileHeld(new ClimberExtendAllCommand());
+        gp2.buttonY.whileHeld(new ClimberExtendAllCommand());
         gp2.lb.whenPressed(new ClimberExtendRearCommand());
-       // gp2.rb.whenPressed(new InstantCommand(Robot.climberSubsystem::disengageCutoff));
-      //  gp2.rt.whenPressed(new InstantCommand(Robot.climberSubsystem::engageCutoff));
+        gp2.rb.whenPressed(new InstantCommand(Robot.climberSubsystem::disengageCutoff));
+        gp2.rt.whenPressed(new InstantCommand(Robot.climberSubsystem::engageCutoff));
         gp2.start.whileHeld(new ClimberDriveForwardsCommand());
         gp2.back.whileHeld(new ClimberDriveReverseCommand());
 
