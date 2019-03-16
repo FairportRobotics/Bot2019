@@ -2,6 +2,7 @@ package frc.team578.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.team578.robot.commands.*;
 import frc.team578.robot.enums.ArmPositionEnum;
 import frc.team578.robot.subsystems.interfaces.Initializable;
@@ -33,7 +34,10 @@ public class OI implements Initializable {
         gp2.buttonX.whenPressed(new ClimberRetractFrontCommand());
         gp2.buttonB.whenPressed(new ClimberRetractRearCommand());
         gp2.buttonA.whenPressed(new ClimberRetractAllCommand());
+        //gp2.buttonY.whileHeld(new ClimberExtendAllCommand());
         gp2.lb.whenPressed(new ClimberExtendRearCommand());
+       // gp2.rb.whenPressed(new InstantCommand(Robot.climberSubsystem::disengageCutoff));
+      //  gp2.rt.whenPressed(new InstantCommand(Robot.climberSubsystem::engageCutoff));
         gp2.start.whileHeld(new ClimberDriveForwardsCommand());
         gp2.back.whileHeld(new ClimberDriveReverseCommand());
 
@@ -46,6 +50,7 @@ public class OI implements Initializable {
 //            new CentricModeFieldCommand();
 
         leftTrigger.whenPressed(new CentricModeRobotCommand());
+//        leftTrigger.whenPressed(new InstantCommand(Robot.swerveDriveSubsystem::setModeField));
         rightTrigger.whenPressed(new CentricModeFieldCommand());
     }
 

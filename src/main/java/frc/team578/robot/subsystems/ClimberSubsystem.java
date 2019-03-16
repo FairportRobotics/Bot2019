@@ -66,13 +66,23 @@ public class ClimberSubsystem extends Subsystem implements Initializable, Update
         frontSolenoids.set(DoubleSolenoid.Value.kForward);
     }
 
+    public void engageCutoff()
+    {
+        cutoffSolinoid.set(DoubleSolenoid.Value.kReverse);
+    }
+
+    public void disengageCutoff()
+    {
+        cutoffSolinoid.set(DoubleSolenoid.Value.kForward);
+    }
+
     public void retractRearClimber() {
  //       cutoffSolinoid.set(DoubleSolenoid.Value.kReverse);
         rearSolenoids.set(DoubleSolenoid.Value.kReverse);
     }
     public void extendRearClimber() {
  //       cutoffSolinoid.set(DoubleSolenoid.Value.kForward);
-        rearSolenoids.set(DoubleSolenoid.Value.kForward); 
+        rearSolenoids.set(DoubleSolenoid.Value.kForward);
         }
 
 //    public boolean isFrontClimberRetracted() {

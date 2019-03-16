@@ -23,6 +23,13 @@ public class ClimberExtendAllCommand extends Command {
         log.info("Exec ClimberExtendFrontCommand");
         Robot.climberSubsystem.extendFrontClimber();
         Robot.climberSubsystem.extendRearClimber();
+//        if(Robot.gyroSubsystem.getTilt() > 3)
+//        {
+//            Robot.climberSubsystem.disengageCutoff();
+//        }else
+//        {
+//            Robot.climberSubsystem.engageCutoff();
+//        }
     }
 
     @Override
