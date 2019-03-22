@@ -12,54 +12,18 @@ import java.lang.*;
 public class Robot extends TimedRobot {
 
 	// Joystick pointer
-	private static Joystick joystick;
+	private static Joystick leftJoystick;
+	private static Joystick rightJoystick;
 	private static WPI_TalonSRX talon;
+	private static ExpoScale es;
 
-	private static final int l0 = 0;
-	private static final int l1 = 100;
-	private static final int l2 = 500;
-	private static final int l3 = 1000;
-	private static final int l4 = 1500;
-	private static final int l5 = 10000;
-	private int m_autoSelected;
-	private final SendableChooser<Integer> m_chooser = new SendableChooser<>();
-
-	private DigitalInput lim0;
-	private DigitalInput lim1;
-
-	private PIDFinished<Double> pf;
-
-	private PowerDistributionPanel powerDistributionPanel;
 
 	public void robotInit() {
-		System.out.println("Robot Init");
 
-		powerDistributionPanel = new PowerDistributionPanel(0);
-
-		lim0 = new DigitalInput(0);
-		lim1 = new DigitalInput(1);
-
-		m_chooser.setDefaultOption("l0", l0);
-		m_chooser.addOption("l1", l1);
-		m_chooser.addOption("l2", l2);
-		m_chooser.addOption("l3", l3);
-		m_chooser.addOption("l4", l4);
-		m_chooser.addOption("l5", l5);
-
-		SmartDashboard.putData("Auto choices", m_chooser);
-
-		int talonID = 7;
-		boolean revMotor = false;
-		double pCoeff = 10;
-		double iCoeff = 0;
-		double dCoeff = 0;
-		double fCoeff = 0;
-		int iZone = 0;
-
-		talon = TalonUtil.createPIDTalon(talonID, revMotor, pCoeff, iCoeff, dCoeff, fCoeff, iZone);
-
-		pf = new PIDFinished<Double>(50,3,talon::getErrorDerivative,(x) -> x == 0);
-
+		talon = new WPI_TalonSRX(11);
+		leftJoystick = new Joystick(0);
+		rightJoystick = new Joystick(1);
+		es = new ExpoScale(0.1, 0);
 	}
 
 	@Override
@@ -74,7 +38,6 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void disabledPeriodic() {
-		updateDashboard();
 		Scheduler.getInstance().run();
 	}
 
@@ -85,24 +48,25 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopPeriodic() {
-		updateDashboard();
 		Scheduler.getInstance().run();
+		double jvl = leftJoystick.getY();
+		double jvr = rightJoystick.getY();
+		double sf = es.apply(jvl);
+		System.err.println(jvl + " : " + sf);
+		SmartDashboard.putNumber("raw", jvl);
+		SmartDashboard.putNumber("scaled", sf);
+		if(jvl != 0)
+			talon.set(ControlMode.PercentOutput,sf);
+		else
+			talon.set(ControlMode.PercentOutput,jvr);
 	}
 
 	@Override
 	public void autonomousInit() {
-		System.out.println("Auto Init");
-		m_autoSelected = m_chooser.getSelected();
-		System.out.println("Auto selected: " + m_autoSelected);
 	}
 
 	@Override
 	public void autonomousPeriodic() {
-		talon.set(ControlMode.Position,m_autoSelected);
-
-		pf.checkIfStable();
-
-		updateDashboard();
 		Scheduler.getInstance().run();
 	}
 
@@ -117,16 +81,5 @@ public class Robot extends TimedRobot {
 	}
 
 	public void updateDashboard() {
-		SmartDashboard.putData("talon", talon);
-		SmartDashboard.putNumber("talon.encpos", talon.getSelectedSensorPosition());
-		if (talon.getControlMode() == ControlMode.Position) {
-			SmartDashboard.putNumber("talon.cle", talon.getClosedLoopError());
-			SmartDashboard.putNumber("talon.clt", talon.getClosedLoopTarget());
-			SmartDashboard.putNumber("talon.errd", talon.getErrorDerivative());
-			SmartDashboard.putBoolean("talon.errd_t", (talon.getErrorDerivative() == 0));
-			SmartDashboard.putBoolean("talon.pf", pf.getFinished());
-		}
-		SmartDashboard.putBoolean("lim0",lim0.get());
-		SmartDashboard.putBoolean("lim1",lim1.get());
 	}
 }
