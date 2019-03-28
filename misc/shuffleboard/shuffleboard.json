@@ -12,49 +12,84 @@
         "tiles": {
           "0,0": {
             "size": [
-              2,
+              1,
               1
             ],
             "content": {
-              "_type": "Speed Controller",
-              "_source0": "network_table:///SmartDashboard/Talon SRX [14]",
-              "_title": "Talon SRX [14]",
-              "Visuals/Orientation": "HORIZONTAL"
+              "_type": "ComboBox Chooser",
+              "_source0": "network_table:///SmartDashboard/Auto choices",
+              "_title": "Auto choices"
             }
           },
-          "2,0": {
+          "1,0": {
             "size": [
               2,
               1
             ],
             "content": {
               "_type": "Speed Controller",
-              "_source0": "network_table:///SmartDashboard/Talon SRX [1]",
-              "_title": "Talon SRX [1]",
+              "_source0": "network_table:///SmartDashboard/talon",
+              "_title": "talon",
               "Visuals/Orientation": "HORIZONTAL"
+            }
+          },
+          "3,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/talon.encpos",
+              "_title": "talon.encpos"
             }
           },
           "4,0": {
             "size": [
-              2,
+              1,
               1
             ],
             "content": {
-              "_type": "Speed Controller",
-              "_source0": "network_table:///SmartDashboard/Talon SRX [13]",
-              "_title": "Talon SRX [13]",
-              "Visuals/Orientation": "HORIZONTAL"
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/lim0,",
+              "_title": "lim0,",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "5,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/lim1,",
+              "_title": "lim1,",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
             }
           },
           "6,0": {
             "size": [
-              2,
+              1,
               1
             ],
             "content": {
-              "_type": "Basic Subsystem",
-              "_source0": "network_table:///SmartDashboard/SwerveDriveSubsystem",
-              "_title": "SwerveDriveSubsystem"
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/talon.cle",
+              "_title": "talon.cle"
+            }
+          },
+          "7,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/talon.clt",
+              "_title": "talon.clt"
             }
           },
           "8,0": {
@@ -64,8 +99,8 @@
             ],
             "content": {
               "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/bl.steert.araw",
-              "_title": "bl.steert.araw"
+              "_source0": "network_table:///SmartDashboard/talon.errd",
+              "_title": "talon.errd"
             }
           },
           "9,0": {
@@ -74,9 +109,11 @@
               1
             ],
             "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/bl.steert.senspos",
-              "_title": "bl.steert.senspos"
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/talon.errd_t",
+              "_title": "talon.errd_t",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
             }
           },
           "10,0": {
@@ -85,9 +122,11 @@
               1
             ],
             "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fl.steert.senspos",
-              "_title": "fl.steert.senspos"
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/lim0",
+              "_title": "lim0",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
             }
           },
           "11,0": {
@@ -96,45 +135,11 @@
               1
             ],
             "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/br.steert.araw",
-              "_title": "br.steert.araw"
-            }
-          },
-          "0,1": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "Speed Controller",
-              "_source0": "network_table:///SmartDashboard/Talon SRX [12]",
-              "_title": "Talon SRX [12]",
-              "Visuals/Orientation": "HORIZONTAL"
-            }
-          },
-          "2,1": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "Speed Controller",
-              "_source0": "network_table:///SmartDashboard/Talon SRX [11]",
-              "_title": "Talon SRX [11]",
-              "Visuals/Orientation": "HORIZONTAL"
-            }
-          },
-          "4,1": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "Speed Controller",
-              "_source0": "network_table:///SmartDashboard/Talon SRX [4]",
-              "_title": "Talon SRX [4]",
-              "Visuals/Orientation": "HORIZONTAL"
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/lim1",
+              "_title": "lim1",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
             }
           },
           "12,0": {
@@ -143,616 +148,11 @@
               1
             ],
             "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/br.steert.senspos",
-              "_title": "br.steert.senspos"
-            }
-          },
-          "6,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fr.steert.senspos",
-              "_title": "fr.steert.senspos"
-            }
-          },
-          "7,1": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "Speed Controller",
-              "_source0": "network_table:///SmartDashboard/Talon SRX [3]",
-              "_title": "Talon SRX [3]",
-              "Visuals/Orientation": "HORIZONTAL"
-            }
-          },
-          "9,1": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "Speed Controller",
-              "_source0": "network_table:///SmartDashboard/Talon SRX [2]",
-              "_title": "Talon SRX [2]",
-              "Visuals/Orientation": "HORIZONTAL"
-            }
-          },
-          "11,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fl.steert.araw",
-              "_title": "fl.steert.araw"
-            }
-          },
-          "12,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fr.steert.araw",
-              "_title": "fr.steert.araw"
-            }
-          },
-          "0,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fl.steer.encpos",
-              "_title": "fl.steer.encpos"
-            }
-          },
-          "1,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fl.steert.CLT",
-              "_title": "fl.steert.CLT"
-            }
-          },
-          "2,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fl.steert.CLE",
-              "_title": "fl.steert.CLE"
-            }
-          },
-          "3,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fr.steer.encpos",
-              "_title": "fr.steer.encpos"
-            }
-          },
-          "4,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fr.steert.CLT",
-              "_title": "fr.steert.CLT"
-            }
-          },
-          "5,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fr.steert.CLE",
-              "_title": "fr.steert.CLE"
-            }
-          },
-          "6,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/bl.steer.encpos",
-              "_title": "bl.steer.encpos"
-            }
-          },
-          "7,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/bl.steert.CLT",
-              "_title": "bl.steert.CLT"
-            }
-          },
-          "8,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/bl.steert.CLE",
-              "_title": "bl.steert.CLE"
-            }
-          },
-          "9,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/br.steer.encpos",
-              "_title": "br.steer.encpos"
-            }
-          },
-          "10,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/br.steert.CLT",
-              "_title": "br.steert.CLT"
-            }
-          },
-          "11,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/br.steert.CLE",
-              "_title": "br.steert.CLE"
-            }
-          },
-          "12,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/gyro.heading",
-              "_title": "gyro.heading"
-            }
-          },
-          "0,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/sd.derivsum",
-              "_title": "sd.derivsum"
-            }
-          },
-          "1,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fl.steert.errd",
-              "_title": "fl.steert.errd"
-            }
-          },
-          "2,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fr.steert.errd",
-              "_title": "fr.steert.errd"
-            }
-          },
-          "3,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/bl.steert.errd",
-              "_title": "bl.steert.errd"
-            }
-          },
-          "4,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/br.steert.errd",
-              "_title": "br.steert.errd"
-            }
-          },
-          "5,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fl.steert.tn",
-              "_title": "fl.steert.tn"
-            }
-          },
-          "6,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fr.steert.tn",
-              "_title": "fr.steert.tn"
-            }
-          },
-          "7,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/bl.steert.tn",
-              "_title": "bl.steert.tn"
-            }
-          },
-          "8,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/br.steert.tn",
-              "_title": "br.steert.tn"
-            }
-          },
-          "9,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/swrv.fwd",
-              "_title": "swrv.fwd"
-            }
-          },
-          "10,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/swrv.str",
-              "_title": "swrv.str"
-            }
-          },
-          "11,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/swrv.rot",
-              "_title": "swrv.rot"
-            }
-          },
-          "12,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/swrv.angleDeg",
-              "_title": "swrv.angleDeg"
-            }
-          },
-          "0,4": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "Speed Controller",
-              "_source0": "network_table:///SmartDashboard/Talon Data",
-              "_title": "Talon Data",
-              "Visuals/Orientation": "HORIZONTAL"
-            }
-          },
-          "2,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Sensor Vel:",
-              "_title": "Sensor Vel:"
-            }
-          },
-          "3,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Sensor Pos:",
-              "_title": "Sensor Pos:"
-            }
-          },
-          "4,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Analog In",
-              "_title": "Analog In"
-            }
-          },
-          "5,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Analog In Raw",
-              "_title": "Analog In Raw"
-            }
-          },
-          "6,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Out %",
-              "_title": "Out %"
-            }
-          },
-          "7,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
               "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/Any Faults:",
-              "_title": "Any Faults:",
+              "_source0": "network_table:///SmartDashboard/talon.pf",
+              "_title": "talon.pf",
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
-            }
-          },
-          "8,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/Out Of Phase:",
-              "_title": "Out Of Phase:",
-              "Colors/Color when true": "#7CFC00FF",
-              "Colors/Color when false": "#8B0000FF"
-            }
-          },
-          "9,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/target:",
-              "_title": "target:"
-            }
-          },
-          "10,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/errDeriv:",
-              "_title": "errDeriv:"
-            }
-          },
-          "11,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/clerr",
-              "_title": "clerr"
-            }
-          },
-          "12,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/isFinished",
-              "_title": "isFinished",
-              "Colors/Color when true": "#7CFC00FF",
-              "Colors/Color when false": "#8B0000FF"
-            }
-          },
-          "0,5": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "Speed Controller",
-              "_source0": "network_table:///SmartDashboard/t_rl_Talon Data",
-              "_title": "t_rl_Talon Data",
-              "Visuals/Orientation": "HORIZONTAL"
-            }
-          },
-          "2,5": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_rl_Sensor Vel:",
-              "_title": "t_rl_Sensor Vel:"
-            }
-          },
-          "3,5": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_rl_Sensor Pos:",
-              "_title": "t_rl_Sensor Pos:"
-            }
-          },
-          "4,5": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_rl_Analog In",
-              "_title": "t_rl_Analog In"
-            }
-          },
-          "5,5": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_rl_Analog In Raw",
-              "_title": "t_rl_Analog In Raw"
-            }
-          },
-          "6,5": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_rl_Out %",
-              "_title": "t_rl_Out %"
-            }
-          },
-          "7,5": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_rl_errDeriv:",
-              "_title": "t_rl_errDeriv:"
-            }
-          },
-          "8,5": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_rl_clerr",
-              "_title": "t_rl_clerr"
-            }
-          },
-          "9,5": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/t_rl_isFinished",
-              "_title": "t_rl_isFinished",
-              "Colors/Color when true": "#7CFC00FF",
-              "Colors/Color when false": "#8B0000FF"
-            }
-          },
-          "10,5": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "Speed Controller",
-              "_source0": "network_table:///SmartDashboard/t_fr_Talon Data",
-              "_title": "t_fr_Talon Data",
-              "Visuals/Orientation": "HORIZONTAL"
-            }
-          },
-          "12,5": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_fr_Sensor Vel:",
-              "_title": "t_fr_Sensor Vel:"
             }
           }
         }
@@ -771,545 +171,128 @@
           "0,0": {
             "size": [
               2,
-              4
+              5
             ],
             "content": {
-              "_type": "Subsystem Layout",
+              "_type": "Network Table Tree",
               "_source0": "network_table:///LiveWindow/Ungrouped",
-              "_title": "Ungrouped",
+              "_title": "Ungrouped"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Misc",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "0,0": {
+            "size": [
+              3,
+              6
+            ],
+            "content": {
+              "_type": "List Layout",
+              "_title": "Board",
               "Layout/Label position": "BOTTOM",
               "_children": [
                 {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Talon SRX [4]",
-                  "_title": "Talon SRX [4]",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Talon SRX [11]",
-                  "_title": "Talon SRX [11]",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Talon SRX [1]",
-                  "_title": "Talon SRX [1]",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Talon SRX [3]",
-                  "_title": "Talon SRX [3]",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Talon SRX [2]",
-                  "_title": "Talon SRX [2]",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Talon SRX [14]",
-                  "_title": "Talon SRX [14]",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Talon SRX [13]",
-                  "_title": "Talon SRX [13]",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Talon SRX [12]",
-                  "_title": "Talon SRX [12]",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/t_br",
-                  "_title": "t_br",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/t_rl",
-                  "_title": "t_rl",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/t_fr",
-                  "_title": "t_fr",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/t_bl",
-                  "_title": "t_bl",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/t_fl",
-                  "_title": "t_fl",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Boolean Box",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Solenoid[40,1]/Value",
-                  "_title": "Solenoid[40,1]/Value",
-                  "Colors/Color when true": "#7CFC00FF",
-                  "Colors/Color when false": "#8B0000FF"
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Talon SRX [21]",
-                  "_title": "Talon SRX [21]",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Talon SRX [23]",
-                  "_title": "Talon SRX [23]",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Boolean Box",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/DigitalInput[9]/Value",
-                  "_title": "DigitalInput[9]/Value",
-                  "Colors/Color when true": "#7CFC00FF",
-                  "Colors/Color when false": "#8B0000FF"
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Talon SRX [20]",
-                  "_title": "Talon SRX [20]",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Boolean Box",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Solenoid[40,3]/Value",
-                  "_title": "Solenoid[40,3]/Value",
-                  "Colors/Color when true": "#7CFC00FF",
-                  "Colors/Color when false": "#8B0000FF"
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Talon SRX [22]",
-                  "_title": "Talon SRX [22]",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Boolean Box",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Solenoid[40,0]/Value",
-                  "_title": "Solenoid[40,0]/Value",
-                  "Colors/Color when true": "#7CFC00FF",
-                  "Colors/Color when false": "#8B0000FF"
-                },
-                {
-                  "_type": "Boolean Box",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Solenoid[40,5]/Value",
-                  "_title": "Solenoid[40,5]/Value",
-                  "Colors/Color when true": "#7CFC00FF",
-                  "Colors/Color when false": "#8B0000FF"
-                },
-                {
-                  "_type": "Boolean Box",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Solenoid[40,4]/Value",
-                  "_title": "Solenoid[40,4]/Value",
-                  "Colors/Color when true": "#7CFC00FF",
-                  "Colors/Color when false": "#8B0000FF"
-                },
-                {
-                  "_type": "Boolean Box",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/DigitalInput[8]/Value",
-                  "_title": "DigitalInput[8]/Value",
-                  "Colors/Color when true": "#7CFC00FF",
-                  "Colors/Color when false": "#8B0000FF"
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/talon.clt",
+                  "_title": "/SmartDashboard/talon.clt"
                 },
                 {
                   "_type": "Text View",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/DoubleSolenoid[40,0]/Value",
-                  "_title": "DoubleSolenoid[40,0]/Value"
+                  "_source0": "network_table:///SmartDashboard/talon.encpos",
+                  "_title": "/SmartDashboard/talon.encpos"
                 },
                 {
                   "_type": "Text View",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/DoubleSolenoid[41,0]/Value",
-                  "_title": "DoubleSolenoid[41,0]/Value"
+                  "_source0": "network_table:///SmartDashboard/talon.errd",
+                  "_title": "/SmartDashboard/talon.errd"
                 },
                 {
                   "_type": "Text View",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/DoubleSolenoid[40,6]/Value",
-                  "_title": "DoubleSolenoid[40,6]/Value"
+                  "_source0": "network_table:///SmartDashboard/talon.cle",
+                  "_title": "/SmartDashboard/talon.cle"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///SmartDashboard/talon.errd_t",
+                  "_title": "/SmartDashboard/talon.errd_t",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///SmartDashboard/lim0",
+                  "_title": "/SmartDashboard/lim0",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///SmartDashboard/lim1",
+                  "_title": "/SmartDashboard/lim1",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
                 }
               ]
             }
           },
-          "2,0": {
-            "size": [
-              2,
-              4
-            ],
-            "content": {
-              "_type": "Subsystem Layout",
-              "_source0": "network_table:///LiveWindow/gyro",
-              "_title": "gyro",
-              "Layout/Label position": "BOTTOM",
-              "_children": []
-            }
-          },
-          "4,0": {
-            "size": [
-              2,
-              4
-            ],
-            "content": {
-              "_type": "Subsystem Layout",
-              "_source0": "network_table:///LiveWindow/SwerveDriveSubsystem",
-              "_title": "SwerveDriveSubsystem",
-              "Layout/Label position": "BOTTOM",
-              "_children": []
-            }
-          },
-          "6,0": {
-            "size": [
-              2,
-              4
-            ],
-            "content": {
-              "_type": "Subsystem Layout",
-              "_source0": "network_table:///LiveWindow/CargoIntakeSubsystem",
-              "_title": "CargoIntakeSubsystem",
-              "Layout/Label position": "BOTTOM",
-              "_children": []
-            }
-          },
-          "8,0": {
-            "size": [
-              2,
-              4
-            ],
-            "content": {
-              "_type": "Subsystem Layout",
-              "_source0": "network_table:///LiveWindow/ClimberSubsystem",
-              "_title": "ClimberSubsystem",
-              "Layout/Label position": "BOTTOM",
-              "_children": []
-            }
-          },
-          "10,0": {
-            "size": [
-              2,
-              4
-            ],
-            "content": {
-              "_type": "Subsystem Layout",
-              "_source0": "network_table:///LiveWindow/ArmSubsystem",
-              "_title": "ArmSubsystem",
-              "Layout/Label position": "BOTTOM",
-              "_children": []
-            }
-          }
-        }
-      }
-    },
-    {
-      "title": "swerve",
-      "autoPopulate": false,
-      "autoPopulatePrefix": "",
-      "widgetPane": {
-        "gridSize": 128.0,
-        "showGrid": true,
-        "hgap": 16.0,
-        "vgap": 16.0,
-        "tiles": {
-          "0,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/bl.steer.encpos",
-              "_title": "SmartDashboard/bl.steer.encpos"
-            }
-          },
-          "1,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/br.steer.encpos",
-              "_title": "SmartDashboard/br.steer.encpos"
-            }
-          },
-          "0,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fl.steer.encpos",
-              "_title": "SmartDashboard/fl.steer.encpos"
-            }
-          },
-          "1,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fr.steer.encpos",
-              "_title": "SmartDashboard/fr.steer.encpos"
-            }
-          },
-          "2,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/bl.steert.CLT",
-              "_title": "SmartDashboard/bl.steert.CLT"
-            }
-          },
           "3,1": {
             "size": [
-              1,
-              1
+              2,
+              2
             ],
             "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/br.steert.CLT",
-              "_title": "SmartDashboard/br.steert.CLT"
+              "_type": "Graph",
+              "_source0": "network_table:///SmartDashboard/talon.errd",
+              "_title": "SmartDashboard/talon.errd",
+              "Graph/Visible time": 30.0,
+              "Visible data/SmartDashboard/talon.errd": true
             }
           },
-          "2,0": {
+          "5,1": {
             "size": [
-              1,
-              1
+              2,
+              2
             ],
             "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fl.steert.CLT",
-              "_title": "SmartDashboard/fl.steert.CLT"
-            }
-          },
-          "3,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fr.steert.CLT",
-              "_title": "SmartDashboard/fr.steert.CLT"
-            }
-          },
-          "0,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/bl.steert.senspos",
-              "_title": "SmartDashboard/bl.steert.senspos"
-            }
-          },
-          "1,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/br.steert.senspos",
-              "_title": "SmartDashboard/br.steert.senspos"
-            }
-          },
-          "0,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fl.steert.senspos",
-              "_title": "SmartDashboard/fl.steert.senspos"
-            }
-          },
-          "1,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fr.steert.senspos",
-              "_title": "SmartDashboard/fr.steert.senspos"
-            }
-          },
-          "1,5": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/br.steer.encpos",
-              "_title": "SmartDashboard/br.steer.encpos"
-            }
-          },
-          "0,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fl.steer.encpos",
-              "_title": "SmartDashboard/fl.steer.encpos"
-            }
-          },
-          "1,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fr.steer.encpos",
-              "_title": "SmartDashboard/fr.steer.encpos"
-            }
-          },
-          "2,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/bl.steert.CLE",
-              "_title": "SmartDashboard/bl.steert.CLE"
+              "_type": "Graph",
+              "_source0": "network_table:///SmartDashboard/talon.cle",
+              "_title": "SmartDashboard/talon.cle",
+              "Graph/Visible time": 30.0,
+              "Visible data/SmartDashboard/talon.cle": true
             }
           },
           "3,3": {
             "size": [
-              1,
-              1
+              3,
+              2
             ],
             "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/br.steert.CLE",
-              "_title": "SmartDashboard/br.steert.CLE"
+              "_type": "PDP",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PowerDistributionPanel[0]",
+              "_title": "/LiveWindow/Ungrouped/PowerDistributionPanel[0]",
+              "Visuals/Show voltage and current values": true
             }
           },
-          "2,2": {
+          "3,0": {
             "size": [
-              1,
+              2,
               1
             ],
             "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fl.steert.CLE",
-              "_title": "SmartDashboard/fl.steert.CLE"
-            }
-          },
-          "3,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fr.steert.CLE",
-              "_title": "SmartDashboard/fr.steert.CLE"
-            }
-          },
-          "4,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/gyro.heading",
-              "_title": "SmartDashboard/gyro.heading"
-            }
-          },
-          "5,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/sd.derivsum",
-              "_title": "SmartDashboard/sd.derivsum"
-            }
-          },
-          "3,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fr.steert.errd",
-              "_title": "SmartDashboard/fr.steert.errd"
-            }
-          },
-          "2,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fl.steert.errd",
-              "_title": "SmartDashboard/fl.steert.errd"
-            }
-          },
-          "2,5": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/bl.steert.errd",
-              "_title": "SmartDashboard/bl.steert.errd"
-            }
-          },
-          "3,5": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/br.steert.errd",
-              "_title": "SmartDashboard/br.steert.errd"
-            }
-          },
-          "4,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fl.steert.tn",
-              "_title": "SmartDashboard/fl.steert.tn"
+              "_type": "ComboBox Chooser",
+              "_source0": "network_table:///SmartDashboard/Auto choices",
+              "_title": "SmartDashboard/Auto choices"
             }
           },
           "5,0": {
@@ -1318,351 +301,11 @@
               1
             ],
             "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fr.steert.tn",
-              "_title": "SmartDashboard/fr.steert.tn"
-            }
-          },
-          "5,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/br.steert.tn",
-              "_title": "SmartDashboard/br.steert.tn"
-            }
-          },
-          "4,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/bl.steert.tn",
-              "_title": "SmartDashboard/bl.steert.tn"
-            }
-          },
-          "0,5": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/bl.steer.encpos",
-              "_title": "SmartDashboard/bl.steer.encpos"
-            }
-          },
-          "5,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fr.steert.araw",
-              "_title": "SmartDashboard/fr.steert.araw"
-            }
-          },
-          "4,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/fl.steert.araw",
-              "_title": "SmartDashboard/fl.steert.araw"
-            }
-          },
-          "5,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/br.steert.araw",
-              "_title": "SmartDashboard/br.steert.araw"
-            }
-          },
-          "4,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/bl.steert.araw",
-              "_title": "SmartDashboard/bl.steert.araw"
-            }
-          }
-        }
-      }
-    },
-    {
-      "title": "Test",
-      "autoPopulate": false,
-      "autoPopulatePrefix": "",
-      "widgetPane": {
-        "gridSize": 128.0,
-        "showGrid": true,
-        "hgap": 16.0,
-        "vgap": 16.0,
-        "tiles": {
-          "0,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_bl_Sensor Pos:",
-              "_title": "/SmartDashboard/t_bl_Sensor Pos:"
-            }
-          },
-          "2,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_bl_Analog In",
-              "_title": "/SmartDashboard/t_bl_Analog In"
-            }
-          },
-          "1,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_br_Sensor Pos:",
-              "_title": "/SmartDashboard/t_br_Sensor Pos:"
-            }
-          },
-          "1,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_fr_Sensor Pos:",
-              "_title": "/SmartDashboard/t_fr_Sensor Pos:"
-            }
-          },
-          "3,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_br_Analog In",
-              "_title": "/SmartDashboard/t_br_Analog In"
-            }
-          },
-          "3,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_fr_Analog In",
-              "_title": "/SmartDashboard/t_fr_Analog In"
-            }
-          },
-          "2,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_fl_Analog In",
-              "_title": "/SmartDashboard/t_fl_Analog In"
-            }
-          },
-          "0,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_fl_Sensor Pos:",
-              "_title": "/SmartDashboard/t_fl_Sensor Pos:"
-            }
-          },
-          "2,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_fl_CLE:",
-              "_title": "/SmartDashboard/t_fl_CLE:"
-            }
-          },
-          "0,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_fl_CLT:",
-              "_title": "/SmartDashboard/t_fl_CLT:"
-            }
-          },
-          "3,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_br_CLE:",
-              "_title": "/SmartDashboard/t_br_CLE:"
-            }
-          },
-          "1,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_br_CLT:",
-              "_title": "/SmartDashboard/t_br_CLT:"
-            }
-          },
-          "2,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_bl_CLE:",
-              "_title": "/SmartDashboard/t_bl_CLE:"
-            }
-          },
-          "0,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_bl_CLT:",
-              "_title": "/SmartDashboard/t_bl_CLT:"
-            }
-          },
-          "1,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_fr_CLT:",
-              "_title": "/SmartDashboard/t_fr_CLT:"
-            }
-          },
-          "3,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_fr_CLE:",
-              "_title": "/SmartDashboard/t_fr_CLE:"
-            }
-          },
-          "5,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_br_errDeriv:",
-              "_title": "/SmartDashboard/t_br_errDeriv:"
-            }
-          },
-          "4,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_fl_errDeriv:",
-              "_title": "/SmartDashboard/t_fl_errDeriv:"
-            }
-          },
-          "4,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_bl_errDeriv:",
-              "_title": "/SmartDashboard/t_bl_errDeriv:"
-            }
-          },
-          "5,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/t_fr_errDeriv:",
-              "_title": "/SmartDashboard/t_fr_errDeriv:"
-            }
-          }
-        }
-      }
-    },
-    {
-      "title": "Tab 5",
-      "autoPopulate": false,
-      "autoPopulatePrefix": "",
-      "widgetPane": {
-        "gridSize": 128.0,
-        "showGrid": true,
-        "hgap": 16.0,
-        "vgap": 16.0,
-        "tiles": {
-          "1,0": {
-            "size": [
-              8,
-              4
-            ],
-            "content": {
-              "_type": "Camera Stream",
-              "_source0": "camera_server://USB Camera 0",
-              "_title": "USB Camera 0",
-              "Crosshair/Show crosshair": true,
-              "Crosshair/Crosshair color": "#FFFFFFFF",
-              "Controls/Show controls": true,
-              "Controls/Rotation": "NONE",
-              "compression": -1.0,
-              "fps": -1,
-              "imageWidth": -1,
-              "imageHeight": -1
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/talon.pf",
+              "_title": "SmartDashboard/talon.pf",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
             }
           }
         }
@@ -1672,7 +315,7 @@
   "windowGeometry": {
     "x": 0.0,
     "y": 0.0,
-    "width": 1386.0,
-    "height": 745.0
+    "width": 1920.0,
+    "height": 1057.0
   }
 }

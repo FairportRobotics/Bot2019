@@ -24,6 +24,7 @@ public class OI implements Initializable {
 
         gp1.buttonA.whenPressed(new MoveArmCommand(ArmPositionEnum.RETRACTED));
         gp1.buttonX.whenPressed(new MoveArmCommand(ArmPositionEnum.MID_EXTEND));
+        gp1.buttonB.whenPressed(new MoveArmCommand(ArmPositionEnum.MID_EXTEND));
         gp1.buttonY.whenPressed(new MoveArmCommand(ArmPositionEnum.FULL_EXTEND));
         gp1.lb.whileHeld(new IntakeSpinInwardCommand());
         gp1.rb.whileHeld(new IntakeSpinOutwardCommand());
@@ -36,8 +37,8 @@ public class OI implements Initializable {
         gp2.buttonA.whenPressed(new ClimberRetractAllCommand());
         gp2.buttonY.whileHeld(new ClimberExtendAllCommand());
         gp2.lb.whenPressed(new ClimberExtendRearCommand());
-        gp2.rb.whenPressed(new InstantCommand(Robot.climberSubsystem::disengageCutoff));
-        gp2.rt.whenPressed(new InstantCommand(Robot.climberSubsystem::engageCutoff));
+    //    gp2.rb.whenPressed(new InstantCommand(Robot.climberSubsystem::disengageCutoff));
+    //    gp2.rt.whenPressed(new InstantCommand(Robot.climberSubsystem::engageCutoff));
         gp2.start.whileHeld(new ClimberDriveForwardsCommand());
         gp2.back.whileHeld(new ClimberDriveReverseCommand());
 
@@ -144,6 +145,6 @@ public class OI implements Initializable {
     final double DEADBAND = 0.05;
     public double deadband(double value) {
         if (Math.abs(value) < DEADBAND) return 0.0;
-        return value*Math.abs(value);
+        return value;
     }
 }

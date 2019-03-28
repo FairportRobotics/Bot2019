@@ -152,6 +152,7 @@ public class ElevatorSubsystem extends Subsystem implements Initializable, Updat
     public void updateDashboard() {
         SmartDashboard.putNumber("structure talon", structureTalon.getSelectedSensorPosition());
         SmartDashboard.putNumber("arm talon", armTalon.getSelectedSensorPosition());
+        SmartDashboard.putNumber("armTalon.araw", armTalon.getSensorCollection().getAnalogInRaw());
     }
 
 
