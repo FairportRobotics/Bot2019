@@ -42,6 +42,9 @@ public class OI implements Initializable {
         gp2.start.whileHeld(new ClimberDriveForwardsCommand());
         gp2.back.whileHeld(new ClimberDriveReverseCommand());
 
+        // For Testing Auto Rotate To Wall or Wherever
+//        gp2.rb.whenPressed(new TurnToHeadingCommand(180));
+
 //        leftJoystick.getTriggerPressed(new CentricModeRobotCommand());
 //        gp2.back.whileHeld(new CentricModeFieldCommand());
 
