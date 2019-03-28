@@ -66,7 +66,8 @@ public class TurnToHeadingCommand extends PIDCommand {
     @Override
     protected void usePIDOutput(double output) {
 //		System.err.println("Heading Motor Value " + output);
-        Robot.swerveDriveSubsystem.move(0, 0, output, 0);
+//        Robot.swerveDriveSubsystem.move(0, 0, output, 0);
+          Robot.swerveDriveSubsystem.move(0, 0, output, Robot.gyroSubsystem.getHeading());
     }
 
     @Override
