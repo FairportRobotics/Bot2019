@@ -42,28 +42,28 @@ public class ArmSubsystem  extends Subsystem implements Initializable, UpdateDas
 
     public void retract() {
         armFirstPiston.set(DoubleSolenoid.Value.kReverse);
-        armSecondPiston.set(DoubleSolenoid.Value.kForward);
+        armSecondPiston.set(DoubleSolenoid.Value.kReverse);
 //        top.set(false);
 //        bottom.set(false);
     }
 
     public void extendMid() {
         armFirstPiston.set(DoubleSolenoid.Value.kForward);
-        armSecondPiston.set(DoubleSolenoid.Value.kForward);
+        armSecondPiston.set(DoubleSolenoid.Value.kReverse);
 //        top.set(false);
 //        bottom.set(true);
     }
 
     public void extendMid2() {
         armFirstPiston.set(DoubleSolenoid.Value.kReverse);
-        armSecondPiston.set(DoubleSolenoid.Value.kReverse);
+        armSecondPiston.set(DoubleSolenoid.Value.kForward);
 //        top.set(true);
 //        bottom.set(false);
     }
 
     public void extendFull() {
         armFirstPiston.set(DoubleSolenoid.Value.kForward);
-        armSecondPiston.set(DoubleSolenoid.Value.kReverse);
+        armSecondPiston.set(DoubleSolenoid.Value.kForward);
 //        top.set(true);
 //        bottom.set(true);
     }
